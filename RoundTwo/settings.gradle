@@ -1,0 +1,3 @@
+rootProject.name = 'RoundTwo'
+
+includeFlat 'RoundTwoJPA'
