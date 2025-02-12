@@ -9,10 +9,10 @@
 
 		<properties>
 			<property name="jakarta.persistence.jdbc.url"
-				value="jdbc:mysql://localhost:3306/FIXME" />
-			<property name="jakarta.persistence.jdbc.user" value="FIXME" />
+				value="jdbc:mysql://localhost:3306/roundtwodb" />
+			<property name="jakarta.persistence.jdbc.user" value="cromp" />
 			<property name="jakarta.persistence.jdbc.password"
-				value="FIXME" />
+				value="cromp" />
 			<property name="jakarta.persistence.jdbc.driver"
 				value="com.mysql.cj.jdbc.Driver" />
 
