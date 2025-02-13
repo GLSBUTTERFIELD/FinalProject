@@ -18,11 +18,11 @@ public class GatheringParticipant {
 	private GatheringParticipantId id;
 
 	@Column(name = "participant_rating")
-	private int participantRating;
+	private Integer participantRating;
 	@Column(name = "participant_notes")
 	private String participantNotes;
 	@Column(name = "host_rating")
-	private int hostRating;
+	private Integer hostRating;
 	@Column(name = "host_notes")
 	private String hostNotes;
 	@CreationTimestamp
@@ -40,11 +40,11 @@ public class GatheringParticipant {
 		this.id = id;
 	}
 
-	public int getParticipantRating() {
+	public Integer getParticipantRating() {
 		return participantRating;
 	}
 
-	public void setParticipantRating(int participantRating) {
+	public void setParticipantRating(Integer participantRating) {
 		this.participantRating = participantRating;
 	}
 
@@ -56,11 +56,11 @@ public class GatheringParticipant {
 		this.participantNotes = participantNotes;
 	}
 
-	public int getHostRating() {
+	public Integer getHostRating() {
 		return hostRating;
 	}
 
-	public void setHostRating(int hostRating) {
+	public void setHostRating(Integer hostRating) {
 		this.hostRating = hostRating;
 	}
 

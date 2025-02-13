@@ -5,11 +5,16 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Objects;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Gathering {
@@ -24,10 +29,10 @@ public class Gathering {
 	private Double fee;
 	
 	@Column(name="min_participants")
-	private Integer minParticipants;
+	private int minParticipants;
 	
 	@Column(name="max_participants")
-	private Integer maxParticipants;
+	private int maxParticipants;
 	
 	@Column(name="image_url")
 	private String imageUrl;
@@ -35,9 +40,11 @@ public class Gathering {
 	private boolean enabled;
 	
 	@Column(name="create_date")
+	@CreationTimestamp
 	private LocalDateTime createDate;
 	
 	@Column(name="last_update")
+	@UpdateTimestamp
 	private LocalDateTime lastUpdate;
 	
 	@Column(name="start_time")
@@ -52,13 +59,13 @@ public class Gathering {
 	@Column(name="end_date")
 	private LocalDate endDate;
 	
+	@ManyToOne
+	@JoinColumn(name = "address_id")
+	private Address address;
 	
-
 	public Gathering() {
 		super();
 	}
-
-
 
 	public int getId() {
 		return id;
@@ -66,6 +73,15 @@ public class Gathering {
 	public void setId(int id) {
 		this.id = id;
 	}
+	
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -84,16 +100,16 @@ public class Gathering {
 	public void setFee(Double fee) {
 		this.fee = fee;
 	}
-	public Integer getMinParticipants() {
+	public int getMinParticipants() {
 		return minParticipants;
 	}
-	public void setMinParticipants(Integer minParticipants) {
+	public void setMinParticipants(int minParticipants) {
 		this.minParticipants = minParticipants;
 	}
-	public Integer getMaxParticipants() {
+	public int getMaxParticipants() {
 		return maxParticipants;
 	}
-	public void setMaxParticipants(Integer maxParticipants) {
+	public void setMaxParticipants(int maxParticipants) {
 		this.maxParticipants = maxParticipants;
 	}
 	public String getImageUrl() {

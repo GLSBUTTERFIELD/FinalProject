@@ -20,6 +20,7 @@ public class ItemCondition {
 	private String description;
 	@Column(name="image_url")
 	private String image_Url;
+	
 	public ItemCondition() {
 		super();
 	}

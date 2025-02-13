@@ -3,6 +3,8 @@ package com.skilldistillery.roundtwo.entities;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,17 +22,15 @@ public class GatheringComment {
 	private String comment;
 	
 	@Column(name="create_date")
+	@CreationTimestamp
 	private LocalDateTime createDate;
 	
 	private boolean enabled;
-	
 	
 
 	public GatheringComment() {
 		super();
 	}
-	
-	
 	
 	public int getId() {
 		return id;

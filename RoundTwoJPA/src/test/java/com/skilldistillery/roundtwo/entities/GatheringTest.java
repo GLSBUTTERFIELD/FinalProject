@@ -46,5 +46,10 @@ class GatheringTest {
 		assertEquals("Twister Meetup", gathering.getName());
 		assertEquals(2, gathering.getMinParticipants());
 	}
+	@Test
+	void test_Gathering_ManyToOne_mapping_to_address() {
+		assertNotNull(gathering.getAddress());
+		assertEquals("My Basement", gathering.getAddress().getName());
+	}
 
 }

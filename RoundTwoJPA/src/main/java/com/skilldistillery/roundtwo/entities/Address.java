@@ -19,6 +19,7 @@ public class Address {
 	@Column(name = "state_abbreviation")
 	private String stateAbbr;
 	private String zip;
+	private String city;
 
 	public Address() {
 	}
@@ -29,6 +30,14 @@ public class Address {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
 	}
 
 	public String getName() {
@@ -83,7 +92,7 @@ public class Address {
 	@Override
 	public String toString() {
 		return "Address [id=" + id + ", name=" + name + ", street=" + street + ", stateAbbr=" + stateAbbr + ", zip="
-				+ zip + "]";
+				+ zip + ", city=" + city + "]";
 	}
 
 }

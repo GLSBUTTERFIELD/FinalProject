@@ -47,5 +47,10 @@ class UserTest {
 		assertEquals("test", user.getUsername());
 		assertEquals("will", user.getFirstName());
 	}
+	@Test
+	void test_User_ManyToOne_mapping_to_Address() {
+		assertNotNull(user.getAddress());
+		assertEquals("My Basement", user.getAddress().getName());
+	}
 
 }

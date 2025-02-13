@@ -32,7 +32,7 @@ public class Game {
 	private int minPlayers;
 	
 	@Column(name="max_players")
-	private int maxPlayers;
+	private Integer maxPlayers;
 
 	public Game() {
 		super();
@@ -94,11 +94,11 @@ public class Game {
 		this.minPlayers = minPlayers;
 	}
 
-	public int getMaxPlayers() {
+	public Integer getMaxPlayers() {
 		return maxPlayers;
 	}
 
-	public void setMaxPlayers(int maxPlayers) {
+	public void setMaxPlayers(Integer maxPlayers) {
 		this.maxPlayers = maxPlayers;
 	}
 

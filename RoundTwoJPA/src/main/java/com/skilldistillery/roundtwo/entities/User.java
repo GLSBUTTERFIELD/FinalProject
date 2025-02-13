@@ -11,6 +11,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class User {
@@ -37,6 +39,10 @@ public class User {
 	@Column(name="last_update")
 	private LocalDateTime lastUpdate;
 	
+	@ManyToOne
+	@JoinColumn(name = "address_id")
+	private Address address;
+	
 	public User() {
 	}
 
@@ -46,6 +52,14 @@ public class User {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 	public String getUsername() {
