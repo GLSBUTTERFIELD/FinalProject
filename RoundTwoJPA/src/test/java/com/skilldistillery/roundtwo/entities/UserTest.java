@@ -45,6 +45,7 @@ class UserTest {
 	void test_User_mapping() {
 		assertNotNull(user);
 		assertEquals("test", user.getUsername());
+		assertEquals("will", user.getFirstName());
 	}
 
 }
