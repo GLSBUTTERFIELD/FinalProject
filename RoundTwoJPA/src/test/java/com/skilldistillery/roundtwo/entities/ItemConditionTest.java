@@ -42,7 +42,7 @@ class ItemConditionTest {
 	}
 
 	@Test
-	void test_User_mapping() {
+	void test_ItemCondition_mapping() {
 		assertNotNull(condition);
 		assertEquals("Excellent Condition", condition.getName());
 	}
