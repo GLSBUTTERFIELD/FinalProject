@@ -1,7 +1,6 @@
 package com.skilldistillery.roundtwo.entities;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -13,11 +12,11 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
-class UserTest {
+class GameCommentTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private User user;
+	private GameComment comment;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -32,20 +31,18 @@ class UserTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		user = em.find(User.class, 1);
+		comment = em.find(GameComment.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
-		user = null;
+		comment = null;
 		em.close();
 	}
 
 	@Test
-	void test_User_mapping() {
-		assertNotNull(user);
-		assertEquals("test", user.getUsername());
-		assertEquals("will", user.getFirstName());
+	void test_GameComment_mapping() {
+		assertNull(comment);	
 	}
 
 }
