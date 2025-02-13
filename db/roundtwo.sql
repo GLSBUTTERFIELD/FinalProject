@@ -394,8 +394,8 @@ CREATE TABLE IF NOT EXISTS `game_comment` (
   `create_date` DATETIME NULL,
   `enabled` TINYINT NOT NULL DEFAULT 1,
   `user_id` INT NOT NULL,
-  `in_reply_to_id` INT NULL,
   `game_id` INT NOT NULL,
+  `in_reply_to_id` INT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_event_comment_user1_idx` (`user_id` ASC) VISIBLE,
   INDEX `fk_event_comment_event_comment1_idx` (`in_reply_to_id` ASC) VISIBLE,
@@ -523,11 +523,94 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `category`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `roundtwodb`;
+INSERT INTO `category` (`id`, `name`, `description`, `image_url`) VALUES (1, 'other', 'other miscellaneous games', 'https://cdn-icons-png.flaticon.com/512/5895/5895032.png');
+INSERT INTO `category` (`id`, `name`, `description`, `image_url`) VALUES (2, 'strategy', 'a game in which the players\' uncoerced, and often autonomous, decision-making skills have a high significance in determining the outcome.', 'https://e7.pngegg.com/pngimages/563/447/png-clipart-chess-computer-icons-board-game-strategy-video-game-chess-game-video-game-thumbnail.png');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `inventory_item_comment`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `roundtwodb`;
+INSERT INTO `inventory_item_comment` (`id`, `comment`, `create_date`, `last_update`, `enabled`, `inventory_item_id`, `user_id`, `in_reply_to_id`) VALUES (1, 'why do you have an unreleased version?', NULL, NULL, 1, 1, 2, NULL);
+INSERT INTO `inventory_item_comment` (`id`, `comment`, `create_date`, `last_update`, `enabled`, `inventory_item_id`, `user_id`, `in_reply_to_id`) VALUES (2, 'wouldnt you like to know fed boy', NULL, NULL, 1, 1, 1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `gathering_comment`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `roundtwodb`;
+INSERT INTO `gathering_comment` (`id`, `comment`, `create_date`, `enabled`, `user_id`, `gathering_id`, `in_reply_to_id`) VALUES (1, 'w-why is it in your basement?', NULL, 1, 2, 1, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `game_has_category`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `roundtwodb`;
+INSERT INTO `game_has_category` (`game_id`, `category_id`) VALUES (1, 1);
+INSERT INTO `game_has_category` (`game_id`, `category_id`) VALUES (2, 2);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `gathering_participant`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `roundtwodb`;
+INSERT INTO `gathering_participant` (`gathering_id`, `user_id`, `participant_rating`, `participant_notes`, `host_rating`, `host_notes`, `create_date`) VALUES (1, 3, 3, 'was pretty bad at twister', 2, 'fun game but the host smelled like cheeto dust', NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `favorite_game`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `roundtwodb`;
+INSERT INTO `favorite_game` (`user_id`, `game_id`) VALUES (1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `direct_message`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `roundtwodb`;
 INSERT INTO `direct_message` (`id`, `content`, `create_date`, `sender_id`, `recipient_id`) VALUES (1, 'youre bad', NULL, 1, 2);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `game_comment`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `roundtwodb`;
+INSERT INTO `game_comment` (`id`, `comment`, `create_date`, `enabled`, `user_id`, `game_id`, `in_reply_to_id`) VALUES (1, 'who even plays twister anymore?', NULL, 1, 2, 1, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `game_resource`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `roundtwodb`;
+INSERT INTO `game_resource` (`id`, `description`, `create_date`, `enabled`, `resource_url`, `name`, `last_update`, `user_id`, `game_id`) VALUES (1, 'Hey guys I found a way to actually play twister. ', NULL, 1, 'https://www.math.uni-bielefeld.de/~sillke/Twister/rules/', 'Twister Rules', NULL, 3, 1);
 
 COMMIT;
 
