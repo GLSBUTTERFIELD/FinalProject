@@ -13,11 +13,11 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
-class ItemConditionTest {
+class AddressTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private ItemCondition condition;
+	private Address address;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -32,19 +32,20 @@ class ItemConditionTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		condition = em.find(ItemCondition.class, 1);
+		address = em.find(Address.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
-		condition = null;
+		address = null;
 		em.close();
 	}
 
 	@Test
-	void test_ItemCondition_mapping() {
-		assertNotNull(condition);
-		assertEquals("Excellent Condition", condition.getName());
+	void test_Address_mapping() {
+		assertNotNull(address);
+		assertEquals("My Basement", address.getName());
+		assertEquals("123 Colfax Ave", address.getStreet());
 	}
 
 }

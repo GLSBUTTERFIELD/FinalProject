@@ -1,7 +1,6 @@
 package com.skilldistillery.roundtwo.entities;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -13,11 +12,11 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
-class ItemConditionTest {
-
+class CategoryTest {
+	
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private ItemCondition condition;
+	private Category category;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -32,19 +31,19 @@ class ItemConditionTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		condition = em.find(ItemCondition.class, 1);
+		category = em.find(Category.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
-		condition = null;
+		category = null;
 		em.close();
 	}
-
+	
+	
 	@Test
-	void test_ItemCondition_mapping() {
-		assertNotNull(condition);
-		assertEquals("Excellent Condition", condition.getName());
+	void test_Category_basic_mapping() {
+		assertNull(category);
 	}
 
 }
