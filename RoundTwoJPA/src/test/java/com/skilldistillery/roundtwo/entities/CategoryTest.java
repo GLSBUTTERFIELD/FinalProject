@@ -43,7 +43,8 @@ class CategoryTest {
 	
 	@Test
 	void test_Category_basic_mapping() {
-		assertNull(category);
+		assertNotNull(category);
+		assertEquals("other", category.getName());
 	}
 
 }
