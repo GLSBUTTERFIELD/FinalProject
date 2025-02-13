@@ -1,7 +1,12 @@
 package com.skilldistillery.roundtwo.entities;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,15 +18,26 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-
 	private String username;
 	private String password;
 	private String role;
 	private boolean enabled;
-	
+	@Column(name="first_name")
+	private String firstName;
+	@Column(name="last_name")
+	private String lastName;
+	private String email;
+	@Column(name="image_url")
+	private String imageUrl;
+	private String biography;
+	@CreationTimestamp
+	@Column(name="create_date")
+	private LocalDateTime createDate;
+	@UpdateTimestamp
+	@Column(name="last_update")
+	private LocalDateTime lastUpdate;
 	
 	public User() {
-		super();
 	}
 
 	public int getId() {
@@ -63,6 +79,62 @@ public class User {
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
+	
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
+	public String getBiography() {
+		return biography;
+	}
+
+	public void setBiography(String biography) {
+		this.biography = biography;
+	}
+
+	public LocalDateTime getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(LocalDateTime createDate) {
+		this.createDate = createDate;
+	}
+
+	public LocalDateTime getLastUpdate() {
+		return lastUpdate;
+	}
+
+	public void setLastUpdate(LocalDateTime lastUpdate) {
+		this.lastUpdate = lastUpdate;
+	}
 
 	@Override
 	public int hashCode() {
@@ -84,18 +156,9 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", role=" + role + ", enabled="
-				+ enabled + "]";
+				+ enabled + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", imageUrl="
+				+ imageUrl + ", biography=" + biography + ", createDate=" + createDate + ", lastUpdate=" + lastUpdate
+				+ "]";
 	}
-
-	public User(int id, String username, String password, String role, boolean enabled) {
-		super();
-		this.id = id;
-		this.username = username;
-		this.password = password;
-		this.role = role;
-		this.enabled = enabled;
-	}
-	
-	
 	
 }
