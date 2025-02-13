@@ -1,6 +1,7 @@
 package com.skilldistillery.roundtwo.entities;
 
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -42,7 +43,8 @@ class GameCommentTest {
 
 	@Test
 	void test_GameComment_mapping() {
-		assertNull(comment);	
+		assertNotNull(comment);
+		assertEquals("who even plays twister anymore?", comment.getComment());
 	}
 
 }

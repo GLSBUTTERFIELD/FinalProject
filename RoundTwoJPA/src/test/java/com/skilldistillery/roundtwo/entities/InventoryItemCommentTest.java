@@ -1,7 +1,7 @@
 package com.skilldistillery.roundtwo.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -43,7 +43,8 @@ class InventoryItemCommentTest {
 
 	@Test
 	void test_InventoryItemComment_mapping() {
-		assertNull(comment);
+		assertNotNull(comment);
+		assertEquals("why do you have an unreleased version?", comment.getComment());
 		
 	}
 
