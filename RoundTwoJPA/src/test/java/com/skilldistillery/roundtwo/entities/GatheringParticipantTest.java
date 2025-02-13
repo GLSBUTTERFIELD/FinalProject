@@ -1,6 +1,7 @@
 package com.skilldistillery.roundtwo.entities;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -12,11 +13,11 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
-class CategoryTest {
-	
+class GatheringParticipantTest {
+
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Category category;
+	private GatheringParticipant participant;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -31,20 +32,20 @@ class CategoryTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		category = em.find(Category.class, 1);
+		participant = em.find(GatheringParticipant.class, new GatheringParticipantId(1,3));
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
-		category = null;
+		participant = null;
 		em.close();
 	}
-	
-	
+
 	@Test
-	void test_Category_basic_mapping() {
-		assertNotNull(category);
-		assertEquals("other", category.getName());
+	void test_GatheringParticipant_mapping() {
+		assertNotNull(participant);
+		assertEquals(3, participant.getParticipantRating());
+		assertEquals(2, participant.getHostRating());
 	}
 
 }
