@@ -66,4 +66,10 @@ class GameTest {
 		assertNotNull(game.getInventoryItems());
 		assertTrue(game.getInventoryItems().size() > 0);
 	}
+	
+	@Test
+	void test_Game_GameResource_OneToMany_mapping() {
+		assertNotNull(game.getResources());
+		assertTrue(game.getResources().size() > 0);
+	}
 }

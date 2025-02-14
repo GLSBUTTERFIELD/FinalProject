@@ -51,6 +51,9 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private List<GatheringComment> gatheringComments;
 	
+	@OneToMany(mappedBy="user")
+	private List<GameResource> resources;
+	
 	public User() {
 	}
 
@@ -168,6 +171,14 @@ public class User {
 
 	public LocalDateTime getLastUpdate() {
 		return lastUpdate;
+	}
+
+	public List<GameResource> getResources() {
+		return resources;
+	}
+
+	public void setResources(List<GameResource> resources) {
+		this.resources = resources;
 	}
 
 	public void setLastUpdate(LocalDateTime lastUpdate) {

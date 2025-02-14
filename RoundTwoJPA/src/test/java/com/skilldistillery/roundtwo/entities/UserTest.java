@@ -65,4 +65,11 @@ class UserTest {
 		assertNotNull(user.getGatheringComments());
 		assertTrue(user.getGatheringComments().size()>0);
 	}
+	
+	@Test
+	void test_User_OneToMany_mapping_to_GameResource() {
+		user.setId(3);
+		assertNotNull(user.getResources());
+		assertTrue(user.getResources().size()>0);
+	}
 }
