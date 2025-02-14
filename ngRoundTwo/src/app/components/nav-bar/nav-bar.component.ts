@@ -71,27 +71,17 @@ export class NavBarComponent {
 
 
 
-  toggleSignUp() {
-    this.showSignUpForm = !this.showSignUpForm;
-  }
-  
-  toggleLogin(){
-    this.showLoginForm = !this.showLoginForm;
-  }
+toggleSignUp() {
+  this.showSignUpForm = !this.showSignUpForm;
+  this.showLoginForm = false;
+  console.log("Show SignUp Form:", this.showSignUpForm);
+}
 
-  ngAfterViewInit() {
-    $('#signUpModal').modal({ show: false });
-    $('#loginModal').modal({ show: false });
-  }
+toggleLogin() {
+  this.showLoginForm = !this.showLoginForm;
+  this.showSignUpForm = false;
+  console.log("Show Login Form:", this.showLoginForm);
+}
 
-  openModal() {
-    $('#signUpModal').modal('show');
-    $('#loginModal').modal('show');
-  }
-
-  closeModal() {
-    $('#signUpModal').modal('hide');
-    $('#loginModal').modal('hide');
-  }
 
 }
