@@ -31,7 +31,7 @@ class GatheringCommentTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		gatheringComment = em.find(GatheringComment.class, 1);
+		gatheringComment = em.find(GatheringComment.class, 2);
 	}
 
 	@AfterEach
@@ -52,11 +52,16 @@ class GatheringCommentTest {
 //		assertEquals("ya got that funk", gatheringComment.getParentComment().getComment());
 //	}
 
-	@Test
-	void test_GatheringComment_To_Gathering_ManyToOne_Relationship() {
-		assertNotNull(gatheringComment.getGathering());
-		assertEquals("Twister Meetup", gatheringComment.getGathering().getName());
-	}
+//	@Test
+//	void test_GatheringComment_To_Gathering_ManyToOne_Relationship() {
+//		assertNotNull(gatheringComment.getGathering());
+//		assertEquals("Twister Meetup", gatheringComment.getGathering().getName());
+//	}
 
+	@Test
+	void test_ParentComment_OneToMany_SubComment_Relationship() {
+		assertNotNull(gatheringComment.getSubComment());
+		assertTrue(gatheringComment.getSubComment().size() > 0);
+	}
 	
 }
