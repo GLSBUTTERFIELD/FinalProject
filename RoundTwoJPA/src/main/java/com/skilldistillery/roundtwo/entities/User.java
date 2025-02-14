@@ -13,6 +13,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
@@ -62,6 +64,10 @@ public class User {
 	
 	@OneToMany(mappedBy="host")
 	private List<Gathering> gatheringsHosted;
+	
+	@ManyToMany
+	@JoinTable(name = "favorite_game", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "game_id"))
+	private List<Game> favoriteGames;
 	
 	public User() {
 	}
@@ -216,6 +222,14 @@ public class User {
 
 	public void setGatheringsHosted(List<Gathering> gatheringsHosted) {
 		this.gatheringsHosted = gatheringsHosted;
+	}
+
+	public List<Game> getFavoriteGames() {
+		return favoriteGames;
+	}
+
+	public void setFavoriteGames(List<Game> favoriteGames) {
+		this.favoriteGames = favoriteGames;
 	}
 
 	@Override

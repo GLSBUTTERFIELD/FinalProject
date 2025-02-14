@@ -93,5 +93,11 @@ class UserTest {
 		assertTrue(user.getGatheringsHosted().size()>0);
 	}
 	
+	@Test
+	void test_User_ManyToMany_mapping_to_Game() {
+		assertNotNull(user.getFavoriteGames());
+		assertTrue(user.getFavoriteGames().size() > 0);
+	}
+	
 	
 }

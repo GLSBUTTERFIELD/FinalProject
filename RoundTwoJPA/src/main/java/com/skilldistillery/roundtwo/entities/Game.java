@@ -3,6 +3,8 @@ package com.skilldistillery.roundtwo.entities;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -51,6 +53,10 @@ public class Game {
 	
 	@OneToMany(mappedBy="game")
 	private List<GameResource> resources;
+	
+	@JsonIgnore
+	@ManyToMany(mappedBy="favoriteGames")
+	private List<User> favoritedUsers;
 	
 	public Game() {
 		super();
@@ -150,6 +156,18 @@ public class Game {
 
 	public void setResources(List<GameResource> resources) {
 		this.resources = resources;
+	}
+
+	public List<User> getFavoritedUsers() {
+		return favoritedUsers;
+	}
+
+	public void setFavoritedUsers(List<User> favoritedUsers) {
+		this.favoritedUsers = favoritedUsers;
+	}
+	
+	public int getNumberOfFavoritedUsers() {
+		return this.favoritedUsers.size();
 	}
 
 	@Override

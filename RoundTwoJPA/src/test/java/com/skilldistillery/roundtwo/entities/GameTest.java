@@ -72,4 +72,12 @@ class GameTest {
 		assertNotNull(game.getResources());
 		assertTrue(game.getResources().size() > 0);
 	}
+
+	@Test
+	void test_Game_User_ManyToMany_mapping() {
+		assertNotNull(game.getFavoritedUsers());
+		assertTrue(game.getFavoritedUsers().size() > 0);
+	}
+	
+	
 }
