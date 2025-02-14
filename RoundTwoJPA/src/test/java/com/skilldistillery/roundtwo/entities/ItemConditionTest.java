@@ -2,6 +2,7 @@ package com.skilldistillery.roundtwo.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -45,6 +46,12 @@ class ItemConditionTest {
 	void test_ItemCondition_mapping() {
 		assertNotNull(condition);
 		assertEquals("Excellent Condition", condition.getName());
+	}
+	
+	@Test
+	void test_ItemCondition_InventoryItem_OneToMany_mapping() {
+		assertNotNull(condition.getInventoryItems());
+		assertTrue(condition.getInventoryItems().size()>0);
 	}
 
 }
