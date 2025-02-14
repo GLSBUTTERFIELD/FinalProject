@@ -54,6 +54,12 @@ public class User {
 	@OneToMany(mappedBy="user")
 	private List<GameResource> resources;
 	
+	@OneToMany(mappedBy="user")
+	private List<InventoryItem> inventoryItems;
+	
+	@OneToMany(mappedBy="user")
+	private List<InventoryItemComment> inventoryItemComments;
+	
 	public User() {
 	}
 
@@ -183,6 +189,22 @@ public class User {
 
 	public void setLastUpdate(LocalDateTime lastUpdate) {
 		this.lastUpdate = lastUpdate;
+	}
+
+	public List<InventoryItem> getInventoryItems() {
+		return inventoryItems;
+	}
+
+	public void setInventoryItems(List<InventoryItem> inventoryItems) {
+		this.inventoryItems = inventoryItems;
+	}
+
+	public List<InventoryItemComment> getInventoryItemComments() {
+		return inventoryItemComments;
+	}
+
+	public void setInventoryItemComments(List<InventoryItemComment> inventoryItemComments) {
+		this.inventoryItemComments = inventoryItemComments;
 	}
 
 	@Override

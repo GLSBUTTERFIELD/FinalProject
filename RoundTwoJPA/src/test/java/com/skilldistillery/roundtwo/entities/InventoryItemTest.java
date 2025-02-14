@@ -57,6 +57,18 @@ class InventoryItemTest {
 		assertNotNull(inventoryItem.getGame());
 		assertEquals("Twister", inventoryItem.getGame().getName());
 	}
+	
+	@Test
+	void test_InventoryItem_User_ManyToOne_mapping() {
+		assertNotNull(inventoryItem.getUser());
+		assertEquals("will", inventoryItem.getUser().getFirstName());
+	}
+	
+	@Test
+	void test_InventoryItem_InventoryItemComment_OneToMany_mapping() {
+		assertNotNull(inventoryItem.getComments());
+		assertTrue(inventoryItem.getComments().size() > 0);
+	}
 
 
 }

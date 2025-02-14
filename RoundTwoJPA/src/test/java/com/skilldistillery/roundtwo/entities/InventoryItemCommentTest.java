@@ -47,5 +47,19 @@ class InventoryItemCommentTest {
 		assertEquals("why do you have an unreleased version?", comment.getComment());
 		
 	}
+	
+	@Test
+	void test_InventoryItemComment__InventoryItem_ManyToOne_mapping() {
+		assertNotNull(comment.getInventoryItem());
+		assertEquals("Twister Delux Edition", comment.getInventoryItem().getName());
+		
+	}
+
+	@Test
+	void test_InventoryItemComment__User_ManyToOne_mapping() {
+		assertNotNull(comment.getUser());
+		assertEquals("Ray", comment.getUser().getFirstName());
+		
+	}
 
 }

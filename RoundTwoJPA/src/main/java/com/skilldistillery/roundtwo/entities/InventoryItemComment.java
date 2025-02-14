@@ -11,6 +11,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -27,7 +29,15 @@ public class InventoryItemComment {
 	@UpdateTimestamp
 	@Column(name = "last_update")
 	private LocalDateTime lastUpdate;
-
+	
+	@ManyToOne
+	@JoinColumn(name="inventory_item_id")
+	private InventoryItem inventoryItem;
+	
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User user;
+	
 	public InventoryItemComment() {
 	}
 
@@ -69,6 +79,22 @@ public class InventoryItemComment {
 
 	public void setLastUpdate(LocalDateTime lastUpdate) {
 		this.lastUpdate = lastUpdate;
+	}
+
+	public InventoryItem getInventoryItem() {
+		return inventoryItem;
+	}
+
+	public void setInventoryItem(InventoryItem inventoryItem) {
+		this.inventoryItem = inventoryItem;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	@Override
