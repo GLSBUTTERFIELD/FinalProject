@@ -508,6 +508,9 @@ COMMIT;
 START TRANSACTION;
 USE `roundtwodb`;
 INSERT INTO `item_condition` (`id`, `name`, `description`, `image_url`) VALUES (1, 'Excellent Condition', 'The game includes all required peices and is not visually degraded. Pristine and still in its original packaging.', 'https://media.istockphoto.com/id/1362142320/vector/new-sticker-red-new-product-or-collection-badge-vectornewest-stamp.jpg?s=612x612&w=0&k=20&c=l7_rjI57JXi-xM5dAeNTa5cD8cdlmPljpip_5zgKyzo=');
+INSERT INTO `item_condition` (`id`, `name`, `description`, `image_url`) VALUES (2, 'Good Condition', 'minimal wear and tear, with only minor scratches or blemishes on the packaging, and all components are present and functional, indicating it has been played a few times but is still in largely pristine condition', 'https://cdn4.iconfinder.com/data/icons/system-ui-set/512/accept-ok-complete-good-condition-ui-512.png');
+INSERT INTO `item_condition` (`id`, `name`, `description`, `image_url`) VALUES (3, 'Fair Condition', 'noticeable wear and tear, including scratches, scuffs, or minor damage to the box and components, but is still fully playable with no major issues preventing gameplay', 'https://static-00.iconduck.com/assets.00/thumbs-up-icon-256x256-2f3zdnvc.png');
+INSERT INTO `item_condition` (`id`, `name`, `description`, `image_url`) VALUES (4, 'Bad Condition', 'a game where the overall experience is negatively affected due to poor gameplay mechanics, technical issues, or unbalanced design.', 'https://st3.depositphotos.com/1269954/14065/v/450/depositphotos_140653454-stock-illustration-bad-rubber-stamp.jpg');
 
 COMMIT;
 
@@ -540,6 +543,7 @@ START TRANSACTION;
 USE `roundtwodb`;
 INSERT INTO `inventory_item_comment` (`id`, `comment`, `create_date`, `last_update`, `enabled`, `inventory_item_id`, `user_id`, `in_reply_to_id`) VALUES (1, 'why do you have an unreleased version?', NULL, NULL, 1, 1, 2, NULL);
 INSERT INTO `inventory_item_comment` (`id`, `comment`, `create_date`, `last_update`, `enabled`, `inventory_item_id`, `user_id`, `in_reply_to_id`) VALUES (2, 'wouldnt you like to know fed boy', NULL, NULL, 1, 1, 1, 1);
+INSERT INTO `inventory_item_comment` (`id`, `comment`, `create_date`, `last_update`, `enabled`, `inventory_item_id`, `user_id`, `in_reply_to_id`) VALUES (3, 'did you steal it?', NULL, NULL, 1, 1, 3, 2);
 
 COMMIT;
 
@@ -568,6 +572,16 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `gathering_has_game`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `roundtwodb`;
+INSERT INTO `gathering_has_game` (`gathering_id`, `game_id`) VALUES (1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `gathering_participant`
 -- -----------------------------------------------------
 START TRANSACTION;
@@ -584,6 +598,8 @@ COMMIT;
 START TRANSACTION;
 USE `roundtwodb`;
 INSERT INTO `favorite_game` (`user_id`, `game_id`) VALUES (1, 1);
+INSERT INTO `favorite_game` (`user_id`, `game_id`) VALUES (2, 2);
+INSERT INTO `favorite_game` (`user_id`, `game_id`) VALUES (3, 2);
 
 COMMIT;
 
@@ -605,6 +621,8 @@ COMMIT;
 START TRANSACTION;
 USE `roundtwodb`;
 INSERT INTO `game_comment` (`id`, `comment`, `create_date`, `enabled`, `user_id`, `game_id`, `in_reply_to_id`) VALUES (1, 'who even plays twister anymore?', NULL, 1, 2, 1, NULL);
+INSERT INTO `game_comment` (`id`, `comment`, `create_date`, `enabled`, `user_id`, `game_id`, `in_reply_to_id`) VALUES (2, 'me loser', NULL, 1, 1, 1, 1);
+INSERT INTO `game_comment` (`id`, `comment`, `create_date`, `enabled`, `user_id`, `game_id`, `in_reply_to_id`) VALUES (3, 'how do you even play this game?', NULL, 1, 3, 1, NULL);
 
 COMMIT;
 
