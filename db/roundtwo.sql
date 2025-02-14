@@ -551,6 +551,7 @@ START TRANSACTION;
 USE `roundtwodb`;
 INSERT INTO `gathering_comment` (`id`, `comment`, `create_date`, `enabled`, `user_id`, `gathering_id`, `in_reply_to_id`) VALUES (1, 'w-why is it in your basement?', NULL, 1, 2, 1, NULL);
 INSERT INTO `gathering_comment` (`id`, `comment`, `create_date`, `enabled`, `user_id`, `gathering_id`, `in_reply_to_id`) VALUES (2, 'ya got that funk', NULL, 1, 1, 1, NULL);
+INSERT INTO `gathering_comment` (`id`, `comment`, `create_date`, `enabled`, `user_id`, `gathering_id`, `in_reply_to_id`) VALUES (3, 'fs, he really does', NULL, 1, 2, 1, 2);
 
 COMMIT;
 
