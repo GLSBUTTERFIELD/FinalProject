@@ -1,5 +1,6 @@
 package com.skilldistillery.roundtwo.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
@@ -7,6 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -20,6 +22,8 @@ public class ItemCondition {
 	private String description;
 	@Column(name="image_url")
 	private String image_Url;
+	@OneToMany(mappedBy="condition")
+	private List <InventoryItem> inventoryItems;
 	
 	public ItemCondition() {
 		super();
@@ -47,6 +51,12 @@ public class ItemCondition {
 	}
 	public void setImage_Url(String image_Url) {
 		this.image_Url = image_Url;
+	}
+	public List<InventoryItem> getInventoryItems() {
+		return inventoryItems;
+	}
+	public void setInventoryItems(List<InventoryItem> inventoryItems) {
+		this.inventoryItems = inventoryItems;
 	}
 	@Override
 	public int hashCode() {
