@@ -6,11 +6,15 @@ import java.util.Objects;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -39,6 +43,14 @@ public class InventoryItem {
 	@UpdateTimestamp
 	@Column(name = "last_update")
 	private LocalDateTime lastUpdate;
+	
+	@ManyToOne
+	@JoinColumn(name="condition_id")
+	private ItemCondition condition;
+	
+	@ManyToOne
+	@JoinColumn(name="game_id")
+	private Game game;
 
 	public InventoryItem() {
 		super();
@@ -106,6 +118,22 @@ public class InventoryItem {
 
 	public void setLastUpdate(LocalDateTime lastUpdate) {
 		this.lastUpdate = lastUpdate;
+	}
+
+	public ItemCondition getCondition() {
+		return condition;
+	}
+
+	public void setCondition(ItemCondition condition) {
+		this.condition = condition;
+	}
+
+	public Game getGame() {
+		return game;
+	}
+
+	public void setGame(Game game) {
+		this.game = game;
 	}
 
 	@Override

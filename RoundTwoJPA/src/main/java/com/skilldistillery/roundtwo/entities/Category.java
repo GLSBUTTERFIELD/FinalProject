@@ -1,5 +1,6 @@
 package com.skilldistillery.roundtwo.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
@@ -7,6 +8,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Category {
@@ -22,6 +26,11 @@ public class Category {
 	@Column(name="image_url")
 	private String imageUrl;
 
+	
+	@ManyToMany
+	@JoinTable(name = "game_has_category", joinColumns = @JoinColumn(name = "category_id"), inverseJoinColumns = @JoinColumn(name = "game_id"))
+	private List<Game> games;
+	
 	public Category() {
 		super();
 	}
@@ -56,6 +65,14 @@ public class Category {
 
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
+	}
+
+	public List<Game> getGames() {
+		return games;
+	}
+
+	public void setGames(List<Game> games) {
+		this.games = games;
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package com.skilldistillery.roundtwo.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
@@ -7,6 +8,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Game {
@@ -34,6 +39,16 @@ public class Game {
 	@Column(name="max_players")
 	private Integer maxPlayers;
 
+	@ManyToMany
+	@JoinTable(name = "gathering_has_game", joinColumns = @JoinColumn(name = "gathering_id"), inverseJoinColumns = @JoinColumn(name = "game_id"))
+	private List<Gathering> gatherings;
+	
+	@ManyToMany(mappedBy="games")
+	private List<Category> categories;
+	
+	@OneToMany(mappedBy="game")
+	private List<InventoryItem> inventoryItems;
+	
 	public Game() {
 		super();
 	}
@@ -100,6 +115,30 @@ public class Game {
 
 	public void setMaxPlayers(Integer maxPlayers) {
 		this.maxPlayers = maxPlayers;
+	}
+
+	public List<Gathering> getGatherings() {
+		return gatherings;
+	}
+
+	public void setGatherings(List<Gathering> gatherings) {
+		this.gatherings = gatherings;
+	}
+
+	public List<Category> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
+	}
+
+	public List<InventoryItem> getInventoryItems() {
+		return inventoryItems;
+	}
+
+	public void setInventoryItems(List<InventoryItem> inventoryItems) {
+		this.inventoryItems = inventoryItems;
 	}
 
 	@Override
