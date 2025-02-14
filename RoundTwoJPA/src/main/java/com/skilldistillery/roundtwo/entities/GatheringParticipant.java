@@ -8,6 +8,9 @@ import org.hibernate.annotations.CreationTimestamp;
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
 
 @Entity
@@ -28,6 +31,16 @@ public class GatheringParticipant {
 	@CreationTimestamp
 	@Column(name = "create_date")
 	private LocalDateTime createDate;
+	
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	@MapsId(value = "userId")
+	private User user;
+	
+	@ManyToOne
+	@JoinColumn(name = "gathering_id")
+	@MapsId(value = "gatheringId")
+	private Gathering gathering;
 
 	public GatheringParticipant() {
 	}
@@ -42,6 +55,22 @@ public class GatheringParticipant {
 
 	public Integer getParticipantRating() {
 		return participantRating;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Gathering getGathering() {
+		return gathering;
+	}
+
+	public void setGathering(Gathering gathering) {
+		this.gathering = gathering;
 	}
 
 	public void setParticipantRating(Integer participantRating) {

@@ -2,6 +2,7 @@ package com.skilldistillery.roundtwo.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -52,5 +53,16 @@ class UserTest {
 		assertNotNull(user.getAddress());
 		assertEquals("My Basement", user.getAddress().getName());
 	}
+	
+	@Test
+	void test_User_OneToMany_mapping_to_GatheringParticipant() {
+		assertNotNull(user.getGatheringsAttended());
+		assertTrue(user.getGatheringsAttended().size()>0);
+	}
 
+	@Test
+	void test_User_OneToMany_mapping_to_GatheringComment() {
+		assertNotNull(user.getGatheringComments());
+		assertTrue(user.getGatheringComments().size()>0);
+	}
 }

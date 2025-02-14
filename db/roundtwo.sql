@@ -474,7 +474,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `roundtwodb`;
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `first_name`, `last_name`, `role`, `email`, `image_url`, `biography`, `create_date`, `last_update`, `address_id`) VALUES (1, 'test', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 1, 'will', 'bill', 'chadmin', 'willbillsucks@gmail.com', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `first_name`, `last_name`, `role`, `email`, `image_url`, `biography`, `create_date`, `last_update`, `address_id`) VALUES (1, 'test', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 1, 'will', 'bill', 'chadmin', 'willbillsucks@gmail.com', NULL, NULL, NULL, NULL, 1);
 INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `first_name`, `last_name`, `role`, `email`, `image_url`, `biography`, `create_date`, `last_update`, `address_id`) VALUES (2, 'Player2', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 1, 'Ray', 'Williams', NULL, 'rayray@gmail.com', NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `first_name`, `last_name`, `role`, `email`, `image_url`, `biography`, `create_date`, `last_update`, `address_id`) VALUES (3, 'Hamilton', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 1, 'Gabby', 'Blorp', NULL, 'GabbySuks@gmail.com', NULL, NULL, NULL, NULL, NULL);
 
@@ -550,6 +550,7 @@ COMMIT;
 START TRANSACTION;
 USE `roundtwodb`;
 INSERT INTO `gathering_comment` (`id`, `comment`, `create_date`, `enabled`, `user_id`, `gathering_id`, `in_reply_to_id`) VALUES (1, 'w-why is it in your basement?', NULL, 1, 2, 1, NULL);
+INSERT INTO `gathering_comment` (`id`, `comment`, `create_date`, `enabled`, `user_id`, `gathering_id`, `in_reply_to_id`) VALUES (2, 'ya got that funk', NULL, 1, 1, 1, NULL);
 
 COMMIT;
 
@@ -571,6 +572,7 @@ COMMIT;
 START TRANSACTION;
 USE `roundtwodb`;
 INSERT INTO `gathering_participant` (`gathering_id`, `user_id`, `participant_rating`, `participant_notes`, `host_rating`, `host_notes`, `create_date`) VALUES (1, 3, 3, 'was pretty bad at twister', 2, 'fun game but the host smelled like cheeto dust', NULL);
+INSERT INTO `gathering_participant` (`gathering_id`, `user_id`, `participant_rating`, `participant_notes`, `host_rating`, `host_notes`, `create_date`) VALUES (1, 1, 4, 'actually knew how to play, super flexy', 1, 'the host was being..weird', NULL);
 
 COMMIT;
 
@@ -591,6 +593,7 @@ COMMIT;
 START TRANSACTION;
 USE `roundtwodb`;
 INSERT INTO `direct_message` (`id`, `content`, `create_date`, `sender_id`, `recipient_id`) VALUES (1, 'youre bad', NULL, 1, 2);
+INSERT INTO `direct_message` (`id`, `content`, `create_date`, `sender_id`, `recipient_id`) VALUES (2, 'you\'re*', NULL, 2, 1);
 
 COMMIT;
 

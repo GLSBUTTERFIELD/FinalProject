@@ -51,5 +51,10 @@ class GatheringTest {
 		assertNotNull(gathering.getAddress());
 		assertEquals("My Basement", gathering.getAddress().getName());
 	}
+	@Test
+	void test_Gathering_OneToMany_mapping_to_GatheringParticipant() {
+		assertNotNull(gathering.getParticipants());
+		assertTrue(gathering.getParticipants().size()>0);
+	}
 
 }

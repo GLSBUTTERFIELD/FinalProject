@@ -47,5 +47,15 @@ class GatheringParticipantTest {
 		assertEquals(3, participant.getParticipantRating());
 		assertEquals(2, participant.getHostRating());
 	}
+	@Test
+	void test_GatheringParticipant_ManyToOne_mapping_to_User() {
+		assertNotNull(participant.getUser());
+		assertEquals("Gabby", participant.getUser().getFirstName());
+	}
+	@Test
+	void test_GatheringParticipant_ManyToOne_mapping_to_Gathering() {
+		assertNotNull(participant.getGathering());
+		assertEquals("Twister Meetup", participant.getGathering().getName());
+	}
 
 }

@@ -1,6 +1,7 @@
 package com.skilldistillery.roundtwo.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -13,6 +14,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class User {
@@ -43,6 +45,12 @@ public class User {
 	@JoinColumn(name = "address_id")
 	private Address address;
 	
+	@OneToMany(mappedBy = "user")
+	private List<GatheringParticipant> gatheringsAttended;
+	
+	@OneToMany(mappedBy = "user")
+	private List<GatheringComment> gatheringComments;
+	
 	public User() {
 	}
 
@@ -52,6 +60,22 @@ public class User {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public List<GatheringComment> getGatheringComments() {
+		return gatheringComments;
+	}
+
+	public void setGatheringComments(List<GatheringComment> gatheringComments) {
+		this.gatheringComments = gatheringComments;
+	}
+
+	public List<GatheringParticipant> getGatheringsAttended() {
+		return gatheringsAttended;
+	}
+
+	public void setGatheringsAttended(List<GatheringParticipant> gatherings) {
+		this.gatheringsAttended = gatherings;
 	}
 
 	public Address getAddress() {

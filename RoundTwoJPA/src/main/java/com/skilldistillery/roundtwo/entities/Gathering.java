@@ -3,6 +3,7 @@ package com.skilldistillery.roundtwo.entities;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.Objects;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -15,6 +16,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Gathering {
@@ -63,6 +65,12 @@ public class Gathering {
 	@JoinColumn(name = "address_id")
 	private Address address;
 	
+	@OneToMany(mappedBy = "gathering")
+	private List<GatheringParticipant> participants;
+	
+	@OneToMany(mappedBy = "gathering")
+	private List<GatheringComment> comments;
+	
 	public Gathering() {
 		super();
 	}
@@ -74,6 +82,22 @@ public class Gathering {
 		this.id = id;
 	}
 	
+	public List<GatheringComment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<GatheringComment> comments) {
+		this.comments = comments;
+	}
+
+	public List<GatheringParticipant> getParticipants() {
+		return participants;
+	}
+
+	public void setParticipants(List<GatheringParticipant> participants) {
+		this.participants = participants;
+	}
+
 	public Address getAddress() {
 		return address;
 	}
