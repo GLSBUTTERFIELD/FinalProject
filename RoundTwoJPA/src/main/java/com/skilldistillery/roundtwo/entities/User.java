@@ -60,6 +60,9 @@ public class User {
 	@OneToMany(mappedBy="user")
 	private List<InventoryItemComment> inventoryItemComments;
 	
+	@OneToMany(mappedBy="host")
+	private List<Gathering> gatheringsHosted;
+	
 	public User() {
 	}
 
@@ -205,6 +208,14 @@ public class User {
 
 	public void setInventoryItemComments(List<InventoryItemComment> inventoryItemComments) {
 		this.inventoryItemComments = inventoryItemComments;
+	}
+
+	public List<Gathering> getGatheringsHosted() {
+		return gatheringsHosted;
+	}
+
+	public void setGatheringsHosted(List<Gathering> gatheringsHosted) {
+		this.gatheringsHosted = gatheringsHosted;
 	}
 
 	@Override

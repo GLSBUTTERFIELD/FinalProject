@@ -62,5 +62,11 @@ class GatheringTest {
 		assertNotNull(gathering.getGames());
 		assertTrue(gathering.getGames().size() > 0);
 	}
+	
+	@Test
+	void test_Gathering_User_ManyToOne_mapping() {
+		assertNotNull(gathering.getHost());
+		assertEquals("will", gathering.getHost().getFirstName());
+	}
 
 }

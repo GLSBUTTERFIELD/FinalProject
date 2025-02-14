@@ -87,5 +87,11 @@ class UserTest {
 		assertTrue(user.getInventoryItemComments().size()>0);
 	}
 	
+	@Test
+	void test_User_OneToMany_mapping_to_Gathering() {
+		assertNotNull(user.getGatheringsHosted());
+		assertTrue(user.getGatheringsHosted().size()>0);
+	}
+	
 	
 }

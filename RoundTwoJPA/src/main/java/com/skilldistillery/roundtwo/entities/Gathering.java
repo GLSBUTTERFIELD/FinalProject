@@ -74,6 +74,10 @@ public class Gathering {
 
 	@ManyToMany(mappedBy = "gatherings")
 	private List<Game> games;
+	
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User host;
 
 	public Gathering() {
 		super();
@@ -221,6 +225,14 @@ public class Gathering {
 
 	public void setGames(List<Game> games) {
 		this.games = games;
+	}
+
+	public User getHost() {
+		return host;
+	}
+
+	public void setHost(User host) {
+		this.host = host;
 	}
 
 	@Override

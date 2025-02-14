@@ -49,4 +49,16 @@ class DirectMessageTest {
 		assertNull(message.getCreateDate());
 	}
 
+	@Test
+	void test_DirectMessage_User_ManyToOne_Sender_mapping() {
+		assertNotNull(message);
+		assertEquals("will", message.getSender().getFirstName());
+	}
+
+	@Test
+	void test_DirectMessage_User_ManyToOne_Recipient_mapping() {
+		assertNotNull(message);
+		assertEquals("Ray", message.getRecipient().getFirstName());
+	}
+
 }
