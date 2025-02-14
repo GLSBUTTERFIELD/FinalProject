@@ -79,5 +79,11 @@ class GameTest {
 		assertTrue(game.getFavoritedUsers().size() > 0);
 	}
 	
+	@Test
+	void test_Game_GameComment_OneToMany_mapping() {
+		assertNotNull(game.getGameComments());
+		assertTrue(game.getGameComments().size() > 0);
+	}
+	
 	
 }

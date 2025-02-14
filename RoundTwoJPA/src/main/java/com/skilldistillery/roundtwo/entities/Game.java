@@ -17,47 +17,50 @@ import jakarta.persistence.OneToMany;
 
 @Entity
 public class Game {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	private String name;
 
 	private String description;
-	
-	@Column(name="minimum_age")
+
+	@Column(name = "minimum_age")
 	private int minimumAge;
-	
-	@Column(name="website_url")
+
+	@Column(name = "website_url")
 	private String websiteUrl;
-	
-	@Column(name="image_url")
+
+	@Column(name = "image_url")
 	private String imageUrl;
-	
-	@Column(name="min_players")
+
+	@Column(name = "min_players")
 	private int minPlayers;
-	
-	@Column(name="max_players")
+
+	@Column(name = "max_players")
 	private Integer maxPlayers;
 
 	@ManyToMany
 	@JoinTable(name = "gathering_has_game", joinColumns = @JoinColumn(name = "gathering_id"), inverseJoinColumns = @JoinColumn(name = "game_id"))
 	private List<Gathering> gatherings;
-	
-	@ManyToMany(mappedBy="games")
+
+	@ManyToMany(mappedBy = "games")
 	private List<Category> categories;
-	
-	@OneToMany(mappedBy="game")
+
+	@OneToMany(mappedBy = "game")
 	private List<InventoryItem> inventoryItems;
-	
-	@OneToMany(mappedBy="game")
+
+	@OneToMany(mappedBy = "game")
 	private List<GameResource> resources;
-	
+
 	@JsonIgnore
-	@ManyToMany(mappedBy="favoriteGames")
+	@ManyToMany(mappedBy = "favoriteGames")
 	private List<User> favoritedUsers;
-	
+
+	@OneToMany(mappedBy = "game")
+	private List<GameComment> gameComments;
+
 	public Game() {
 		super();
 	}
@@ -165,9 +168,17 @@ public class Game {
 	public void setFavoritedUsers(List<User> favoritedUsers) {
 		this.favoritedUsers = favoritedUsers;
 	}
-	
+
 	public int getNumberOfFavoritedUsers() {
 		return this.favoritedUsers.size();
+	}
+
+	public List<GameComment> getGameComments() {
+		return gameComments;
+	}
+
+	public void setGameComments(List<GameComment> gameComments) {
+		this.gameComments = gameComments;
 	}
 
 	@Override
@@ -193,8 +204,5 @@ public class Game {
 				+ ", websiteUrl=" + websiteUrl + ", imageUrl=" + imageUrl + ", minPlayers=" + minPlayers
 				+ ", maxPlayers=" + maxPlayers + "]";
 	}
-	
-	
-	
 
 }

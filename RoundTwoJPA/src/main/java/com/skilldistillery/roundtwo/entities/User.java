@@ -69,6 +69,9 @@ public class User {
 	@JoinTable(name = "favorite_game", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "game_id"))
 	private List<Game> favoriteGames;
 	
+	@OneToMany(mappedBy="user")
+	private List <GameComment> gameComments;
+	
 	public User() {
 	}
 
@@ -230,6 +233,14 @@ public class User {
 
 	public void setFavoriteGames(List<Game> favoriteGames) {
 		this.favoriteGames = favoriteGames;
+	}
+
+	public List<GameComment> getGameComments() {
+		return gameComments;
+	}
+
+	public void setGameComments(List<GameComment> gameComments) {
+		this.gameComments = gameComments;
 	}
 
 	@Override

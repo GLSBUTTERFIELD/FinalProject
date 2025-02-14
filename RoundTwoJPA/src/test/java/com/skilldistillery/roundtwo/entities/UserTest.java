@@ -99,5 +99,11 @@ class UserTest {
 		assertTrue(user.getFavoriteGames().size() > 0);
 	}
 	
+	@Test
+	void test_User_OneToMany_mapping_to_GameComment() {
+		assertNotNull(user.getGameComments());
+		assertTrue(user.getGameComments().size() > 0);
+	}
+	
 	
 }
