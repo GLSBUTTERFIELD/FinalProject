@@ -47,4 +47,10 @@ class CategoryTest {
 		assertEquals("other", category.getName());
 	}
 
+	@Test
+	void test_Category_Game_ManyToMany_mapping() {
+		assertNotNull(category.getGames());
+		assertTrue(category.getGames().size() > 0);
+	}
+	
 }

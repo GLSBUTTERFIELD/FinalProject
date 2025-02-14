@@ -2,6 +2,7 @@ package com.skilldistillery.roundtwo.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -48,4 +49,41 @@ class GameTest {
 		assertEquals("Twister", game.getName());
 	}
 
+	@Test
+	void test_Game_Gathering_ManyToMany_mapping() {
+		assertNotNull(game.getGatherings());
+		assertTrue(game.getGatherings().size() > 0);
+	}
+	
+	@Test
+	void test_Game_Category_ManyToMany_mapping() {
+		assertNotNull(game.getCategories());
+		assertTrue(game.getCategories().size() > 0);
+	}
+	
+	@Test
+	void test_Game_InventoryItem_OneToMany_mapping() {
+		assertNotNull(game.getInventoryItems());
+		assertTrue(game.getInventoryItems().size() > 0);
+	}
+	
+	@Test
+	void test_Game_GameResource_OneToMany_mapping() {
+		assertNotNull(game.getResources());
+		assertTrue(game.getResources().size() > 0);
+	}
+
+	@Test
+	void test_Game_User_ManyToMany_mapping() {
+		assertNotNull(game.getFavoritedUsers());
+		assertTrue(game.getFavoritedUsers().size() > 0);
+	}
+	
+	@Test
+	void test_Game_GameComment_OneToMany_mapping() {
+		assertNotNull(game.getGameComments());
+		assertTrue(game.getGameComments().size() > 0);
+	}
+	
+	
 }

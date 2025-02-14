@@ -13,6 +13,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
@@ -50,6 +52,25 @@ public class User {
 	
 	@OneToMany(mappedBy = "user")
 	private List<GatheringComment> gatheringComments;
+	
+	@OneToMany(mappedBy="user")
+	private List<GameResource> resources;
+	
+	@OneToMany(mappedBy="user")
+	private List<InventoryItem> inventoryItems;
+	
+	@OneToMany(mappedBy="user")
+	private List<InventoryItemComment> inventoryItemComments;
+	
+	@OneToMany(mappedBy="host")
+	private List<Gathering> gatheringsHosted;
+	
+	@ManyToMany
+	@JoinTable(name = "favorite_game", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "game_id"))
+	private List<Game> favoriteGames;
+	
+	@OneToMany(mappedBy="user")
+	private List <GameComment> gameComments;
 	
 	public User() {
 	}
@@ -170,8 +191,56 @@ public class User {
 		return lastUpdate;
 	}
 
+	public List<GameResource> getResources() {
+		return resources;
+	}
+
+	public void setResources(List<GameResource> resources) {
+		this.resources = resources;
+	}
+
 	public void setLastUpdate(LocalDateTime lastUpdate) {
 		this.lastUpdate = lastUpdate;
+	}
+
+	public List<InventoryItem> getInventoryItems() {
+		return inventoryItems;
+	}
+
+	public void setInventoryItems(List<InventoryItem> inventoryItems) {
+		this.inventoryItems = inventoryItems;
+	}
+
+	public List<InventoryItemComment> getInventoryItemComments() {
+		return inventoryItemComments;
+	}
+
+	public void setInventoryItemComments(List<InventoryItemComment> inventoryItemComments) {
+		this.inventoryItemComments = inventoryItemComments;
+	}
+
+	public List<Gathering> getGatheringsHosted() {
+		return gatheringsHosted;
+	}
+
+	public void setGatheringsHosted(List<Gathering> gatheringsHosted) {
+		this.gatheringsHosted = gatheringsHosted;
+	}
+
+	public List<Game> getFavoriteGames() {
+		return favoriteGames;
+	}
+
+	public void setFavoriteGames(List<Game> favoriteGames) {
+		this.favoriteGames = favoriteGames;
+	}
+
+	public List<GameComment> getGameComments() {
+		return gameComments;
+	}
+
+	public void setGameComments(List<GameComment> gameComments) {
+		this.gameComments = gameComments;
 	}
 
 	@Override

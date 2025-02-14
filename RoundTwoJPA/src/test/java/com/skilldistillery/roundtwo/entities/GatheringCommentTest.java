@@ -1,6 +1,8 @@
 package com.skilldistillery.roundtwo.entities;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -62,6 +64,13 @@ class GatheringCommentTest {
 	void test_ParentComment_OneToMany_SubComment_Relationship() {
 		assertNotNull(gatheringComment.getSubComment());
 		assertTrue(gatheringComment.getSubComment().size() > 0);
+	}
+	
+	@Test
+	void test_SubComment_ManyToOne_SubComment_Relationship() {
+		gatheringComment = em.find(GatheringComment.class, 3);
+		assertNotNull(gatheringComment.getParentComment());
+		assertEquals(2, gatheringComment.getParentComment().getId());
 	}
 	
 }

@@ -33,6 +33,7 @@ public class InventoryItemComment {
 	private LocalDateTime lastUpdate;
 	
 	@ManyToOne
+
 	@JoinColumn(name = "user_id")
 	private User user;
 	
@@ -52,8 +53,6 @@ public class InventoryItemComment {
 	public InventoryItemComment() {
 	}
 	
-	
-
 	public int getId() {
 		return id;
 	}
@@ -118,8 +117,6 @@ public class InventoryItemComment {
 	public void setSubComment(List<InventoryItemComment> subComment) {
 		this.subComment = subComment;
 	}
-
-
 
 	@Override
 	public int hashCode() {

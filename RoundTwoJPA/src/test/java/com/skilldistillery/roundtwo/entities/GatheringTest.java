@@ -1,6 +1,8 @@
 package com.skilldistillery.roundtwo.entities;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -55,6 +57,24 @@ class GatheringTest {
 	void test_Gathering_OneToMany_mapping_to_GatheringParticipant() {
 		assertNotNull(gathering.getParticipants());
 		assertTrue(gathering.getParticipants().size()>0);
+	}
+	
+	@Test
+	void test_Gathering_Game_ManyToMany_mapping() {
+		assertNotNull(gathering.getGames());
+		assertTrue(gathering.getGames().size() > 0);
+	}
+	
+	@Test
+	void test_Gathering_User_ManyToOne_mapping() {
+		assertNotNull(gathering.getHost());
+		assertEquals("will", gathering.getHost().getFirstName());
+	}
+	
+	@Test
+	void test_Gathering_GatheringComments_OneToMany_mapping() {
+		assertNotNull(gathering.getComments());
+		assertTrue(gathering.getComments().size() > 0);
 	}
 
 }

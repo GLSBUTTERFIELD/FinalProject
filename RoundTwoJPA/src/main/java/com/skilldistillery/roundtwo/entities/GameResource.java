@@ -11,6 +11,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -31,6 +33,14 @@ public class GameResource {
 	@Column(name="resource_url")
 	private String resourceUrl;
 	private boolean enabled;
+	
+	@ManyToOne
+	@JoinColumn(name="game_id")
+	private Game game;
+	
+	@ManyToOne
+	@JoinColumn(name ="user_id")
+	private User user;
 	
 	public GameResource() {
 		super();
@@ -90,6 +100,22 @@ public class GameResource {
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+
+	public Game getGame() {
+		return game;
+	}
+
+	public void setGame(Game game) {
+		this.game = game;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	@Override

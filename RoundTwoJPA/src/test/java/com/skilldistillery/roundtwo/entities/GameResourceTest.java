@@ -46,5 +46,19 @@ class GameResourceTest {
 		assertNotNull(gameResource);
 		assertEquals("Twister Rules", gameResource.getName());
 	}
+	
+	@Test
+	void test_GameResource_Game_ManyToOne_mapping() {
+		assertNotNull(gameResource.getGame());
+		assertEquals("Twister", gameResource.getGame().getName());
+	}
+	
+	@Test
+	void test_GameResource_User_ManyToOne_mapping() {
+		User user = new User();
+		user.setId(3);
+		assertNotNull(gameResource.getUser());
+		assertEquals("Gabby", gameResource.getUser().getFirstName());
+	}
 
 }

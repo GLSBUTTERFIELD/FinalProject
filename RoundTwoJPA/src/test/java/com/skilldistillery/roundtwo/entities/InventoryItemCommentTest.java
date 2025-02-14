@@ -61,17 +61,16 @@ class InventoryItemCommentTest {
 		assertTrue(comment.getSubComment().size() > 0);
 	}
 	
-//	@Test
-//	void test_InventoryItemComment_To_InventoryItem_ManyToOne_Relationship() {
-//		assertNotNull(comment.getInventoryItem());
-//		assertEquals("Twister Delux Edition", comment.getInventoryItem().getName());
-//	}
-//	
-//	@Test
-//	void test_InventoryItemComment_To_User_ManyToOne_Relationship() {
-//		assertNotNull(comment.getUser());
-//		assertEquals("Player2", comment.getUser().getUsername());
-//	}
+	@Test
+	void test_InventoryItemComment__InventoryItem_ManyToOne_mapping() {
+		assertNotNull(comment.getInventoryItem());
+		assertEquals("Twister Delux Edition", comment.getInventoryItem().getName());
+	}
 
+	@Test
+	void test_InventoryItemComment__User_ManyToOne_mapping() {
+		assertNotNull(comment.getUser());
+		assertEquals("will", comment.getUser().getFirstName());
+	}
 
 }

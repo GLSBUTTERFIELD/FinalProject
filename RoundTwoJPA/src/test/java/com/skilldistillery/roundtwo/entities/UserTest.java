@@ -2,6 +2,7 @@ package com.skilldistillery.roundtwo.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.AfterAll;
@@ -48,6 +49,7 @@ class UserTest {
 		assertEquals("test", user.getUsername());
 		assertEquals("will", user.getFirstName());
 	}
+	
 	@Test
 	void test_User_ManyToOne_mapping_to_Address() {
 		assertNotNull(user.getAddress());
@@ -65,4 +67,43 @@ class UserTest {
 		assertNotNull(user.getGatheringComments());
 		assertTrue(user.getGatheringComments().size()>0);
 	}
+	
+	@Test
+	void test_User_OneToMany_mapping_to_GameResource() {
+		user = em.find(User.class, 3);
+		assertNotNull(user.getResources());
+		assertTrue(user.getResources().size() > 0);
+	}
+	
+	@Test
+	void test_User_OneToMany_mapping_to_InventoryItem() {
+		assertNotNull(user.getInventoryItems());
+		assertTrue(user.getInventoryItems().size()>0);
+	}
+	
+	@Test
+	void test_User_OneToMany_mapping_to_InventoryItemComment() {
+		assertNotNull(user.getInventoryItemComments());
+		assertTrue(user.getInventoryItemComments().size()>0);
+	}
+	
+	@Test
+	void test_User_OneToMany_mapping_to_Gathering() {
+		assertNotNull(user.getGatheringsHosted());
+		assertTrue(user.getGatheringsHosted().size()>0);
+	}
+	
+	@Test
+	void test_User_ManyToMany_mapping_to_Game() {
+		assertNotNull(user.getFavoriteGames());
+		assertTrue(user.getFavoriteGames().size() > 0);
+	}
+	
+	@Test
+	void test_User_OneToMany_mapping_to_GameComment() {
+		assertNotNull(user.getGameComments());
+		assertTrue(user.getGameComments().size() > 0);
+	}
+	
+	
 }
