@@ -1,4 +1,11 @@
 <div *ngIf="userToDisplay">
-  <h1>Hello, {{userToDisplay.username}}</h1>
-  <img [src]="userToDisplay.imageUrl">
+  <h1>Hello, {{ userToDisplay.username }}</h1>
+  <img *ngIf="userToDisplay.imageUrl" [src]="userToDisplay.imageUrl" alt="User Image">
+
+  <p><strong>First Name:</strong> {{ userToDisplay.firstName }}</p>
+  <p><strong>Last Name:</strong> {{ userToDisplay.lastName }}</p>
+  <p><strong>Email:</strong> {{ userToDisplay.email }}</p>
+  <p><strong>Role:</strong> {{ userToDisplay.role }}</p>
+  <p><strong>Biography:</strong> {{ userToDisplay.biography }}</p>
+  
 </div>

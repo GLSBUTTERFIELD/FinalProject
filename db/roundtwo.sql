@@ -474,7 +474,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `roundtwodb`;
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `first_name`, `last_name`, `role`, `email`, `image_url`, `biography`, `create_date`, `last_update`, `address_id`) VALUES (1, 'test', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 1, 'will', 'bill', 'chadmin', 'willbillsucks@gmail.com', NULL, NULL, NULL, NULL, 1);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `first_name`, `last_name`, `role`, `email`, `image_url`, `biography`, `create_date`, `last_update`, `address_id`) VALUES (1, 'test', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 1, 'will', 'bill', 'chadmin', 'willbillsucks@gmail.com', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6XQHmnERLMxBjTPBD7AW66hNEpDJCSZyS2w&s', NULL, NULL, NULL, 1);
 INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `first_name`, `last_name`, `role`, `email`, `image_url`, `biography`, `create_date`, `last_update`, `address_id`) VALUES (2, 'Player2', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 1, 'Ray', 'Williams', NULL, 'rayray@gmail.com', NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `first_name`, `last_name`, `role`, `email`, `image_url`, `biography`, `create_date`, `last_update`, `address_id`) VALUES (3, 'Hamilton', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 1, 'Gabby', 'Blorp', NULL, 'GabbySuks@gmail.com', NULL, NULL, NULL, NULL, NULL);
 
