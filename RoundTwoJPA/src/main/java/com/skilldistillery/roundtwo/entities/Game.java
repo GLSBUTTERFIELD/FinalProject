@@ -41,6 +41,7 @@ public class Game {
 	@Column(name = "max_players")
 	private Integer maxPlayers;
 
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "gathering_has_game", joinColumns = @JoinColumn(name = "gathering_id"), inverseJoinColumns = @JoinColumn(name = "game_id"))
 	private List<Gathering> gatherings;
@@ -48,9 +49,11 @@ public class Game {
 	@ManyToMany(mappedBy = "games")
 	private List<Category> categories;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "game")
 	private List<InventoryItem> inventoryItems;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "game")
 	private List<GameResource> resources;
 
@@ -58,12 +61,17 @@ public class Game {
 	@ManyToMany(mappedBy = "favoriteGames")
 	private List<User> favoritedUsers;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "game")
 	private List<GameComment> gameComments;
+	
+	
 
 	public Game() {
 		super();
 	}
+	
+	
 
 	public int getId() {
 		return id;
