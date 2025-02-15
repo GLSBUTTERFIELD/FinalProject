@@ -59,6 +59,7 @@ export class NavBarComponent {
 
     }
   }
+
   login(loginUser: User){
     console.log(loginUser.username + " "+loginUser.password);
     this.authService.login(loginUser.username, loginUser.password).subscribe({
@@ -69,11 +70,8 @@ export class NavBarComponent {
       }, error: (err) => {
         console.log(err);
       }
-
   })
 }
-
-
 
 toggleSignUp() {
   this.showSignUpForm = !this.showSignUpForm;
@@ -90,6 +88,7 @@ toggleUserButtonView(): boolean {
 
 logout() {
   this.authService.logout();
+  this.router.navigateByUrl("");
   console.log("Logout button pressed")
 }
 
