@@ -7,6 +7,8 @@ import java.util.Objects;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -47,28 +49,36 @@ public class User {
 	@JoinColumn(name = "address_id")
 	private Address address;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<GatheringParticipant> gatheringsAttended;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<GatheringComment> gatheringComments;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="user")
 	private List<GameResource> resources;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="user")
 	private List<InventoryItem> inventoryItems;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="user")
 	private List<InventoryItemComment> inventoryItemComments;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="host")
 	private List<Gathering> gatheringsHosted;
 	
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "favorite_game", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "game_id"))
 	private List<Game> favoriteGames;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="user")
 	private List <GameComment> gameComments;
 	

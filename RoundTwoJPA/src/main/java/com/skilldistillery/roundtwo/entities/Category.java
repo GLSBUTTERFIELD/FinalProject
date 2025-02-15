@@ -3,6 +3,8 @@ package com.skilldistillery.roundtwo.entities;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,10 +28,12 @@ public class Category {
 	@Column(name="image_url")
 	private String imageUrl;
 
-	
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "game_has_category", joinColumns = @JoinColumn(name = "category_id"), inverseJoinColumns = @JoinColumn(name = "game_id"))
 	private List<Game> games;
+	
+	
 	
 	public Category() {
 		super();

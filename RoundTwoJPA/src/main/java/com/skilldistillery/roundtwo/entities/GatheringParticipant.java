@@ -5,6 +5,9 @@ import java.util.Objects;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -32,11 +35,13 @@ public class GatheringParticipant {
 	@Column(name = "create_date")
 	private LocalDateTime createDate;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	@MapsId(value = "userId")
 	private User user;
 	
+	@JsonIgnoreProperties({"participants"})
 	@ManyToOne
 	@JoinColumn(name = "gathering_id")
 	@MapsId(value = "gatheringId")

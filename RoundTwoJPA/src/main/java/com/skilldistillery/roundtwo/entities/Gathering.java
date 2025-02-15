@@ -9,6 +9,9 @@ import java.util.Objects;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -66,12 +69,15 @@ public class Gathering {
 	@JoinColumn(name = "address_id")
 	private Address address;
 
+	@JsonIgnoreProperties({"gathering"})
 	@OneToMany(mappedBy = "gathering")
 	private List<GatheringParticipant> participants;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "gathering")
 	private List<GatheringComment> comments;
 
+	@JsonIgnoreProperties({"gatherings"})
 	@ManyToMany(mappedBy = "gatherings")
 	private List<Game> games;
 	
