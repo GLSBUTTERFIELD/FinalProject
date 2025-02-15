@@ -4,13 +4,14 @@ import { Component, AfterViewInit } from '@angular/core';
 declare var $: any;
 import { FormsModule } from '@angular/forms';
 import { User } from '../../models/user';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-nav-bar',
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    RouterLink,
   ],
   templateUrl: './nav-bar.component.html',
   styleUrl: './nav-bar.component.css'
@@ -63,9 +64,9 @@ export class NavBarComponent {
   login(loginUser: User){
     console.log(loginUser.username + " "+loginUser.password);
     this.authService.login(loginUser.username, loginUser.password).subscribe({
-
       next: (displayingUser) => {
-        this.router.navigateByUrl('/users/' + displayingUser.id);
+        this.router.navigateByUrl('/home');
+        this.toggleLogin();
         console.log(displayingUser);
       }, error: (err) => {
         console.log(err);

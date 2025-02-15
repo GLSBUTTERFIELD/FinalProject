@@ -54,7 +54,6 @@ export class UserProfileComponent {
         console.error("Error loading User in userProfile component");
       }
     });
-
   }
 
 }

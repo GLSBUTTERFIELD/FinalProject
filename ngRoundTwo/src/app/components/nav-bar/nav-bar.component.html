@@ -16,13 +16,13 @@
           <button class="btn btn-warning" (click)="toggleSignUp()">Sign Up</button>
           <button class="btn btn-info" (click)="toggleLogin()">Login</button>
         </div>
-        <div *ngIf="!toggleUserButtonView()">
+        <div *ngIf="!toggleUserButtonView() && loggingInUser">
+          <a class="nav-item nav-link" [routerLink]="['/userprofile']">Hello, {{loggingInUser.username}}</a>
           <button class="btn btn-danger"(click)="logout()">Logout</button>
         </div>
       </div>
     </div>
   </nav>
-
 </div>
 
 
