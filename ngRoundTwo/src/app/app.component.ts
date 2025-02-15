@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { AuthService } from './services/auth.service';
 import { NavBarComponent } from "./components/nav-bar/nav-bar.component";
+import { UserProfileComponent } from "./components/user-profile/user-profile.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NavBarComponent],
+  imports: [RouterOutlet, NavBarComponent, UserProfileComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -17,24 +18,6 @@ export class AppComponent {
   constructor(
     private auth: AuthService
   ) {}
-
-  ngOnInit() {
-    this.tempTestDeleteMeLater(); // DELETE LATER!!!
-  }
-
-  tempTestDeleteMeLater() {
-    this.auth.login('test','test').subscribe({ // change username to match DB
-      next: (data) => {
-        console.log('Logged in:');
-        console.log(data);
-      },
-      error: (fail) => {
-        console.error('Error authenticating:')
-        console.error(fail);
-      }
-    });
-  }
-
 
 
 }

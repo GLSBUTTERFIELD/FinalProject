@@ -1,3 +1,4 @@
-<div>
-
+<div *ngIf="userToDisplay">
+  <h1>Hello, {{userToDisplay.username}}</h1>
+  <img [src]="userToDisplay.imageUrl">
 </div>

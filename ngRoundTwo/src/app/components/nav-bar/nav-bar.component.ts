@@ -4,6 +4,7 @@ import { Component, AfterViewInit } from '@angular/core';
 declare var $: any;
 import { FormsModule } from '@angular/forms';
 import { User } from '../../models/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-bar',
@@ -25,8 +26,11 @@ export class NavBarComponent {
 
   loggingInUser: User = new User();
 
+  userButtons: boolean = false;
+
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router,
   ){
   }
   register(addingUser: User){
@@ -60,7 +64,7 @@ export class NavBarComponent {
     this.authService.login(loginUser.username, loginUser.password).subscribe({
 
       next: (displayingUser) => {
-        // this.router.navigateByUrl('/todo');
+        this.router.navigateByUrl('/users/' + displayingUser.id);
         console.log(displayingUser);
       }, error: (err) => {
         console.log(err);
@@ -74,13 +78,19 @@ export class NavBarComponent {
 toggleSignUp() {
   this.showSignUpForm = !this.showSignUpForm;
   this.showLoginForm = false;
-  console.log("Show SignUp Form:", this.showSignUpForm);
 }
 
 toggleLogin() {
   this.showLoginForm = !this.showLoginForm;
   this.showSignUpForm = false;
-  console.log("Show Login Form:", this.showLoginForm);
+}
+toggleUserButtonView(): boolean {
+  return !this.authService.checkLogin();
+}
+
+logout() {
+  this.authService.logout();
+  console.log("Logout button pressed")
 }
 
 

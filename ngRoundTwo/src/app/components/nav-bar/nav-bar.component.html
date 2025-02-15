@@ -12,9 +12,13 @@
         <a class="nav-item nav-link" href="#">About</a>
         <a class="nav-item nav-link" href="#">Trade</a>
         <a class="nav-item nav-link " href="#">Gathering</a>
-
-        <button class="btn btn-warning" (click)="toggleSignUp()">Sign Up</button>
-        <button class="btn btn-info" (click)="toggleLogin()">Login</button>
+        <div *ngIf="toggleUserButtonView()">
+          <button class="btn btn-warning" (click)="toggleSignUp()">Sign Up</button>
+          <button class="btn btn-info" (click)="toggleLogin()">Login</button>
+        </div>
+        <div *ngIf="!toggleUserButtonView()">
+          <button class="btn btn-danger"(click)="logout()">Logout</button>
+        </div>
       </div>
     </div>
   </nav>
