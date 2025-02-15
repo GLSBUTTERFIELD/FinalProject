@@ -1,4 +1,4 @@
-<div *ngIf="userToDisplay">
+<div *ngIf="userToDisplay && !editProfile">
   <h1>Hello, {{ userToDisplay.username }}</h1>
   <img *ngIf="userToDisplay.imageUrl" [src]="userToDisplay.imageUrl" alt="User Image">
 
@@ -7,5 +7,28 @@
   <p><strong>Email:</strong> {{ userToDisplay.email }}</p>
   <p><strong>Role:</strong> {{ userToDisplay.role }}</p>
   <p><strong>Biography:</strong> {{ userToDisplay.biography }}</p>
-  
+
+  <button class="btn btn-warning" (click)="setEditProfile()">Edit</button>
+</div>
+
+<div *ngIf="editProfile">
+ <form>
+    <label for="username">Username</label>
+    <input type="text" name="username" [(ngModel)]="editProfile.username"><br>
+
+    <label for="password">Password</label>
+    <input type="password" name="password" [(ngModel)]="editProfile.password"><br>
+
+    <label for="imageUrl">Profile Picture</label>
+    <input type="text" name="imageUrl" [(ngModel)]="editProfile.imageUrl"><br>
+
+    <label for="biography">Biography</label>
+    <textarea name="biography" [(ngModel)]="editProfile.biography"></textarea><br>
+
+    <label for="email">Email</label>
+    <input type="text" name="email" [(ngModel)]="editProfile.email"><br>
+
+    <button class="btn btn-warning" (click)="updateProfile(editProfile)">Save</button>
+
+ </form>
 </div>

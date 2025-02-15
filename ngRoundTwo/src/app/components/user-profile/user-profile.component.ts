@@ -1,9 +1,9 @@
+import { User } from './../../models/user';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { User } from '../../models/user';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -18,6 +18,7 @@ import { AuthService } from '../../services/auth.service';
 export class UserProfileComponent {
 
   userToDisplay: User | null = null;
+  editProfile: User | null = null;
 
   constructor(
     private userService: UserService,
@@ -52,6 +53,22 @@ export class UserProfileComponent {
       error: (err) => {
         console.error(err);
         console.error("Error loading User in userProfile component");
+      }
+    });
+  }
+
+  setEditProfile() : void {
+    this.editProfile = Object.assign({}, this.userToDisplay)
+  }
+
+  updateProfile(user: User) {
+    console.log(user)
+    this.userService.update(user).subscribe({
+      next: (User) => {
+      },
+      error: (error) => {
+        console.log(error);
+        console.log("Error updating profile in todoList component");
       }
     });
   }
