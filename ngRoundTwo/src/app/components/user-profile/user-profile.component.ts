@@ -35,7 +35,6 @@ export class UserProfileComponent {
   loadProfileById(userId: number) {
     this.userService.show(userId).subscribe({
       next: (user) => {
-      // this.selected = user;
     },
       error: (err) => {
         this.router.navigateByUrl('User ' + userId + ' not found');
@@ -62,15 +61,31 @@ export class UserProfileComponent {
   }
 
   updateProfile(user: User) {
-    console.log(user)
+
     this.userService.update(user).subscribe({
-      next: (User) => {
+      next: (updatedUser) => {
+        // reloads user and exits the update form
+        this.userToDisplay = updatedUser;
+      this.editProfile = null;
       },
       error: (error) => {
         console.log(error);
-        console.log("Error updating profile in todoList component");
+        console.log("Error updating profile in user-profile component");
       }
     });
   }
 
+  deletePost(userId: number){
+    console.log(userId);
+    this.userService.destroy(userId).subscribe({
+      next: () => {
+        this.authService.logout();
+        this.router.navigateByUrl('/home');
+      },
+      error: (fail) => {
+        console.log('homeComponent.deletePost: failed to delete the Post.')
+        console.log(fail);
+      }
+    })
+  }
 }

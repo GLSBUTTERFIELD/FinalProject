@@ -35,8 +35,8 @@ export class UserService {
   }
 
   update(user: User) : Observable<User> {
-
-    return this.http.put<User>(`${this.url}/${user.id}`, user).pipe(
+      // this.getHttpOptions() authenticates the users action. Make sure to add
+    return this.http.put<User>(`${this.url}/${user.id}`, user, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(
@@ -46,4 +46,14 @@ export class UserService {
     );
   }
 
+  destroy(userId: number) : Observable<void> {
+    return this.http.delete<void>(`${this.url}/${userId}`, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('userService.delete(): error deleting the user: ' + err)
+        );
+      })
+    );
+  }
 }

@@ -32,8 +32,9 @@ export class NavBarComponent {
   constructor(
     private authService: AuthService,
     private router: Router,
-  ){
-  }
+  ){}
+
+
   register(addingUser: User){
     console.log(addingUser);
     if(addingUser){
@@ -44,6 +45,8 @@ export class NavBarComponent {
           this.authService.login(addingUser.username, addingUser.password).subscribe({
             next: (loggedInUser) => {
               // this.router.navigateByUrl('/todo');
+              this.router.navigateByUrl('/home');
+              this.toggleSignUp();
             },
             error: (problem) => {
               console.error('NavBarComponent.register(): Error logging in user:');
@@ -62,7 +65,6 @@ export class NavBarComponent {
   }
 
   login(loginUser: User){
-    console.log(loginUser.username + " "+loginUser.password);
     this.authService.login(loginUser.username, loginUser.password).subscribe({
       next: (displayingUser) => {
         this.router.navigateByUrl('/home');
@@ -90,7 +92,7 @@ toggleUserButtonView(): boolean {
 logout() {
   this.authService.logout();
   this.router.navigateByUrl("");
-  console.log("Logout button pressed")
+  console.log("Logout button pressed");
 }
 
 

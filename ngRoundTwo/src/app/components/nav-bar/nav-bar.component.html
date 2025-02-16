@@ -1,24 +1,29 @@
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
 <div class="container">
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <!-- <div class="collapse navbar-collapse" id="navbarNavAltMarkup"> -->
-    <div>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+  aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"
+  onclick="document.getElementById('navbarNavAltMarkup').classList.toggle('show')">
+  <span class="navbar-toggler-icon"></span>
+</button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-item nav-link active" href="#">Home </a>
-        <a class="nav-item nav-link" href="#">About</a>
-        <a class="nav-item nav-link" href="#">Trade</a>
-        <a class="nav-item nav-link " href="#">Gathering</a>
+        <a class="nav-item nav-link active" [routerLink]="['/home']">Home </a>
+        <a class="nav-item nav-link" [routerLink]="['/about']">About</a>
+        <a class="nav-item nav-link" [routerLink]="['/trade']">Trade</a>
+        <a class="nav-item nav-link " [routerLink]="['/gathering']">Gathering</a>
         <div *ngIf="toggleUserButtonView()">
           <button class="btn btn-warning" (click)="toggleSignUp()">Sign Up</button>
           <button class="btn btn-info" (click)="toggleLogin()">Login</button>
         </div>
-        <div *ngIf="!toggleUserButtonView() && loggingInUser">
+        <div *ngIf="!toggleUserButtonView() && loggingInUser" class="d-flex align-items-center gap-2">
           <a class="nav-item nav-link" [routerLink]="['/userprofile']">Hello, {{loggingInUser.username}}</a>
-          <button class="btn btn-danger"(click)="logout()">Logout</button>
+          <button class="nav-item btn btn-danger"(click)="logout()">Logout</button>
         </div>
       </div>
     </div>
@@ -72,3 +77,4 @@
 </div>
 
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
