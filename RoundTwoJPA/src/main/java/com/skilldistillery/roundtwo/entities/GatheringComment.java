@@ -43,6 +43,7 @@ public class GatheringComment {
 	@JoinColumn(name = "in_reply_to_id")
 	private GatheringComment parentComment;
 	
+	
 	@OneToMany(mappedBy = "parentComment")
 	private List<GatheringComment> subComment;
 	

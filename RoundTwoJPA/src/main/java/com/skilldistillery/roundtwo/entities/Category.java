@@ -70,7 +70,8 @@ public class Category {
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
 	}
-
+	
+	@JsonIgnore
 	public List<Game> getGames() {
 		return games;
 	}

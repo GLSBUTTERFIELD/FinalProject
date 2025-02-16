@@ -7,6 +7,8 @@ import java.util.Objects;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -37,6 +39,7 @@ public class InventoryItemComment {
 	@JoinColumn(name = "user_id")
 	private User user;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "inventory_item_id")
 	private InventoryItem inventoryItem;
@@ -45,6 +48,7 @@ public class InventoryItemComment {
 	@JoinColumn(name = "in_reply_to_id")
 	private InventoryItemComment parentComment;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "parentComment")
 	private List<InventoryItemComment> subComment;
 	
