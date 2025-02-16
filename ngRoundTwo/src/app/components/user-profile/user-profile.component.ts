@@ -73,4 +73,17 @@ export class UserProfileComponent {
     });
   }
 
+  deleteUser(userId: number){
+    console.log(userId);
+    this.userService.destroy(userId).subscribe({
+      next: () => {
+        this.authService.logout();
+        this.router.navigateByUrl('/home');
+      },
+      error: (fail) => {
+        console.log('homeComponent.deletePost: failed to delete the Post.')
+        console.log(fail);
+      }
+    })
+  }
 }
