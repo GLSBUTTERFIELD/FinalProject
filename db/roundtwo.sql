@@ -465,6 +465,8 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 START TRANSACTION;
 USE `roundtwodb`;
 INSERT INTO `address` (`id`, `name`, `street`, `city`, `state_abbreviation`, `zip`) VALUES (1, 'My Basement', '123 Colfax Ave', 'Denver', 'CO', '80014');
+INSERT INTO `address` (`id`, `name`, `street`, `city`, `state_abbreviation`, `zip`) VALUES (2, 'Event Center', '556 Fake Street', 'Longmont', 'CO', '80501');
+INSERT INTO `address` (`id`, `name`, `street`, `city`, `state_abbreviation`, `zip`) VALUES (DEFAULT, NULL, NULL, NULL, NULL, NULL);
 
 COMMIT;
 
@@ -486,7 +488,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `roundtwodb`;
-INSERT INTO `gathering` (`id`, `name`, `description`, `registration_fee_usd`, `min_participants`, `max_participants`, `enabled`, `create_date`, `last_update`, `end_time`, `start_time`, `image_url`, `start_date`, `end_date`, `user_id`, `address_id`) VALUES (1, 'Twister Meetup', NULL, NULL, 2, 4, 1, NULL, NULL, NULL, '22:00:00', NULL, '2025-02-13', NULL, 1, 1);
+INSERT INTO `gathering` (`id`, `name`, `description`, `registration_fee_usd`, `min_participants`, `max_participants`, `enabled`, `create_date`, `last_update`, `end_time`, `start_time`, `image_url`, `start_date`, `end_date`, `user_id`, `address_id`) VALUES (1, 'Twister Meetup', 'We are going to play a game of twister in my basement. Be ready!', NULL, 2, 4, 1, NULL, NULL, NULL, '22:00:00', NULL, '2025-02-13', NULL, 1, 1);
+INSERT INTO `gathering` (`id`, `name`, `description`, `registration_fee_usd`, `min_participants`, `max_participants`, `enabled`, `create_date`, `last_update`, `end_time`, `start_time`, `image_url`, `start_date`, `end_date`, `user_id`, `address_id`) VALUES (2, 'Catan Time!', 'I love playing catan and im looking for other people to play with. Any one want to join?', NULL, 2, 6, 1, NULL, NULL, NULL, '12:00:00', NULL, '2025-02-14', NULL, 2, 2);
+INSERT INTO `gathering` (`id`, `name`, `description`, `registration_fee_usd`, `min_participants`, `max_participants`, `enabled`, `create_date`, `last_update`, `end_time`, `start_time`, `image_url`, `start_date`, `end_date`, `user_id`, `address_id`) VALUES (3, 'Magic The Gathering', 'Im a novice when it comes to magic, can someone come and help me out? Id want to learn as much as i can.', NULL, 2, 4, 1, NULL, NULL, NULL, '20:00:00', NULL, '2025-02-15', NULL, 1, 1);
 
 COMMIT;
 
@@ -498,6 +502,7 @@ START TRANSACTION;
 USE `roundtwodb`;
 INSERT INTO `game` (`id`, `name`, `description`, `minimum_age`, `website_url`, `image_url`, `min_players`, `max_players`) VALUES (1, 'Twister', 'a party game where players take turns placing their hands and feet on colored circles on a mat while avoiding falling over', 6, 'https://en.wikipedia.org/wiki/Twister_(game)', 'https://upload.wikimedia.org/wikipedia/en/0/09/1966_Twister_Cover.jpg', 2, 4);
 INSERT INTO `game` (`id`, `name`, `description`, `minimum_age`, `website_url`, `image_url`, `min_players`, `max_players`) VALUES (2, 'Catan', 'Players take on the roles of settlers, each attempting to build and develop holdings while trading and acquiring resources.', 8, 'https://en.wikipedia.org/wiki/Catan#:~:text=Players%20take%20on%20the%20roles,points%2C%20typically%2010%2C%20wins.', 'https://upload.wikimedia.org/wikipedia/en/a/a3/Catan-2015-boxart.jpg', 3, 6);
+INSERT INTO `game` (`id`, `name`, `description`, `minimum_age`, `website_url`, `image_url`, `min_players`, `max_players`) VALUES (3, 'Magic the Gathering', 'a collectible trading card game where players build decks of cards representing creatures, spells, and artifacts, then take turns battling each other by summoning creatures, casting spells, and using abilities to reduce their opponent\'s life total to zero, with the goal of being the last player standing', 12, 'https://en.wikipedia.org/wiki/Magic:_The_Gathering', 'https://upload.wikimedia.org/wikipedia/en/a/aa/Magic_the_gathering-card_back.jpg', 2, 6);
 
 COMMIT;
 
@@ -577,6 +582,8 @@ COMMIT;
 START TRANSACTION;
 USE `roundtwodb`;
 INSERT INTO `gathering_has_game` (`gathering_id`, `game_id`) VALUES (1, 1);
+INSERT INTO `gathering_has_game` (`gathering_id`, `game_id`) VALUES (2, 2);
+INSERT INTO `gathering_has_game` (`gathering_id`, `game_id`) VALUES (3, 3);
 
 COMMIT;
 
@@ -588,6 +595,8 @@ START TRANSACTION;
 USE `roundtwodb`;
 INSERT INTO `gathering_participant` (`gathering_id`, `user_id`, `participant_rating`, `participant_notes`, `host_rating`, `host_notes`, `create_date`) VALUES (1, 3, 3, 'was pretty bad at twister', 2, 'fun game but the host smelled like cheeto dust', NULL);
 INSERT INTO `gathering_participant` (`gathering_id`, `user_id`, `participant_rating`, `participant_notes`, `host_rating`, `host_notes`, `create_date`) VALUES (1, 1, 4, 'actually knew how to play, super flexy', 1, 'the host was being..weird', NULL);
+INSERT INTO `gathering_participant` (`gathering_id`, `user_id`, `participant_rating`, `participant_notes`, `host_rating`, `host_notes`, `create_date`) VALUES (2, 1, 3, 'these guys were pretty good. Need more of a challenge though.', 4, 'great event! Had fun!', NULL);
+INSERT INTO `gathering_participant` (`gathering_id`, `user_id`, `participant_rating`, `participant_notes`, `host_rating`, `host_notes`, `create_date`) VALUES (2, 3, 4, 'It was challenging, learned a lot!', 5, 'super friendly! It was great!', NULL);
 
 COMMIT;
 
