@@ -24,4 +24,10 @@ public class GatheringServiceImpl implements GatheringService {
 		return gatheringRepo.findById(gatheringId).orElse(null);
 	}
 
+	@Override
+	public Gathering create(String username, Gathering gathering) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
