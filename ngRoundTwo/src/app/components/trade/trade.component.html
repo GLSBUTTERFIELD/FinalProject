@@ -1,15 +1,21 @@
-<p>trade works!</p>
-
-<div *ngFor="let item of availableItems">
-  <h2>{{item.notes}}</h2>
-  <table>
-    <tbody>
-      <tr>
-        <td>{{item.name}}</td>
-        <td></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-
+<div class="container">
+<h1>Available Items to Trade</h1>
+  <div *ngFor="let item of availableItems">
+    <table class="table">
+      <thead>
+        <th>Name</th>
+        <th>Notes</th>
+        <th>Listed</th>
+        <th>Last Updated</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{item.name}}</td>
+          <td>{{item.notes}}</td>
+          <td>{{item.createDate}}</td>
+          <td>{{item.lastUpdate}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

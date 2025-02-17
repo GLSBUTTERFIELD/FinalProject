@@ -1,5 +1,4 @@
-<p>gathering works!</p>
-
+<h1>Meet Ups!</h1>
 <div *ngFor="let gathering of gatherings">
 
     <div id="seperatingGatheringName">
@@ -7,9 +6,7 @@
      </div>
      {{gathering.description}}<br>
      {{gathering.fee}}<br>
-     <p>Min Participants: {{gathering.minParticipants}}</p><br>
-     Max Participants: {{gathering.maxParticipants}}<br>
+     <p>{{gathering.minParticipants}}-{{gathering.maxParticipants}} players</p>
      <img *ngIf="gathering.imageUrl" [src]="gathering.imageUrl">
-
-   <br>
+   <hr>
  </div>
