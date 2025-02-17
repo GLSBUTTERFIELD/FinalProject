@@ -26,20 +26,21 @@
 <div *ngIf="selected">
   <div id="seperatingInventoryItemName">
     <h1>{{selected.name}}</h1>
+    {{selected.notes}}<br>
    </div>
 
-   <!-- {{selected.name}}<br> -->
     {{selected.condition.name}}<br>
-    {{selected.condition.description}}
-   {{selected.notes}}<br>
-   Listed {{selected.createDate}}<br>
+    {{selected.condition.description}}<br>
+   Listed by {{selected.user.username}} on {{selected.createDate}}<br>
    Last Update {{selected.lastUpdate}}<br>
    <img *ngIf="selected.imageUrl" [src]="selected.imageUrl"><br>
+<hr>
+<p *ngFor="let comment of selected.comments">
+  Comment #{{comment.id}} "{{comment.comment}}" -{{comment.user.username}}
+</p>
    <button class="btn btn-info" (click)="selected = null">Back</button>
  <hr>
 </div>
-
-
 </div>
 
 

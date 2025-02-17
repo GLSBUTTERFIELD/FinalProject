@@ -7,10 +7,11 @@ import { HomeComponent } from "./components/home/home.component";
 import { AboutComponent } from "./components/about/about.component";
 import { TradeComponent } from "./components/trade/trade.component";
 import { GatheringComponent } from "./components/gathering/gathering.component";
+import { GameComponent } from './components/game/game.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NavBarComponent, UserProfileComponent, HomeComponent, AboutComponent, TradeComponent, GatheringComponent],
+  imports: [RouterOutlet, NavBarComponent, UserProfileComponent, HomeComponent, AboutComponent, TradeComponent, GatheringComponent, GameComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

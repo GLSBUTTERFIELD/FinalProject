@@ -34,6 +34,7 @@ public class SecurityConfig {
             .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()     // will hit the OPTIONS on the route
             .requestMatchers("/api/inventoryItems").permitAll() 
             .requestMatchers("/api/gatherings").permitAll() 
+            .requestMatchers("/api/games").permitAll() 
             .requestMatchers("/api/gatherings/{gatheringId}").authenticated()
             .requestMatchers("/api/inventoryItems/{itemId}").authenticated()
             .requestMatchers("/api/**").authenticated() // Requests for our REST API must be authorized.
