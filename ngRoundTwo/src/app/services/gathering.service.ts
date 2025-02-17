@@ -45,4 +45,16 @@ private url = environment.baseUrl + 'api/gatherings';
   );
  }
 
+ create(gathering:Gathering) : Observable<Gathering> {
+  return this.http.post<Gathering>(this.url, gathering, this.getHttpOptions()).pipe(
+    catchError((err: any) => {
+    console.log(err);
+    return throwError(
+      () => new Error('TodoService.create(): error retrieving todo: ' + err)
+     );
+    })
+  );
+}
+
+
 }
