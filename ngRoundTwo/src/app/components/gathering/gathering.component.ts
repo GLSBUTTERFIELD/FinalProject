@@ -21,6 +21,7 @@ export class GatheringComponent implements OnInit{
 
   gatherings: Gathering[] = [];
   selected: Gathering | null = null;
+  showNewEventForm: boolean = false;
 
 
   constructor(
@@ -67,6 +68,9 @@ export class GatheringComponent implements OnInit{
     return guestList;
   }
 
+  toggleNewEventForm() {
+    this.showNewEventForm = !this.showNewEventForm;
+  }
   /*
   need to have something like the show gathering with the gathering Id going into the method,
   this will then recive all relavant data as the participants are included in with the gathering

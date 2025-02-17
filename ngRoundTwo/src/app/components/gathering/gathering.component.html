@@ -1,5 +1,8 @@
 <h1>Meet Ups!</h1>
 @if (!selected) {
+  <div>
+    <button class="btn btn-info" (click)="toggleNewEventForm()">Add Gathering</button>
+  </div>
   <div *ngFor="let gathering of gatherings" (click)="showGathering(gathering.id)" id="seperatingGatheringName">
     <p>Hosted by {{gathering.host.username}}</p>
     <h2>{{gathering.name}}</h2>
@@ -35,5 +38,29 @@
    Last Updated {{selected.lastUpdate}}<br>
    <button class="btn btn-info" (click)="selected = null">Back</button>
  <hr>
+</div>
+
+<div class="modal fade show d-block" role="dialog" *ngIf="showNewEventForm">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add New Gathering!</h5>
+      </div>
+      <div class="modal-body">
+        <form>
+          <!-- <input type="text" id="username" name="username" placeholder="Username" [(ngModel)]="newUser.username"><br>
+          <input type="text" id="firstName" name="firstName" placeholder="First Name" [(ngModel)]="newUser.firstName"><br>
+          <input type="text" id="lastName" name="lastName" placeholder="Last Name" [(ngModel)]="newUser.lastName"><br>
+          <input type="password" id="password" name="password" placeholder="Password" [(ngModel)]="newUser.password"><br>
+          <input type="email" id="email" name="email" placeholder="Email" [(ngModel)]="newUser.email"><br>
+          <div class="modal-footer">-->
+            <!-- IMPORTANT: need to add add event click!!! -->
+            <button type="submit" class="btn btn-success">Submit</button>
+            <button type="button" class="btn btn-secondary" (click)="toggleNewEventForm()">Close</button>
+          </form>
+        </div>
+
+    </div>
+  </div>
 </div>
 
