@@ -1,7 +1,7 @@
+import { InventoryItem } from './../../models/inventory-item';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { TradeService } from '../../services/trade.service';
-import { InventoryItem } from '../../models/inventory-item';
 
 @Component({
   selector: 'app-trade',
@@ -14,6 +14,7 @@ import { InventoryItem } from '../../models/inventory-item';
 export class TradeComponent implements OnInit {
 
   availableItems: InventoryItem[] = [];
+  selected: InventoryItem | null = null;
 
   constructor(
     private tradeService: TradeService,
@@ -35,5 +36,15 @@ export class TradeComponent implements OnInit {
     });
   }
 
+  showItem(inventoryItemId: number){
+    this.tradeService.getInventoryItemById(inventoryItemId).subscribe({
+      next: (inventoryItem) =>{
+        this.selected = inventoryItem;
+      },
+      error: (fail) => {
+        console.log('InventoryItemComponent.showInventoryItem: failed to load inventoryItem.', fail);
+      },
+    })
+  }
 
 }

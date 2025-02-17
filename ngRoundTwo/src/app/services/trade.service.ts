@@ -35,4 +35,16 @@ export class TradeService {
       })
     );
   }
+
+getInventoryItemById(inventoryItemId: number): Observable<InventoryItem> {
+  return this.http.get<InventoryItem>(this.inventoryItemUrl + '/' + inventoryItemId, this.getHttpOptions()).pipe(
+    catchError((err:any) =>{
+      console.log(err);
+      return throwError(
+        () => new Error('inventoryItemService.getInventoryItemById(): error getting inventoryItem: ' + err)
+    );
+    })
+  );
+ }
+
 }
