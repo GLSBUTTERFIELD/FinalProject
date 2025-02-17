@@ -6,7 +6,7 @@ export class GatheringParticipant {
   participantNotes: string;
   hostRating: number;
   hostNotes: string;
-  participantName: string;
+  participantUsername: string;
 
   constructor(
     gatheringParticipantId: GatheringParticipantId,
@@ -14,13 +14,13 @@ export class GatheringParticipant {
     participantNotes: string = '',
     hostRating: number = 0,
     hostNotes: string = '',
-    participantName: string = '',
+    participantUsername: string = '',
   ){
     this.gatheringParticipantId = gatheringParticipantId;
     this.participantRating = participantRating;
     this.participantNotes = participantNotes;
     this.hostRating = hostRating;
     this.hostNotes = hostNotes;
-    this.participantName = participantName;
+    this.participantUsername = participantUsername;
   }
 }

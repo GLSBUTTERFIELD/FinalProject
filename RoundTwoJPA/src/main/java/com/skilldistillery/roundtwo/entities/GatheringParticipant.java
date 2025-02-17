@@ -116,8 +116,8 @@ public class GatheringParticipant {
 	}
 	
 	@JsonProperty
-	public String getParticipantName() {
-		return this.user.getFirstName()+ " "+ this.user.getLastName();
+	public String getParticipantUsername() {
+		return this.user.getUsername();
 	}
 
 	@Override

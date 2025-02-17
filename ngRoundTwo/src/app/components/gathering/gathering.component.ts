@@ -62,7 +62,7 @@ export class GatheringComponent implements OnInit{
     let guestList:string[] = [];
     console.log(this.selected);
     this.selected?.participants.forEach(function(participant){
-      guestList.push(participant.participantName);
+      guestList.push(participant.participantUsername);
     });
     return guestList;
   }
