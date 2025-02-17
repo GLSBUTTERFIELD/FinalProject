@@ -2,6 +2,7 @@ import { start } from "@popperjs/core";
 import { User } from "./user";
 import { Address } from "./address";
 import { Game } from "./game";
+import { GatheringParticipant } from "./gathering-participant";
 
 /*The gathering model will need to be padded out more
 I believe that we need to make more of the other models such as address,
@@ -22,6 +23,7 @@ export class Gathering {
   endTime: string;
   address: Address;
   games: Game[];
+  participants: GatheringParticipant[];
   host: User;
   lastUpdate: string;
 
@@ -42,6 +44,7 @@ export class Gathering {
   host: User = new User(),
   address: Address = new Address(),
   games: Game [] = [],
+  participants: GatheringParticipant[] = [],
   ){
     this.id = id;
     this.name = name;
@@ -59,5 +62,6 @@ export class Gathering {
     this.host = host;
     this.address = address;
     this.games = games;
+    this.participants = participants;
   }
 }
