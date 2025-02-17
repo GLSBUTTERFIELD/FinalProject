@@ -35,6 +35,7 @@ public class SecurityConfig {
             .requestMatchers("/api/inventoryItems").permitAll() 
             .requestMatchers("/api/gatherings").permitAll() 
             .requestMatchers("/api/gatherings/{gatheringId}").authenticated()
+            .requestMatchers("/api/inventoryItems/{itemId}").authenticated()
             .requestMatchers("/api/**").authenticated() // Requests for our REST API must be authorized.
             .anyRequest().permitAll());                 // All other requests are allowed without authentication.
 

@@ -7,6 +7,7 @@ import com.skilldistillery.roundtwo.entities.InventoryItem;
 public interface InventoryItemService {
 	
 	public List<InventoryItem> showAvailable();
+	public InventoryItem findById(int itemId);
 	
 
 }

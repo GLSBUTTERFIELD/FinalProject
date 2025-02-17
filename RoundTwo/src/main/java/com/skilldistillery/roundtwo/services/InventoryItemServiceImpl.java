@@ -18,6 +18,11 @@ public class InventoryItemServiceImpl implements InventoryItemService{
 	public List<InventoryItem> showAvailable() {
 		return inventoryItemRepo.findByAvaliableTrue();
 	}
+
+	@Override
+	public InventoryItem findById(int itemId) {
+		return inventoryItemRepo.findById(itemId).orElse(null);
+	}
 	
 
 	
