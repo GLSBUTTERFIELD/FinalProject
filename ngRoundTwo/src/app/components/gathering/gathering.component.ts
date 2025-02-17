@@ -22,6 +22,8 @@ export class GatheringComponent implements OnInit{
   gatherings: Gathering[] = [];
   selected: Gathering | null = null;
   showNewEventForm: boolean = false;
+  newGathering: Gathering = new Gathering();
+
 
 
   constructor(
@@ -83,4 +85,18 @@ export class GatheringComponent implements OnInit{
   addendum: may need a participantsId model and add that into the gathering participants
   in order to parse each userId
   */
+
+  addGathering(newGathering: Gathering) {
+    this.gatheringService.create(newGathering).subscribe({
+      next: (gathering) => {
+        this.newGathering = new Gathering();
+        this.reload();
+      },
+      error: (err) => {
+        console.error('Error creating gathering in gathering component');
+      }
+    });
+  }
+
+
 }
