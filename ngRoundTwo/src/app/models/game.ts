@@ -1,3 +1,5 @@
+import { Category } from "./category";
+
 // gatherings, inventory items, favoritedUsers?
 export class Game {
   id : number;
@@ -8,7 +10,7 @@ export class Game {
   imageUrl : string;
   minPlayers : number;
   maxPlayers : number;
-  // categories : Category[];
+  categories : Category[];
   // resources : Resource[];
   // comments : GameComment[];
 
@@ -21,7 +23,7 @@ export class Game {
   imageUrl : string = "",
   minPlayers : number = 0,
   maxPlayers : number = 0,
-  // categories : Category[] = []
+  categories : Category[] = [],
   // resources : Resource[] = []
   // comments : GameComment[] = []
   ){
@@ -33,7 +35,7 @@ export class Game {
     this.imageUrl = imageUrl;
     this.minPlayers = minPlayers;
     this.maxPlayers = maxPlayers;
-    // this.categories : Category[] = []
+    this.categories = categories;
     // this.resources : Resource[] = []
     // this.comments : GameComment[] = []
   }

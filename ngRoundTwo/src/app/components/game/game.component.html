@@ -1,0 +1,14 @@
+<div *ngFor="let game of games">
+  <h1>
+    {{game.name}}<br>
+  </h1>
+  {{game.description}}
+  <img *ngIf="game.imageUrl" [src]="game.imageUrl" alt="Game Image">
+  <div *ngIf="game.categories">
+    Categories:
+    <p *ngFor="let category of game.categories">
+      {{category.name}}
+    </p>
+  </div>
+  <hr>
+</div>
