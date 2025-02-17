@@ -33,4 +33,16 @@ private url = environment.baseUrl + 'api/gatherings';
       })
     );
   }
+
+ getGatheringById(gatheringId: number): Observable<Gathering> {
+  return this.http.get<Gathering>(this.url + '/' + gatheringId, this.getHttpOptions()).pipe(
+    catchError((err:any) =>{
+      console.log(err);
+      return throwError(
+        () => new Error('gatheringService.getGatheringById(): error getting gathering: ' + err)
+    );
+    })
+  );
+ }
+
 }

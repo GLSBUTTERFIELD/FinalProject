@@ -1,13 +1,29 @@
 <h1>Meet Ups!</h1>
-<div *ngFor="let gathering of gatherings">
-    <div id="seperatingGatheringName">
-      <h4>{{gathering.name}}</h4>
-     </div>
+@if (!selected) {
+  <div *ngFor="let gathering of gatherings" (click)="showGathering(gathering.id)" id="seperatingGatheringName">
+    <h2>{{gathering.name}}</h2>
     {{gathering.startDate}} from {{gathering.startTime}} - {{gathering.endTime}}<br>
-     {{gathering.description}}<br>
-     {{gathering.fee}}<br>
-     <p>{{gathering.minParticipants}}-{{gathering.maxParticipants}} players</p>
-     <img *ngIf="gathering.imageUrl" [src]="gathering.imageUrl">
-     Last Updated {{gathering.lastUpdate}}
-   <hr>
- </div>
+    {{gathering.description}}<br>
+    {{gathering.fee}}<br>
+    <p>{{gathering.minParticipants}}-{{gathering.maxParticipants}} players</p>
+    <img *ngIf="gathering.imageUrl" [src]="gathering.imageUrl">
+    Last Updated {{gathering.lastUpdate}}
+    <hr>
+  </div>
+}
+
+
+ <div *ngIf="selected">
+  <div id="seperatingGatheringName">
+    <h1>{{selected.name}}</h1>
+   </div>
+  {{selected.startDate}} from {{selected.startTime}} - {{selected.endTime}}<br>
+   {{selected.description}}<br>
+   {{selected.fee}}<br>
+   <p>{{selected.minParticipants}}-{{selected.maxParticipants}} players</p>
+   <img *ngIf="selected.imageUrl" [src]="selected.imageUrl">
+   Last Updated {{selected.lastUpdate}}<br>
+   <button class="btn btn-info" (click)="selected = null">Back</button>
+ <hr>
+</div>
+

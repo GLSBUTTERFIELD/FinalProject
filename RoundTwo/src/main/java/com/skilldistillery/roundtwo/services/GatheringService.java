@@ -7,4 +7,5 @@ import com.skilldistillery.roundtwo.entities.Gathering;
 public interface GatheringService {
 
 	public List<Gathering> index();
+	public Gathering findById(int gatheringId);
 }

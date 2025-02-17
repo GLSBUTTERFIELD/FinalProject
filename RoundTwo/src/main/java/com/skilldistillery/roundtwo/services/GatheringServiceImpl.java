@@ -19,4 +19,9 @@ public class GatheringServiceImpl implements GatheringService {
 		return gatheringRepo.findAll();
 	}
 
+	@Override
+	public Gathering findById(int gatheringId) {
+		return gatheringRepo.findById(gatheringId).orElse(null);
+	}
+
 }

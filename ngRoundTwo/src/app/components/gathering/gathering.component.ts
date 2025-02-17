@@ -17,15 +17,17 @@ import { FormsModule } from '@angular/forms';
 export class GatheringComponent implements OnInit{
 
   gatherings: Gathering[] = [];
+  selected: Gathering | null = null;
 
   constructor(
     private gatheringService: GatheringService,
+    // private router: Router,
+
   ){}
 
   ngOnInit() {
     this.reload();
   }
-
 
   reload() {
     this.gatheringService.index().subscribe({
@@ -39,5 +41,15 @@ export class GatheringComponent implements OnInit{
     });
   }
 
-  
+  showGathering(gatheringId: number){
+    this.gatheringService.getGatheringById(gatheringId).subscribe({
+      next: (gathering) =>{
+        this.selected = gathering;
+      },
+      error: (fail) => {
+        console.log('GatheringComponent.showGathering: failed to load gathering.', fail);
+      },
+    })
+  }
+
 }
