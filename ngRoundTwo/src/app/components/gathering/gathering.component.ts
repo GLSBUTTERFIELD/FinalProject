@@ -44,6 +44,7 @@ export class GatheringComponent implements OnInit{
   showGathering(gatheringId: number){
     this.gatheringService.getGatheringById(gatheringId).subscribe({
       next: (gathering) =>{
+        console.log(gathering.host);
         this.selected = gathering;
       },
       error: (fail) => {

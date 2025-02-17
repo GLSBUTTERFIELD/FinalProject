@@ -16,6 +16,7 @@
  <div *ngIf="selected">
   <div id="seperatingGatheringName">
     <h1>{{selected.name}}</h1>
+    <p>Hosted by {{selected.host.username}}</p>
    </div>
   {{selected.startDate}} from {{selected.startTime}} - {{selected.endTime}}<br>
    {{selected.description}}<br>

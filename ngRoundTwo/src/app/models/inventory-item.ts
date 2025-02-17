@@ -1,3 +1,4 @@
+import { ItemCondition } from "./item-condition";
 import { User } from "./user";
 
 export class InventoryItem {
@@ -10,6 +11,7 @@ export class InventoryItem {
   createDate: string;
   lastUpdate: string;
   user: User;
+  condition: ItemCondition;
 
   constructor(
     id: number = 0,
@@ -21,6 +23,7 @@ export class InventoryItem {
   enabled: boolean = false,
   createDate: string = '',
   lastUpdate: string = '',
+  condition: ItemCondition = new ItemCondition(),
   ){
    this.id = id;
    this.user = user;
@@ -31,6 +34,6 @@ export class InventoryItem {
    this.enabled =  enabled;
    this.createDate = createDate;
    this.lastUpdate = lastUpdate;
-
+   this.condition = condition;
   }
 }
