@@ -1,14 +1,16 @@
 <div *ngFor="let game of games">
   <h1>
-    {{game.name}}<br>
+    <a href="{{game.websiteUrl}}">{{game.name}}</a>
   </h1>
-  {{game.description}}
+  {{game.description}}<br>
   <img *ngIf="game.imageUrl" [src]="game.imageUrl" alt="Game Image">
   <div *ngIf="game.categories">
     Categories:
-    <p *ngFor="let category of game.categories">
-      {{category.name}}
-    </p>
+      <ul *ngFor="let category of game.categories">
+        <li>
+          {{category.name}}
+        </li>
+      </ul>
   </div>
   <hr>
 </div>
