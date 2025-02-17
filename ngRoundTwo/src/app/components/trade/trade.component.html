@@ -1,6 +1,7 @@
 <div class="container">
+  @if (!selected) {
 <h1>Available Items to Trade</h1>
-  <div *ngFor="let item of availableItems">
+  <div *ngFor="let item of availableItems" (click)="showItem(item.id)">
     <table class="table">
       <thead>
         <th>Name</th>
@@ -18,4 +19,26 @@
       </tbody>
     </table>
   </div>
+}
+
+<div *ngIf="selected">
+  <div id="seperatingInventoryItemName">
+    <h1>{{selected.name}}</h1>
+   </div>
+
+   {{selected.name}}<br>
+   {{selected.notes}}<br>
+   Listed {{selected.createDate}}<br>
+   Last Update {{selected.lastUpdate}}<br>
+   <img *ngIf="selected.imageUrl" [src]="selected.imageUrl"><br>
+   <button class="btn btn-info" (click)="selected = null">Back</button>
+ <hr>
 </div>
+
+
+</div>
+
+
+
+
+
