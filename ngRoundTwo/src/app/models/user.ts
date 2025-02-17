@@ -1,3 +1,9 @@
+//gameComments, inventoryItemComments, gatheringComments, resources, address?
+
+import { Game } from "./game";
+import { Gathering } from "./gathering";
+import { InventoryItem } from "./inventory-item";
+
 export class User {
 
   id: number;
@@ -10,7 +16,11 @@ export class User {
   email: string;
   imageUrl: string;
   biography: string;
-
+  lastUpdate: string;
+  gatheringsAttended: Gathering[];
+  gatheringsHosted: Gathering[];
+  inventoryItems: InventoryItem[];
+  favoriteGames: Game[];
 
   constructor(
     id: number = 0 ,
@@ -22,7 +32,13 @@ export class User {
     role: string = '',
     email: string = '',
     imageUrl: string = '',
-    biography: string = ''
+    biography: string = '',
+    lastUpdate: string = '',
+    gatheringsAttended: Gathering[] = [],
+    gatheringsHosted: Gathering[] = [],
+    inventoryItems: InventoryItem[] = [],
+    favoriteGames: Game[] = [],
+
   ){
     this.id = id;
     this.username = username;
@@ -34,5 +50,10 @@ export class User {
     this.email = email;
     this.imageUrl = imageUrl;
     this.biography = biography;
+    this.lastUpdate = lastUpdate;
+    this.gatheringsAttended = gatheringsAttended;
+    this.gatheringsHosted = gatheringsHosted;
+    this.inventoryItems = inventoryItems;
+    this.favoriteGames = favoriteGames;
   }
 }
