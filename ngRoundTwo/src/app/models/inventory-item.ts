@@ -1,3 +1,4 @@
+import { InventoryItemComment } from "./inventory-item-comment";
 import { ItemCondition } from "./item-condition";
 import { User } from "./user";
 
@@ -12,6 +13,7 @@ export class InventoryItem {
   lastUpdate: string;
   user: User;
   condition: ItemCondition;
+  comments: InventoryItemComment[];
 
   constructor(
     id: number = 0,
@@ -24,6 +26,7 @@ export class InventoryItem {
   createDate: string = '',
   lastUpdate: string = '',
   condition: ItemCondition = new ItemCondition(),
+  comments: InventoryItemComment[] = [],
   ){
    this.id = id;
    this.user = user;
@@ -35,5 +38,6 @@ export class InventoryItem {
    this.createDate = createDate;
    this.lastUpdate = lastUpdate;
    this.condition = condition;
+   this.comments = comments;
   }
 }

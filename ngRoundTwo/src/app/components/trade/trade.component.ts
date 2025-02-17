@@ -2,6 +2,7 @@ import { InventoryItem } from './../../models/inventory-item';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { TradeService } from '../../services/trade.service';
+import { InventoryItemComment } from '../../models/inventory-item-comment';
 
 @Component({
   selector: 'app-trade',
@@ -15,6 +16,7 @@ export class TradeComponent implements OnInit {
 
   availableItems: InventoryItem[] = [];
   selected: InventoryItem | null = null;
+  itemComments: InventoryItemComment[] = [];
 
   constructor(
     private tradeService: TradeService,

@@ -58,7 +58,7 @@ public class InventoryItem {
 	@JoinColumn(name="user_id")
 	private User user;
 	
-	@JsonIgnoreProperties({"invenoryItem"})
+	@JsonIgnoreProperties({"inventoryItem"})
 	@OneToMany(mappedBy="inventoryItem")
 	private List<InventoryItemComment> comments;
 	
