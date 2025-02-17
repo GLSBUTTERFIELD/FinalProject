@@ -1,12 +1,13 @@
 <h1>Meet Ups!</h1>
 <div *ngFor="let gathering of gatherings">
-
     <div id="seperatingGatheringName">
       <h4>{{gathering.name}}</h4>
      </div>
+    {{gathering.startDate}} from {{gathering.startTime}} - {{gathering.endTime}}<br>
      {{gathering.description}}<br>
      {{gathering.fee}}<br>
      <p>{{gathering.minParticipants}}-{{gathering.maxParticipants}} players</p>
      <img *ngIf="gathering.imageUrl" [src]="gathering.imageUrl">
+     Last Updated {{gathering.lastUpdate}}
    <hr>
  </div>

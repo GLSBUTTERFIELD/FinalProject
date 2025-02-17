@@ -1,3 +1,4 @@
+import { start } from "@popperjs/core";
 
 /*The gathering model will need to be padded out more
 I believe that we need to make more of the other models such as address,
@@ -12,16 +13,28 @@ export class Gathering {
   maxParticipants: number;
   imageUrl: string;
   enabled: boolean;
+  startDate: string;
+  endDate: string;
+  startTime: string;
+  endTime: string;
+  // address: Address;
+  // games: Game[];
+  lastUpdate: string;
 
   constructor(
-    id: number = 0,
+  id: number = 0,
   name: string = '',
   description: string = '',
   fee: number = 0,
   minParticipants: number = 2,
   maxParticipants: number = 2,
   imageUrl: string = '',
-  enabled: boolean = false
+  enabled: boolean = false,
+  startDate: string = '',
+  endDate: string = '',
+  startTime: string = '',
+  endTime: string = '',
+  lastUpdate: string = '',
   ){
     this.id = id;
     this.name = name;
@@ -31,5 +44,10 @@ export class Gathering {
     this.maxParticipants = maxParticipants;
     this.imageUrl = imageUrl;
     this.enabled = enabled;
+    this.startDate = startDate;
+    this.endDate = endDate;
+    this.startTime = startTime;
+    this.endTime = endTime;
+    this.lastUpdate = lastUpdate;
   }
 }
