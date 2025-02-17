@@ -20,8 +20,8 @@ public class InventoryItemController {
 	private InventoryItemService inventoryItemService;
 	
 	@GetMapping("inventoryItems")
-	public List<InventoryItem> index() {
-		return inventoryItemService.index();
+	public List<InventoryItem> showAvailable() {
+		return inventoryItemService.showAvailable();
 	}
 
 }

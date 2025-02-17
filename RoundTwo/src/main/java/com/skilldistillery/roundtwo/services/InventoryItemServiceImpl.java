@@ -15,8 +15,8 @@ public class InventoryItemServiceImpl implements InventoryItemService{
 	private InventoryItemRepository inventoryItemRepo;
 	
 	@Override
-	public List<InventoryItem> index() {
-		return inventoryItemRepo.findAll();
+	public List<InventoryItem> showAvailable() {
+		return inventoryItemRepo.findByAvaliableTrue();
 	}
 	
 

@@ -6,6 +6,7 @@ import com.skilldistillery.roundtwo.entities.InventoryItem;
 
 public interface InventoryItemService {
 	
-	public List<InventoryItem> index();
+	public List<InventoryItem> showAvailable();
+	
 
 }

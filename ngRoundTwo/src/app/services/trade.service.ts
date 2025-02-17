@@ -3,18 +3,30 @@ import { environment } from '../../environments/environment';
 import { AuthService } from './auth.service';
 import { catchError, Observable, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Trade } from '../models/trade';
+import { InventoryItem } from '../models/inventory-item';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TradeService {
-  private url = environment.baseUrl + 'api/trades';
+  private baseUrl = environment.baseUrl;
+
+  private inventoryItemUrl = this.baseUrl + 'api/inventoryItems'
 
   constructor(private http: HttpClient, private auth: AuthService) { }
 
-  index(): Observable<Trade[]> {
-    return this.http.get<Trade[]>(this.url).pipe(
+  getHttpOptions() {
+    let options = {
+      headers: {
+        Authorization: 'Basic ' + this.auth.getCredentials(),
+        'X-Requested-With': 'XMLHttpRequest',
+      },
+    };
+    return options;
+  }
+
+  index(): Observable<InventoryItem[]> {
+    return this.http.get<InventoryItem[]>(this.inventoryItemUrl).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(

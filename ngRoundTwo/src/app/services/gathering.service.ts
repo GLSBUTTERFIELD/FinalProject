@@ -24,7 +24,7 @@ private url = environment.baseUrl + 'api/gatherings';
   }
 
   index(): Observable<Gathering[]> {
-    return this.http.get<Gathering[]>(this.url, this.getHttpOptions()).pipe(
+    return this.http.get<Gathering[]>(this.url).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(

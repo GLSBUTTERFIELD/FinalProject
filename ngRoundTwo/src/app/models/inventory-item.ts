@@ -1,6 +1,6 @@
 import { User } from "./user";
 
-export class Trade {
+export class InventoryItem {
   id: number;
   name: string;
   notes: string;
