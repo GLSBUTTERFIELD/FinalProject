@@ -23,7 +23,6 @@ public class InventoryItemServiceImpl implements InventoryItemService{
 	public InventoryItem findById(int itemId) {
 		return inventoryItemRepo.findById(itemId).orElse(null);
 	}
-	
 
 	
 }
