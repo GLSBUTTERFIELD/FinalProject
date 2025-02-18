@@ -1,7 +1,7 @@
 <div class="container">
   @if (!selected) {
 <h1>Available Items to Trade</h1>
-  <div *ngFor="let item of availableItems" (click)="showItem(item.id)">
+  <div>
     <table class="table">
       <thead>
         <th>Name</th>
@@ -11,7 +11,7 @@
         <th>Last Updated</th>
       </thead>
       <tbody>
-        <tr>
+        <tr *ngFor="let item of availableItems" (click)="showItem(item.id)">
           <td>{{item.name}}</td>
           <td>{{item.condition.name}}</td>
           <td>{{item.notes}}</td>
