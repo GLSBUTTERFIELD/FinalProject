@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -93,6 +94,22 @@ public class GatheringController {
 			e.printStackTrace();
 		}
 		return gathering;
+	}
+
+//DELETE gathering
+	@DeleteMapping("gatherings/{gatheringId}")
+	public void delete(@PathVariable("gatheringId") int gatheringId, HttpServletResponse res, HttpServletRequest req,
+			Principal principal) {
+		try {
+			if (gatheringService.destroy(principal.getName(), gatheringId)) {
+				res.setStatus(HttpServletResponse.SC_NO_CONTENT);
+			} else {
+				res.setStatus(HttpServletResponse.SC_NOT_FOUND);
+			}
+		} catch (Exception e) {
+			res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			e.printStackTrace();
+		}
 	}
 
 }

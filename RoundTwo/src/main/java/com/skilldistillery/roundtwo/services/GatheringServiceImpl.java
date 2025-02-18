@@ -64,9 +64,12 @@ public class GatheringServiceImpl implements GatheringService {
 	@Override
 	public boolean destroy(String username, int gatheringId) {
 		boolean deleted = false;
-		//TODO: IMPORTAINT FOR DELETE FUNCTIONALITY
-		//need to verify User (host) who created the 
-		//gathering is the only one who can delete it
+		Gathering managedGathering = gatheringRepo.findByHostUsernameAndId(username, gatheringId);
+		if(managedGathering!= null) {
+			managedGathering.setEnabled(false);
+			gatheringRepo.saveAndFlush(managedGathering);
+			deleted = true;
+		}
 		return deleted;
 	}
 
