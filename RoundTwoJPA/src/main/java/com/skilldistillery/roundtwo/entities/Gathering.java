@@ -81,6 +81,7 @@ public class Gathering {
 	@ManyToMany(mappedBy = "gatherings")
 	private List<Game> games;
 	
+	@JsonIgnoreProperties("gatheringsAttended")
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User host;

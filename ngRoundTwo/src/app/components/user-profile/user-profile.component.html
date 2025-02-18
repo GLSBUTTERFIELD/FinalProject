@@ -8,27 +8,74 @@
   <p><strong>Role:</strong> {{ userToDisplay.role }}</p>
   <p><strong>Biography:</strong> {{ userToDisplay.biography }}</p>
 <hr>
-<h2>Inventory Items</h2>
-<table class="table">
-<thead>
-  <th>Game</th>
-  <th>Name</th>
-  <th>Condition</th>
-  <th>Notes</th>
-  <th>Available</th>
-  <th>Last Updated</th>
-</thead>
-<tbody>
-  <tr *ngFor="let item of userToDisplay.inventoryItems">
-    <td>{{item.game.name}}</td>
-    <td>{{item.name}}</td>
-    <td>{{item.condition.name}}</td>
-    <td>{{item.notes}}</td>
-    <td>{{item.available}}</td>
-    <td>{{item.lastUpdate}}</td>
-  </tr>
-</tbody>
-</table>
+<div *ngIf="userToDisplay.inventoryItems.length > 0">
+  <h2>Inventory Items</h2>
+  <table class="table">
+    <thead>
+      <th>Game</th>
+      <th>Name</th>
+      <th>Condition</th>
+      <th>Notes</th>
+      <th>Available</th>
+      <th>Last Updated</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of userToDisplay.inventoryItems">
+        <td>{{item.game.name}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.condition.name}}</td>
+        <td>{{item.notes}}</td>
+        <td>{{item.available}}</td>
+        <td>{{item.lastUpdate}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="userToDisplay.gatheringsAttended.length > 0">
+  <h2 >Upcoming Gatherings</h2>
+  <table class="table">
+    <thead>
+      <th>Name</th>
+      <th>Date & Time</th>
+      <th>Location</th>
+      <th>Host</th>
+      <th>Fee</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let gathering of userToDisplay.gatheringsAttended">
+        <td>{{gathering.name}}</td>
+        <td>{{gathering.startDate}} from {{gathering.startTime}} to {{gathering.endTime}} {{gathering.endDate}}</td>
+        <td>{{gathering.address.name}}</td>
+        <td>{{gathering.host.username}}</td>
+        <td>{{gathering.fee}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="userToDisplay.gatheringsHosted.length > 0">
+  <h2>Gatherings Hosted</h2>
+  <table class="table">
+    <thead>
+      <th>Name</th>
+      <th>Date & Time</th>
+      <th>Location</th>
+      <th>Capacity</th>
+      <th>Spots Filled</th>
+      <th></th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let gathering of userToDisplay.gatheringsHosted">
+        <td>{{gathering.name}}</td>
+        <td>{{gathering.startDate}} from {{gathering.startTime}} to {{gathering.endTime}} {{gathering.endDate}}</td>
+        <td>{{gathering.address.name}}</td>
+        <td>{{gathering.maxParticipants}}</td>
+        <td>{{gathering.participants.length}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
   <button class="btn btn-warning" (click)="setEditProfile()">Edit Profile</button>
 </div>
