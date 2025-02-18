@@ -13,6 +13,7 @@ import { Address } from '../../models/address';
 import { Game } from '../../models/game';
 import { HttpClient } from '@angular/common/http';
 import { GameService } from '../../services/game.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-gathering',
@@ -45,6 +46,7 @@ export class GatheringComponent implements OnInit{
     private addressService: AddressService,
     private http: HttpClient,
     private gameService: GameService,
+    private authService: AuthService,
     // private router: Router,
   ){}
 
@@ -74,13 +76,20 @@ export class GatheringComponent implements OnInit{
         this.addresses = addressList;
       },
       error: (fail) => {
-        console.log('PostComponent.reload: failed to load gathering list.', fail);
+        console.log('GatheringComponent.reloadAddresses(): failed to load address list.', fail);
       }
     });
   }
   loadCurrentUser() {
-    //need to be able to load the current users information as a reference
-    // in order to make sure the editor is the creator of the gathering
+    this.authService.getLoggedInUser().subscribe({
+      next:(loggedInUser) =>{
+        this.currentUser = loggedInUser;
+      },
+      error: (err) =>{
+        console.log('GatheringComponent.loadCurrentUser(): failed to get current user.', err);
+
+      }
+    })
   }
 
   reloadGames() {
@@ -123,6 +132,7 @@ export class GatheringComponent implements OnInit{
   toggleEditGathering() {
     this.showGatheringEditForm = !this.showGatheringEditForm;
   }
+
   setEditGathering(){
     if (this.selected) {
       this.editGathering = { ...this.selected };
