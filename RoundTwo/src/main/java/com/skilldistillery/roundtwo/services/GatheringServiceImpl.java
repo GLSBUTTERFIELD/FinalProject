@@ -40,4 +40,25 @@ public class GatheringServiceImpl implements GatheringService {
 		return gatheringRepo.saveAndFlush(gathering);
 	}
 
+	@Override
+	public Gathering edit(String username, int gatheringId, Gathering gathering) {
+		Gathering managedGathering = gatheringRepo.findByHostUsernameAndId(username, gatheringId);
+		if (managedGathering != null) {
+			managedGathering.setAddress(gathering.getAddress());
+			managedGathering.setDescription(gathering.getDescription());
+			managedGathering.setStartDate(gathering.getStartDate());
+			managedGathering.setEndDate(gathering.getEndDate());
+			managedGathering.setStartTime(gathering.getStartTime());
+			managedGathering.setEndTime(gathering.getEndTime());
+			managedGathering.setFee(gathering.getFee());
+			managedGathering.setGames(gathering.getGames());
+			managedGathering.setImageUrl(gathering.getImageUrl());
+			managedGathering.setMaxParticipants(gathering.getMaxParticipants());
+			managedGathering.setMinParticipants(gathering.getMinParticipants());
+			managedGathering.setName(gathering.getName());
+			gatheringRepo.saveAndFlush(managedGathering);
+		}
+		return managedGathering;
+	}
+
 }

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -71,6 +72,23 @@ public class GatheringController {
 			e.printStackTrace();
 		}
 		return createdGathering;
+	}
+
+//PUT edit gathering
+	@PutMapping("gatherings/{gatheringId}")
+	public Gathering edit(@PathVariable("gatheringId") int gatheringId, @RequestBody Gathering gathering,
+			HttpServletResponse res, HttpServletRequest req, Principal principal) {
+		gathering = gatheringService.edit(principal.getName(), gatheringId, gathering);
+		try {
+			if (gathering == null) {
+				res.setStatus(HttpServletResponse.SC_NOT_FOUND);
+			}
+		} catch (Exception e) {
+			res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			gathering = null;
+			e.printStackTrace();
+		}
+		return gathering;
 	}
 
 }

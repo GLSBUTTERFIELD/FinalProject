@@ -9,4 +9,6 @@ public interface GatheringService {
 	public List<Gathering> index();
 	public Gathering findById(int gatheringId);
 	public Gathering create(String username, Gathering gathering);
+	public Gathering edit(String username, int gatheringId, Gathering gathering);
+	
 }
