@@ -24,8 +24,6 @@ export class GatheringComponent implements OnInit{
   showNewEventForm: boolean = false;
   newGathering: Gathering = new Gathering();
 
-
-
   constructor(
     private gatheringService: GatheringService,
     private userService: UserService,
