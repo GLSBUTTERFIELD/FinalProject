@@ -28,8 +28,6 @@ export class GatheringComponent implements OnInit{
   showGatheringEditForm: boolean = false;
 
 
-
-
   constructor(
     private gatheringService: GatheringService,
     private userService: UserService,
