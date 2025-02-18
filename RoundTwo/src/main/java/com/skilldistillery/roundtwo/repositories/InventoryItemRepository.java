@@ -10,6 +10,4 @@ public interface InventoryItemRepository extends JpaRepository <InventoryItem, I
 	
 	List<InventoryItem> findByAvaliableTrue();
 	
-	
-
 }

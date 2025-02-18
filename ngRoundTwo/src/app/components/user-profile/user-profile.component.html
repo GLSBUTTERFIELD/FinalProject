@@ -7,8 +7,30 @@
   <p><strong>Email:</strong> {{ userToDisplay.email }}</p>
   <p><strong>Role:</strong> {{ userToDisplay.role }}</p>
   <p><strong>Biography:</strong> {{ userToDisplay.biography }}</p>
+<hr>
+<h2>Inventory Items</h2>
+<table class="table">
+<thead>
+  <th>Game</th>
+  <th>Name</th>
+  <th>Condition</th>
+  <th>Notes</th>
+  <th>Available</th>
+  <th>Last Updated</th>
+</thead>
+<tbody>
+  <tr *ngFor="let item of userToDisplay.inventoryItems">
+    <td>{{item.game.name}}</td>
+    <td>{{item.name}}</td>
+    <td>{{item.condition.name}}</td>
+    <td>{{item.notes}}</td>
+    <td>{{item.available}}</td>
+    <td>{{item.lastUpdate}}</td>
+  </tr>
+</tbody>
+</table>
 
-  <button class="btn btn-warning" (click)="setEditProfile()">Edit</button>
+  <button class="btn btn-warning" (click)="setEditProfile()">Edit Profile</button>
 </div>
 
 <div *ngIf="editProfile">
