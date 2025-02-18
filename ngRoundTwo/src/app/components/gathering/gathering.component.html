@@ -38,7 +38,7 @@
    Last Updated {{selected.lastUpdate}}<br>
    <button class="btn btn-info" (click)="selected = null">Back</button>
    <!-- need to add security to only allow whoever made the post to edit the post -->
-   <button class="btn btn-warning" (click)="setEditGathering()">Edit</button>
+   <button *ngIf="selected.host.id === currentUser?.id" class="btn btn-warning" (click)="setEditGathering()">Edit</button>
  <hr>
 </div>
 
