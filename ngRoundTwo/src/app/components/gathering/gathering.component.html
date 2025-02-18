@@ -63,8 +63,14 @@
           <input type="date" name="endDate" placeholder="endDate" [(ngModel)]="newGathering.endDate"><br>
           <label for="imageUrl">Image Url: </label>
           <input type="text"  name="imageUrl" placeholder="imageUrl" [(ngModel)]="newGathering.imageUrl"><br>
+          <!-- need to show options to create new address or use one of the previously listed addresses -->
+          <label for="address">Select Address: </label>
+       <select name="address" [(ngModel)]="newGathering.address" required>
+         <option *ngFor="let address of addresses" [ngValue]="address">{{ address.street }}, {{ address.city }}, {{ address.stateAbbr }}</option>
+       </select><br>
 
-            <!-- IMPORTANT: need to add add event click!!! -->
+        <!-- need to implement the ability to create a new address if not listed in the options drop down -->
+         
             <button type="submit" class="btn btn-success" (click)="addGathering(newGathering)">Submit</button>
             <button type="button" class="btn btn-secondary" (click)="toggleNewEventForm()">Close</button>
 

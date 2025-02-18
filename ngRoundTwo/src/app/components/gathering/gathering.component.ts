@@ -1,4 +1,4 @@
-import { AddressService } from './../../service/address.service';
+
 import { UserService } from './../../services/user.service';
 import { CommonModule } from '@angular/common';
 import { Gathering } from '../../models/gathering';
@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { User } from '../../models/user';
 import { Observable } from 'rxjs';
+import { AddressService } from '../../services/address.service';
+import { Address } from '../../models/address';
 
 @Component({
   selector: 'app-gathering',
@@ -21,9 +23,11 @@ import { Observable } from 'rxjs';
 export class GatheringComponent implements OnInit{
 
   gatherings: Gathering[] = [];
+  addresses: Address[] = [];
   selected: Gathering | null = null;
   showNewEventForm: boolean = false;
   newGathering: Gathering = new Gathering();
+  newAddress: Address = new Address();
   editGathering: Gathering | null = null;
   gatheringToDisplay: Gathering | null = null;
   showGatheringEditForm: boolean = false;
@@ -38,6 +42,7 @@ export class GatheringComponent implements OnInit{
 
   ngOnInit() {
     this.reload();
+    this.reloadAddreses();
   }
 
   reload() {
@@ -45,6 +50,18 @@ export class GatheringComponent implements OnInit{
       next: (gatheringList) => {
         console.log('Gatherings loaded:', gatheringList);
         this.gatherings = gatheringList;
+      },
+      error: (fail) => {
+        console.log('PostComponent.reload: failed to load gathering list.', fail);
+      }
+    });
+  }
+
+  reloadAddreses() {
+    this.addressService.showAllAddresses().subscribe({
+      next: (addressList) => {
+        console.log('Address loaded:', addressList);
+        this.addresses = addressList;
       },
       error: (fail) => {
         console.log('PostComponent.reload: failed to load gathering list.', fail);
@@ -82,7 +99,10 @@ export class GatheringComponent implements OnInit{
   }
 
   addGathering(newGathering: Gathering) {
-    newGathering.address.id = 1;
+    if (!newGathering.address) {
+      alert('Please select an address.');
+      return;
+    }
 
     this.gatheringService.create(newGathering).subscribe({
       next: (gathering) => {
@@ -95,6 +115,21 @@ export class GatheringComponent implements OnInit{
       }
     });
   }
+
+  addNewAddress(newAddress: Address) {
+
+    this.addressService.create(newAddress).subscribe({
+      next: (gathering) => {
+        this.newAddress = new Address();
+        this.reloadAddreses();
+      },
+      error: (err) => {
+        console.error('Error creating address in address component');
+      }
+    });
+  }
+
+
   setEditGathering() : void {
     this.editGathering = Object.assign({}, this.gatheringToDisplay)
   }
