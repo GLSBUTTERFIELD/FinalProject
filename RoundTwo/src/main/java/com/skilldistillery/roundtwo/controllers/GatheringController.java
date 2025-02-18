@@ -95,21 +95,19 @@ public class GatheringController {
 		}
 		return gathering;
 	}
-
-//DELETE gathering
-	@DeleteMapping("gatherings/{gatheringId}")
-	public void delete(@PathVariable("gatheringId") int gatheringId, HttpServletResponse res, HttpServletRequest req,
-			Principal principal) {
-		try {
-			if (gatheringService.destroy(principal.getName(), gatheringId)) {
-				res.setStatus(HttpServletResponse.SC_NO_CONTENT);
-			} else {
-				res.setStatus(HttpServletResponse.SC_NOT_FOUND);
-			}
-		} catch (Exception e) {
-			res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-			e.printStackTrace();
-		}
-	}
+	// ------------------------------------------------------------------------------------------\\
+	//Deleting User
+@DeleteMapping("gatherings/{gatheringId}")
+public void destroy(HttpServletResponse resp,Principal principal, @PathVariable(name = "userId") int userId) {
+try {
+boolean wasdeleted = gatheringService.destroy(principal.getName(), userId);
+if (!wasdeleted) {
+	resp.setStatus(HttpServletResponse.SC_NOT_FOUND);// 404
+}
+} catch (Exception e) {
+e.printStackTrace();
+resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);// 400
+}
+}
 
 }
