@@ -21,7 +21,7 @@ public class GatheringServiceImpl implements GatheringService {
 	
 	@Override
 	public List<Gathering> index() {
-		return gatheringRepo.findAll();
+		return gatheringRepo.findByEnabledTrue();
 	}
 
 	@Override
