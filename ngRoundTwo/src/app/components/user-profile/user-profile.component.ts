@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { Gathering } from '../../models/gathering';
+import { GatheringService } from '../../services/gathering.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -19,17 +21,21 @@ export class UserProfileComponent {
 
   userToDisplay: User | null = null;
   editProfile: User | null = null;
+  gatheringsHosted: Gathering[] = [];
 
   constructor(
     private userService: UserService,
     private authService: AuthService,
+    private gatheringService: GatheringService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+
   ){}
 
 
   ngOnInit(): void {
     this.loadLoggedInUser();
+    this.loadGatheringsHosted();
   }
 
   loadProfileById(userId: number) {
@@ -80,9 +86,23 @@ export class UserProfileComponent {
         this.router.navigateByUrl('/home');
       },
       error: (fail) => {
-        console.log('homeComponent.deletePost: failed to delete the Post.')
+        console.log('UserProfileComponent.deleteUser: failed to delete the User.')
         console.log(fail);
       }
     })
   }
+
+  loadGatheringsHosted() {
+    this.gatheringService.showHostedGatherings().subscribe({
+      next:(gatherings)=> {
+        this.gatheringsHosted = gatherings;
+      },
+      error: (err:any)=>{
+        console.log('UserProfileComponent.loadGatheringsHosted(): failed to load gatherings hosted.')
+        console.log(err);
+      }
+    })
+  }
+
+
 }

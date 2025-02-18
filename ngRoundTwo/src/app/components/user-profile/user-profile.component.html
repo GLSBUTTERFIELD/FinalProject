@@ -8,7 +8,7 @@
   <p><strong>Role:</strong> {{ userToDisplay.role }}</p>
   <p><strong>Biography:</strong> {{ userToDisplay.biography }}</p>
 <hr>
-<div *ngIf="userToDisplay.inventoryItems.length > 0">
+<div *ngIf="userToDisplay.inventoryItems">
   <h2>Inventory Items</h2>
   <table class="table">
     <thead>
@@ -32,7 +32,7 @@
   </table>
 </div>
 
-<div *ngIf="userToDisplay.gatheringsAttended.length > 0">
+<div *ngIf="userToDisplay.gatheringsAttended">
   <h2 >Upcoming Gatherings</h2>
   <table class="table">
     <thead>
@@ -43,18 +43,19 @@
       <th>Fee</th>
     </thead>
     <tbody>
-      <tr *ngFor="let gathering of userToDisplay.gatheringsAttended">
-        <td>{{gathering.name}}</td>
+      <!-- <tr *ngFor="let gathering of userToDisplay.gatheringsAttended"> -->
+        <!-- <td>{{gathering.name}}</td>
         <td>{{gathering.startDate}} from {{gathering.startTime}} to {{gathering.endTime}} {{gathering.endDate}}</td>
         <td>{{gathering.address.name}}</td>
         <td>{{gathering.host.username}}</td>
         <td>{{gathering.fee}}</td>
-      </tr>
+      </tr> -->
     </tbody>
   </table>
 </div>
 
-<div *ngIf="userToDisplay.gatheringsHosted.length > 0">
+<div *ngIf="gatheringsHosted.length > 0">
+  <hr>
   <h2>Gatherings Hosted</h2>
   <table class="table">
     <thead>
@@ -66,7 +67,7 @@
       <th></th>
     </thead>
     <tbody>
-      <tr *ngFor="let gathering of userToDisplay.gatheringsHosted">
+      <tr *ngFor="let gathering of gatheringsHosted">
         <td>{{gathering.name}}</td>
         <td>{{gathering.startDate}} from {{gathering.startTime}} to {{gathering.endTime}} {{gathering.endDate}}</td>
         <td>{{gathering.address.name}}</td>

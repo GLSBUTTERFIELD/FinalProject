@@ -40,6 +40,7 @@ export class GatheringComponent implements OnInit{
   games: Game[] = [];
 
 
+
   constructor(
     private gatheringService: GatheringService,
     private userService: UserService,

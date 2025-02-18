@@ -46,6 +46,17 @@ private url = environment.baseUrl + 'api/gatherings';
   );
  }
 
+ showHostedGatherings(): Observable<Gathering[]> {
+  return this.http.get<Gathering[]>(this.url + '/hosted', this.getHttpOptions()).pipe(
+    catchError((err: any) => {
+      console.log(err);
+      return throwError(
+        () => new Error('gatheringService.showHostedGatherings(): error showing gatherings Hosted: ' + err)
+       );
+      })
+  )
+ }
+
  create(gathering:Gathering) : Observable<Gathering> {
   return this.http.post<Gathering>(this.url, gathering, this.getHttpOptions()).pipe(
     catchError((err: any) => {
@@ -81,7 +92,7 @@ update(gathering: Gathering) : Observable<Gathering> {
   }
 
   addAttendee(gatheringId: number): Observable <GatheringParticipant> {
-    return this.http.post<GatheringParticipant>(`${this.url}/${gatheringId}/participants`, this.getHttpOptions()).pipe(
+    return this.http.post<GatheringParticipant>(`${this.url}/${gatheringId}/participants`, null, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(

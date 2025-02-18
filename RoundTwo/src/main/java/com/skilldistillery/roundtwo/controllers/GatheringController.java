@@ -54,8 +54,26 @@ public class GatheringController {
 		}
 		return foundGathering;
 	}
-	// --------------------------------------------------------------------------------------\\
+// --------------------------------------------------------------------------------------\\
+//GET by HostUsername
+	@GetMapping("gatherings/hosted")
+	public List<Gathering> findGatheringsHosted(HttpServletResponse res, HttpServletRequest req, Principal principal){
+		return gatheringService.findHostedGatherings(principal.getName());
+	}
+	
+//GET 
+	@GetMapping("gatherings/attending")
+	public List<Gathering> findFutureGatherings(HttpServletResponse res, HttpServletRequest req, Principal principal){
+		return gatheringService.findFutureGatherings(principal.getName());
+	}
+	
+//GET 
+	@GetMapping("gatherings/attended")
+	public List<Gathering> findPastGatherings(HttpServletResponse res, HttpServletRequest req, Principal principal){
+		return gatheringService.findPastGatherings(principal.getName());
+	}
 
+	
 //POST new gathering
 	@PostMapping("gatherings")
 	public Gathering add(@RequestBody Gathering gathering, HttpServletResponse res, HttpServletRequest req,

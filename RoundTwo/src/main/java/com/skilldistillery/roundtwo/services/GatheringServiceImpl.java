@@ -1,5 +1,7 @@
 package com.skilldistillery.roundtwo.services;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +17,10 @@ public class GatheringServiceImpl implements GatheringService {
 
 	@Autowired
 	private GatheringRepository gatheringRepo;
-	
+
 	@Autowired
 	private UserRepository userRepo;
-	
+
 	@Override
 	public List<Gathering> index() {
 		return gatheringRepo.findByEnabledTrue();
@@ -33,7 +35,7 @@ public class GatheringServiceImpl implements GatheringService {
 	public Gathering create(String username, Gathering gathering) {
 		User managedUser = userRepo.findByUsername(username);
 		if (managedUser == null) {
-			return null;			
+			return null;
 		}
 		gathering.setHost(managedUser);
 		gathering.setEnabled(true);
@@ -65,12 +67,27 @@ public class GatheringServiceImpl implements GatheringService {
 	public boolean destroy(String username, int gatheringId) {
 		boolean deleted = false;
 		Gathering managedGathering = gatheringRepo.findByHostUsernameAndId(username, gatheringId);
-		if(managedGathering!= null) {
+		if (managedGathering != null) {
 			managedGathering.setEnabled(false);
 			gatheringRepo.saveAndFlush(managedGathering);
 			deleted = true;
 		}
 		return deleted;
+	}
+
+	@Override
+	public List<Gathering> findHostedGatherings(String username) {
+		return gatheringRepo.findByHostUsername(username);
+	}
+
+	@Override
+	public List<Gathering> findFutureGatherings(String username) {
+		return gatheringRepo.findByParticipantsUserUsernameAndStartDateAfter(username, LocalDate.now());
+	}
+
+	@Override
+	public List<Gathering> findPastGatherings(String username) {
+		return gatheringRepo.findByParticipantsUserUsernameAndStartDateBefore(username, LocalDate.now());
 	}
 
 }
