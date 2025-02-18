@@ -43,7 +43,7 @@
 <div *ngIf="showNewEventForm">
 
         <form>
-          <label for="name">Name: </label>
+          <label for="name">Gathering Name: </label>
           <input type="text"  name="name" placeholder="name" [(ngModel)]="newGathering.name"><br>
           <label for="description">Description: </label>
           <textarea name="description" placeholder="description" [(ngModel)]="newGathering.description"></textarea><br>
@@ -69,7 +69,43 @@
             <button type="button" class="btn btn-secondary" (click)="toggleNewEventForm()">Close</button>
 
         </form>
+</div>
 
+<div *ngIf="editGathering">
+ <form>
+    <label for="name">Gathering Name</label>
+    <input type="text" name="name" [(ngModel)]="editGathering.name"><br>
 
+    <label for="description">Description</label>
+    <textarea name="description" [(ngModel)]="editGathering.description"></textarea><br>
+
+    <label for="fee">Fee</label>
+    <input type="number" name="fee" [(ngModel)]="editGathering.fee"><br>
+
+    <label for="minParticipants">Minimum Participants</label>
+    <input type="number" name="minParticipants" [(ngModel)]="editGathering.minParticipants"><br>
+
+    <label for="maxParticipants">Maximum Participants</label>
+    <input type="number" name="maxParticipants" [(ngModel)]="editGathering.maxParticipants"><br>
+
+    <label for="imageUrl">Image Url</label>
+    <input type="text" name="imageUrl" [(ngModel)]="editGathering.imageUrl"><br>
+
+    <label for="startDate">Start Date</label>
+    <input type="date" name="startDate" [(ngModel)]="editGathering.startDate"><br>
+
+    <label for="endDate">End Date</label>
+    <input type="date" name="endDate" [(ngModel)]="editGathering.endDate"><br>
+
+    <label for="startTime">Start Time</label>
+    <input type="time" name="startTime" [(ngModel)]="editGathering.startTime"><br>
+
+    <label for="endTime">End Time</label>
+    <input type="time" name="endTime" [(ngModel)]="editGathering.endTime"><br>
+
+    <button class="btn btn-warning" (click)="updateGathering(editGathering)">Save</button>
+
+    <button class="btn btn-danger" (click)="deleteGathering(editGathering.id)">Delete</button>
+ </form>
 </div>
 

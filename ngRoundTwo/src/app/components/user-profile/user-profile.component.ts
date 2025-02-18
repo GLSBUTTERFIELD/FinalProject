@@ -68,7 +68,6 @@ export class UserProfileComponent {
       },
       error: (error) => {
         console.log(error);
-        console.log("Error updating profile in todoList component");
       }
     });
   }

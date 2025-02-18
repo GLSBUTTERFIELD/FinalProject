@@ -56,5 +56,28 @@ private url = environment.baseUrl + 'api/gatherings';
   );
 }
 
+update(gathering: Gathering) : Observable<Gathering> {
+      // this.getHttpOptions() authenticates the users action. Make sure to add
+    return this.http.put<Gathering>(`${this.url}/${gathering.id}`, gathering, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('gatheringService.update(): error updating gathering: ' + err)
+        );
+      })
+    );
+  }
+
+  destroy(gatheringId: number) : Observable<void> {
+    return this.http.delete<void>(`${this.url}/${gatheringId}`, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('gatheringService.delete(): error deleting the gathering: ' + err)
+        );
+      })
+    );
+  }
+
 
 }

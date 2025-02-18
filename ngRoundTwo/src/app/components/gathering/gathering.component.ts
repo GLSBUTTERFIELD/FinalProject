@@ -23,6 +23,10 @@ export class GatheringComponent implements OnInit{
   selected: Gathering | null = null;
   showNewEventForm: boolean = false;
   newGathering: Gathering = new Gathering();
+  editGathering: Gathering | null = null;
+  gatheringToDisplay: Gathering | null = null;
+  showGatheringEditForm: boolean = false;
+
 
 
 
@@ -74,6 +78,10 @@ export class GatheringComponent implements OnInit{
     this.showNewEventForm = !this.showNewEventForm;
   }
 
+  toggleEditGathering() {
+    this.showGatheringEditForm = !this.showGatheringEditForm;
+  }
+
   addGathering(newGathering: Gathering) {
     newGathering.address.id = 1;
 
@@ -88,6 +96,35 @@ export class GatheringComponent implements OnInit{
       }
     });
   }
+  setEditGathering() : void {
+    this.editGathering = Object.assign({}, this.gatheringToDisplay)
+  }
 
+  updateGathering(gathering: Gathering) {
+    console.log(gathering)
+    this.gatheringService.update(gathering).subscribe({
+      next: (event) => {
+        this.toggleEditGathering();
+      },
+      error: (error) => {
+        console.log(error);
+        console.log("Error updating gathering");
+      }
+    });
+  }
+
+  deleteGathering(gatheringId: number){
+    console.log(gatheringId);
+    this.gatheringService.destroy(gatheringId).subscribe({
+      next: () => {
+       this.toggleEditGathering();
+
+      },
+      error: (fail) => {
+        console.log('gatheringComponent.deleteGathering: failed to delete the Gathering.')
+        console.log(fail);
+      }
+    })
+  }
 
 }
