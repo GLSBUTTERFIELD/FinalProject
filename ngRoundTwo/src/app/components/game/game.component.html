@@ -1,6 +1,6 @@
 <div *ngFor="let game of games">
   <h1>
-    <a href="{{game.websiteUrl}}">{{game.name}}</a>
+    <a href="{{game.websiteUrl}}" target="_blank">{{game.name}}</a>
   </h1>
   {{game.description}}<br>
   <img *ngIf="game.imageUrl" [src]="game.imageUrl" alt="Game Image">
