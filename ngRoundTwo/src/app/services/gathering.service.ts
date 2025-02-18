@@ -57,6 +57,28 @@ private url = environment.baseUrl + 'api/gatherings';
   )
  }
 
+ loadFutureGatherings(): Observable<Gathering[]>{
+  return this.http.get<Gathering[]>(this.url + '/attending', this.getHttpOptions()).pipe(
+    catchError((err: any) => {
+      console.log(err);
+      return throwError(
+        () => new Error('gatheringService.loadFutureGatherings(): error loading future gatherings: ' + err)
+       );
+      })
+  )
+ }
+
+ loadPastGatherings(): Observable<Gathering[]>{
+  return this.http.get<Gathering[]>(this.url + '/attended', this.getHttpOptions()).pipe(
+    catchError((err: any) => {
+      console.log(err);
+      return throwError(
+        () => new Error('gatheringService.loadPastGatherings(): error loading past gatherings: ' + err)
+       );
+      })
+  )
+ }
+
  create(gathering:Gathering) : Observable<Gathering> {
   return this.http.post<Gathering>(this.url, gathering, this.getHttpOptions()).pipe(
     catchError((err: any) => {

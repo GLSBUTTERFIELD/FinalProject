@@ -23,6 +23,8 @@ export class UserProfileComponent {
   editProfile: User | null = null;
   gatheringsHosted: Gathering[] = [];
   selected: User | null = null;
+  gatheringsAttending: Gathering[] = [];
+  gatheringsAttended: Gathering[] = [];
 
   constructor(
     private userService: UserService,
@@ -37,6 +39,8 @@ export class UserProfileComponent {
   ngOnInit(): void {
     this.loadLoggedInUser();
     this.loadGatheringsHosted();
+    this.loadFutureGatherings();
+    this.loadPastGatherings();
   }
 
  reload() {
@@ -109,6 +113,30 @@ export class UserProfileComponent {
       },
       error: (err:any)=>{
         console.log('UserProfileComponent.loadGatheringsHosted(): failed to load gatherings hosted.')
+        console.log(err);
+      }
+    })
+  }
+
+  loadFutureGatherings() {
+    this.gatheringService.loadFutureGatherings().subscribe({
+      next:(gatherings)=> {
+        this.gatheringsAttending = gatherings;
+      },
+      error: (err:any)=>{
+        console.log('UserProfileComponent.loadFutureGatherings(): failed to load future gatherings.')
+        console.log(err);
+      }
+    })
+  }
+
+  loadPastGatherings() {
+    this.gatheringService.loadPastGatherings().subscribe({
+      next:(gatherings)=> {
+        this.gatheringsAttended = gatherings;
+      },
+      error: (err:any)=>{
+        console.log('UserProfileComponent.loadPastGatherings(): failed to load past gatherings.')
         console.log(err);
       }
     })
