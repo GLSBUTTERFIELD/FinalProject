@@ -63,20 +63,47 @@
           <input type="date" name="endDate" placeholder="endDate" [(ngModel)]="newGathering.endDate"><br>
           <label for="imageUrl">Image Url: </label>
           <input type="text"  name="imageUrl" placeholder="imageUrl" [(ngModel)]="newGathering.imageUrl"><br>
-          <!-- need to show options to create new address or use one of the previously listed addresses -->
+          <!-- need to show option to create new address or use one of the previously listed addresses -->
           <label for="address">Select Address: </label>
        <select name="address" [(ngModel)]="newGathering.address" required>
          <option *ngFor="let address of addresses" [ngValue]="address">{{ address.street }}, {{ address.city }}, {{ address.stateAbbr }}</option>
        </select><br>
 
         <!-- need to implement the ability to create a new address if not listed in the options drop down -->
-         
+        <div *ngIf="!showNewAddressForm">
+          <button type="button" class="btn btn-secondary" (click)="showNewAddressForm = !showNewAddressForm">Create New Address</button>
+        </div>
+          <div *ngIf="showNewAddressForm">
+            <form>
+              <hr><br>
+              <label for="name">Gathering Location Name: </label>
+              <input type="text" name="name" [(ngModel)]="newAddress.name" placeholder="Enter address name" required><br>
+
+              <label for="street">Street: </label>
+              <input type="text" name="street" [(ngModel)]="newAddress.street" placeholder="Enter street" required><br>
+
+              <label for="city">City: </label>
+              <input type="text" name="city" [(ngModel)]="newAddress.city" placeholder="Enter city" required><br>
+
+              <label for="stateAbbr">State (2-letter code): </label>
+              <input type="text" name="stateAbbr" [(ngModel)]="newAddress.stateAbbr" placeholder="Enter state" maxlength="2" required><br>
+
+              <label for="zip">ZIP Code (5 digits): </label>
+              <input type="text" name="zip" [(ngModel)]="newAddress.zip" placeholder="Enter ZIP code" maxlength="5" required pattern="\d{5}"><br>
+
+              <button type="button" class="btn btn-success" (click)="addNewAddress(newAddress)">Submit Address</button>
+              <button type="button" class="btn btn-secondary" (click)="showNewAddressForm = false">Cancel</button>
+            </form>
+          </div>
             <button type="submit" class="btn btn-success" (click)="addGathering(newGathering)">Submit</button>
             <button type="button" class="btn btn-secondary" (click)="toggleNewEventForm()">Close</button>
 
         </form>
 </div>
 
+<!-- need to implement the information above to the editing form as well. Need button after clicking into event
+  (edit button) that then bring you here, you can cancel or submit your edits to the gathering with an option to
+  delete the gathering. This would all be under the pretence that you yourself are the user who created the gathering-->
 <div *ngIf="editGathering">
  <form>
     <label for="name">Gathering Name</label>

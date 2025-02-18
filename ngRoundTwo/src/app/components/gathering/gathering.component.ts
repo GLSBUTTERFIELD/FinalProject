@@ -26,6 +26,7 @@ export class GatheringComponent implements OnInit{
   addresses: Address[] = [];
   selected: Gathering | null = null;
   showNewEventForm: boolean = false;
+  showNewAddressForm: boolean = false;
   newGathering: Gathering = new Gathering();
   newAddress: Address = new Address();
   editGathering: Gathering | null = null;
@@ -117,11 +118,16 @@ export class GatheringComponent implements OnInit{
   }
 
   addNewAddress(newAddress: Address) {
-
+    if (!newAddress.stateAbbr || !newAddress.zip) {
+      alert('Please enter valid state abbreviation and zip code.');
+      return;
+    }
     this.addressService.create(newAddress).subscribe({
       next: (gathering) => {
         this.newAddress = new Address();
         this.reloadAddreses();
+        this.showNewAddressForm = false;
+        alert('Address created successfully!');
       },
       error: (err) => {
         console.error('Error creating address in address component');
