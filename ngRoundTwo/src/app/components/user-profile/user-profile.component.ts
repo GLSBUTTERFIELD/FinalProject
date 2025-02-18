@@ -22,6 +22,7 @@ export class UserProfileComponent {
   userToDisplay: User | null = null;
   editProfile: User | null = null;
   gatheringsHosted: Gathering[] = [];
+  selected: User | null = null;
 
   constructor(
     private userService: UserService,
@@ -37,6 +38,11 @@ export class UserProfileComponent {
     this.loadLoggedInUser();
     this.loadGatheringsHosted();
   }
+
+ reload() {
+  this.loadLoggedInUser();
+    this.loadGatheringsHosted();
+ }
 
   loadProfileById(userId: number) {
     this.userService.show(userId).subscribe({
@@ -71,6 +77,10 @@ export class UserProfileComponent {
     console.log(user)
     this.userService.update(user).subscribe({
       next: (User) => {
+        this.editProfile = null;
+        this.selected = null;
+        this.reload();
+
       },
       error: (error) => {
         console.log(error);
