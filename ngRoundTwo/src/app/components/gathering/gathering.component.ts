@@ -202,6 +202,7 @@ export class GatheringComponent implements OnInit{
        this.toggleEditGathering();
        this.editGathering = null;
        this.selected = null;
+       this.reload();
 
       },
       error: (fail) => {
