@@ -32,6 +32,7 @@ export class GatheringComponent implements OnInit{
   editGathering: Gathering | null = null;
   gatheringToDisplay: Gathering | null = null;
   showGatheringEditForm: boolean = false;
+  currentUser: User | null = null;
 
 
   constructor(
@@ -44,6 +45,7 @@ export class GatheringComponent implements OnInit{
   ngOnInit() {
     this.reload();
     this.reloadAddreses();
+    this.loadCurrentUser();
   }
 
   reload() {
@@ -68,6 +70,10 @@ export class GatheringComponent implements OnInit{
         console.log('PostComponent.reload: failed to load gathering list.', fail);
       }
     });
+  }
+  loadCurrentUser() {
+    //need to be able to load the current users information as a reference
+    // in order to make sure the editor is the creator of the gathering
   }
 
   showGathering(gatheringId: number){
@@ -97,6 +103,13 @@ export class GatheringComponent implements OnInit{
 
   toggleEditGathering() {
     this.showGatheringEditForm = !this.showGatheringEditForm;
+  }
+  setEditGathering(){
+    if (this.selected) {
+      this.editGathering = { ...this.selected };
+       //i didnt understand the previous logic for this, used some from my bluepix project
+      this.showGatheringEditForm = true;
+    }
   }
 
   addGathering(newGathering: Gathering) {
@@ -136,15 +149,13 @@ export class GatheringComponent implements OnInit{
   }
 
 
-  setEditGathering() : void {
-    this.editGathering = Object.assign({}, this.gatheringToDisplay)
-  }
 
   updateGathering(gathering: Gathering) {
     console.log(gathering)
     this.gatheringService.update(gathering).subscribe({
       next: (event) => {
-        this.toggleEditGathering();
+        this.editGathering = null;
+        this.selected = gathering;
       },
       error: (error) => {
         console.log(error);
@@ -155,6 +166,8 @@ export class GatheringComponent implements OnInit{
 
   deleteGathering(gatheringId: number){
     console.log(gatheringId);
+    if (confirm("Are you sure you want to delete this gathering?")) {
+      //added allert to make sure someone didnt phat finger the delete button
     this.gatheringService.destroy(gatheringId).subscribe({
       next: () => {
        this.toggleEditGathering();
@@ -164,7 +177,8 @@ export class GatheringComponent implements OnInit{
         console.log('gatheringComponent.deleteGathering: failed to delete the Gathering.')
         console.log(fail);
       }
-    })
+    });
+  }
   }
 
 }

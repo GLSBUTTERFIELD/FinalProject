@@ -17,7 +17,7 @@
 }
 
 
- <div *ngIf="selected && !showNewEventForm">
+ <div *ngIf="selected && !showNewEventForm && !editGathering">
   <div id="seperatingGatheringName">
     <h1>{{selected.name}}</h1>
     <p>Hosted by {{selected.host.username}}</p>
@@ -37,6 +37,8 @@
    <p>{{selected.minParticipants}}-{{selected.maxParticipants}} players</p>
    Last Updated {{selected.lastUpdate}}<br>
    <button class="btn btn-info" (click)="selected = null">Back</button>
+   <!-- need to add security to only allow whoever made the post to edit the post -->
+   <button class="btn btn-warning" (click)="setEditGathering()">Edit</button>
  <hr>
 </div>
 
@@ -104,41 +106,72 @@
 <!-- need to implement the information above to the editing form as well. Need button after clicking into event
   (edit button) that then bring you here, you can cancel or submit your edits to the gathering with an option to
   delete the gathering. This would all be under the pretence that you yourself are the user who created the gathering-->
-<div *ngIf="editGathering">
- <form>
-    <label for="name">Gathering Name</label>
-    <input type="text" name="name" [(ngModel)]="editGathering.name"><br>
+  <div *ngIf="editGathering">
+    <form>
+      <label for="name">Gathering Name</label>
+      <input type="text" name="name" [(ngModel)]="editGathering.name"><br>
 
-    <label for="description">Description</label>
-    <textarea name="description" [(ngModel)]="editGathering.description"></textarea><br>
+      <label for="description">Description</label>
+      <textarea name="description" [(ngModel)]="editGathering.description"></textarea><br>
 
-    <label for="fee">Fee</label>
-    <input type="number" name="fee" [(ngModel)]="editGathering.fee"><br>
+      <label for="fee">Fee</label>
+      <input type="number" name="fee" [(ngModel)]="editGathering.fee"><br>
 
-    <label for="minParticipants">Minimum Participants</label>
-    <input type="number" name="minParticipants" [(ngModel)]="editGathering.minParticipants"><br>
+      <label for="minParticipants">Minimum Participants</label>
+      <input type="number" name="minParticipants" [(ngModel)]="editGathering.minParticipants"><br>
 
-    <label for="maxParticipants">Maximum Participants</label>
-    <input type="number" name="maxParticipants" [(ngModel)]="editGathering.maxParticipants"><br>
+      <label for="maxParticipants">Maximum Participants</label>
+      <input type="number" name="maxParticipants" [(ngModel)]="editGathering.maxParticipants"><br>
 
-    <label for="imageUrl">Image Url</label>
-    <input type="text" name="imageUrl" [(ngModel)]="editGathering.imageUrl"><br>
+      <label for="imageUrl">Image Url</label>
+      <input type="text" name="imageUrl" [(ngModel)]="editGathering.imageUrl"><br>
 
-    <label for="startDate">Start Date</label>
-    <input type="date" name="startDate" [(ngModel)]="editGathering.startDate"><br>
+      <label for="startDate">Start Date</label>
+      <input type="date" name="startDate" [(ngModel)]="editGathering.startDate"><br>
 
-    <label for="endDate">End Date</label>
-    <input type="date" name="endDate" [(ngModel)]="editGathering.endDate"><br>
+      <label for="endDate">End Date</label>
+      <input type="date" name="endDate" [(ngModel)]="editGathering.endDate"><br>
 
-    <label for="startTime">Start Time</label>
-    <input type="time" name="startTime" [(ngModel)]="editGathering.startTime"><br>
+      <label for="startTime">Start Time</label>
+      <input type="time" name="startTime" [(ngModel)]="editGathering.startTime"><br>
 
-    <label for="endTime">End Time</label>
-    <input type="time" name="endTime" [(ngModel)]="editGathering.endTime"><br>
+      <label for="endTime">End Time</label>
+      <input type="time" name="endTime" [(ngModel)]="editGathering.endTime"><br>
 
-    <button class="btn btn-warning" (click)="updateGathering(editGathering)">Save</button>
+      <label for="address">Select Address: </label>
+      <select name="address" [(ngModel)]="editGathering.address" required>
+        <option *ngFor="let address of addresses" [ngValue]="address">{{ address.street }}, {{ address.city }}, {{ address.stateAbbr }}</option>
+      </select><br>
 
-    <button class="btn btn-danger" (click)="deleteGathering(editGathering.id)">Delete</button>
- </form>
-</div>
+      <div *ngIf="!showNewAddressForm">
+        <button type="button" class="btn btn-secondary" (click)="showNewAddressForm = !showNewAddressForm">Create New Address</button>
+      </div>
+      <div *ngIf="showNewAddressForm">
+        <form>
+          <hr><br>
+          <label for="name">Gathering Location Name: </label>
+          <input type="text" name="name" [(ngModel)]="newAddress.name" placeholder="Enter address name" required><br>
+
+          <label for="street">Street: </label>
+          <input type="text" name="street" [(ngModel)]="newAddress.street" placeholder="Enter street" required><br>
+
+          <label for="city">City: </label>
+          <input type="text" name="city" [(ngModel)]="newAddress.city" placeholder="Enter city" required><br>
+
+          <label for="stateAbbr">State (2-letter code): </label>
+          <input type="text" name="stateAbbr" [(ngModel)]="newAddress.stateAbbr" placeholder="Enter state" maxlength="2" required><br>
+
+          <label for="zip">ZIP Code (5 digits): </label>
+          <input type="text" name="zip" [(ngModel)]="newAddress.zip" placeholder="Enter ZIP code" maxlength="5" required pattern="\d{5}"><br>
+
+          <button type="button" class="btn btn-success" (click)="addNewAddress(newAddress)">Submit Address</button>
+          <button type="button" class="btn btn-secondary" (click)="showNewAddressForm = false">Cancel</button>
+        </form>
+      </div>
+
+      <button class="btn btn-warning" (click)="updateGathering(editGathering)">Save</button>
+      <button class="btn btn-secondary" (click)="editGathering = null">Back</button>
+      <button class="btn btn-danger" (click)="deleteGathering(editGathering.id)">Delete</button>
+    </form>
+  </div>
 

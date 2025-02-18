@@ -10,5 +10,5 @@ public interface GatheringService {
 	public Gathering findById(int gatheringId);
 	public Gathering create(String username, Gathering gathering);
 	public Gathering edit(String username, int gatheringId, Gathering gathering);
-	
+	public boolean destroy(String username, int gatheringId);
 }
