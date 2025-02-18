@@ -7,9 +7,12 @@ import { GatheringService } from './../../services/gathering.service';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { User } from '../../models/user';
-import { Observable } from 'rxjs';
+import { catchError, Observable } from 'rxjs';
 import { AddressService } from '../../services/address.service';
 import { Address } from '../../models/address';
+import { Game } from '../../models/game';
+import { HttpClient } from '@angular/common/http';
+import { GameService } from '../../services/game.service';
 
 @Component({
   selector: 'app-gathering',
@@ -33,12 +36,15 @@ export class GatheringComponent implements OnInit{
   gatheringToDisplay: Gathering | null = null;
   showGatheringEditForm: boolean = false;
   currentUser: User | null = null;
+  games: Game[] = [];
 
 
   constructor(
     private gatheringService: GatheringService,
     private userService: UserService,
     private addressService: AddressService,
+    private http: HttpClient,
+    private gameService: GameService,
     // private router: Router,
   ){}
 
@@ -46,6 +52,7 @@ export class GatheringComponent implements OnInit{
     this.reload();
     this.reloadAddreses();
     this.loadCurrentUser();
+    this.reloadGames();
   }
 
   reload() {
@@ -74,6 +81,18 @@ export class GatheringComponent implements OnInit{
   loadCurrentUser() {
     //need to be able to load the current users information as a reference
     // in order to make sure the editor is the creator of the gathering
+  }
+
+  reloadGames() {
+    this.gameService.showAll().subscribe({
+      next: (gamesList) => {
+        console.log('Games loaded:', gamesList);
+        this.games = gamesList;
+      },
+      error: (fail) => {
+        console.log('GameComponent.reload: failed to load games list.', fail);
+      }
+    });
   }
 
   showGathering(gatheringId: number){
@@ -180,5 +199,7 @@ export class GatheringComponent implements OnInit{
     });
   }
   }
+
+
 
 }
