@@ -40,6 +40,19 @@ public class GatheringParticipantServiceImpl implements GatheringParticipantServ
 		return newParticipant;
 	}
 	
+	@Override
+	public boolean deleteParticipant(String username, int gatheringId) {
+		boolean deleted = false;
+		User participant = userRepo.findByUsername(username);
+		Gathering gathering = gatheringRepo.findById(gatheringId).orElse(null);
+		if(participant != null && gathering != null) {
+			GatheringParticipantId id = new GatheringParticipantId(gatheringId, participant.getId());
+			gatheringParticipantRepo.deleteById(id);
+			deleted = true;
+		}
+		
+		return deleted;
 	
+	}
 	
 }
