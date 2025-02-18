@@ -1,3 +1,4 @@
+import { AddressService } from './../../service/address.service';
 import { UserService } from './../../services/user.service';
 import { CommonModule } from '@angular/common';
 import { Gathering } from '../../models/gathering';
@@ -31,8 +32,8 @@ export class GatheringComponent implements OnInit{
   constructor(
     private gatheringService: GatheringService,
     private userService: UserService,
+    private addressService: AddressService,
     // private router: Router,
-
   ){}
 
   ngOnInit() {

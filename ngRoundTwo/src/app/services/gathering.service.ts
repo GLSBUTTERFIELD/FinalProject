@@ -50,7 +50,7 @@ private url = environment.baseUrl + 'api/gatherings';
     catchError((err: any) => {
     console.log(err);
     return throwError(
-      () => new Error('TodoService.create(): error retrieving todo: ' + err)
+      () => new Error('gatheringService.create(): error creating gathering: ' + err)
      );
     })
   );
