@@ -196,10 +196,12 @@ export class GatheringComponent implements OnInit{
   deleteGathering(gatheringId: number){
     console.log(gatheringId);
     if (confirm("Are you sure you want to delete this gathering?")) {
-      //added allert to make sure someone didnt phat finger the delete button
+      // added allert to make sure someone didnt phat finger the delete button
     this.gatheringService.destroy(gatheringId).subscribe({
       next: () => {
        this.toggleEditGathering();
+       this.editGathering = null;
+       this.selected = null;
 
       },
       error: (fail) => {
