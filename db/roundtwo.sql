@@ -23,10 +23,10 @@ DROP TABLE IF EXISTS `address` ;
 CREATE TABLE IF NOT EXISTS `address` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(100) NULL,
-  `street` VARCHAR(100) NULL,
-  `city` VARCHAR(45) NULL,
-  `state_abbreviation` CHAR(2) NULL,
-  `zip` VARCHAR(10) NULL,
+  `street` VARCHAR(100) NOT NULL,
+  `city` VARCHAR(45) NOT NULL,
+  `state_abbreviation` CHAR(2) NOT NULL,
+  `zip` VARCHAR(10) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -466,7 +466,7 @@ START TRANSACTION;
 USE `roundtwodb`;
 INSERT INTO `address` (`id`, `name`, `street`, `city`, `state_abbreviation`, `zip`) VALUES (1, 'My Basement', '123 Colfax Ave', 'Denver', 'CO', '80014');
 INSERT INTO `address` (`id`, `name`, `street`, `city`, `state_abbreviation`, `zip`) VALUES (2, 'Event Center', '556 Fake Street', 'Longmont', 'CO', '80501');
-INSERT INTO `address` (`id`, `name`, `street`, `city`, `state_abbreviation`, `zip`) VALUES (DEFAULT, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `address` (`id`, `name`, `street`, `city`, `state_abbreviation`, `zip`) VALUES (3, 'Game Store', '871 Munster Rd', 'Severance', 'CO', '80546');
 
 COMMIT;
 

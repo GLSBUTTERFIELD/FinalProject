@@ -35,6 +35,7 @@ public class GatheringController {
 		return gatheringService.index();
 	}
 
+	// --------------------------------------------------------------------------------------\\
 //  GET by Id
 	@GetMapping("gatherings/{gatheringId}")
 	public Gathering showGathering(@PathVariable("gatheringId") int gatheringId, HttpServletRequest req,
@@ -52,6 +53,7 @@ public class GatheringController {
 		}
 		return foundGathering;
 	}
+	// --------------------------------------------------------------------------------------\\
 
 //POST new gathering
 	@PostMapping("gatherings")
@@ -73,6 +75,8 @@ public class GatheringController {
 		}
 		return createdGathering;
 	}
+
+	// --------------------------------------------------------------------------------------\\
 
 //PUT edit gathering
 	@PutMapping("gatherings/{gatheringId}")
