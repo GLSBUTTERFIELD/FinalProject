@@ -177,8 +177,6 @@ export class GatheringComponent implements OnInit{
     });
   }
 
-
-
   updateGathering(gathering: Gathering) {
     console.log(gathering)
     this.gatheringService.update(gathering).subscribe({
@@ -202,6 +200,7 @@ export class GatheringComponent implements OnInit{
        this.toggleEditGathering();
        this.editGathering = null;
        this.selected = null;
+       this.reload();
 
       },
       error: (fail) => {
@@ -212,6 +211,18 @@ export class GatheringComponent implements OnInit{
   }
   }
 
+addGatheringParticipant(gatheringId: number){
+  this.gatheringService.addAttendee(gatheringId).subscribe({
+    next:()=>{
+      this.selected = null;
+      this.reload();
+    },
+    error:(fail)=> {
+      console.log('gatheringComponent.addGatheringParticipant(): failed to add GatheringParticipant');
+      console.log(fail);
+    }
+  });
+}
 
 
 }

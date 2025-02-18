@@ -8,6 +8,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -49,7 +50,7 @@ public class User {
 	@JoinColumn(name = "address_id")
 	private Address address;
 	
-	@JsonIgnore
+	@JsonIgnoreProperties("host")
 	@OneToMany(mappedBy = "user")
 	private List<GatheringParticipant> gatheringsAttended;
 	
@@ -61,7 +62,7 @@ public class User {
 	@OneToMany(mappedBy="user")
 	private List<GameResource> resources;
 	
-	@JsonIgnore
+	@JsonIgnoreProperties({"user","comments"})
 	@OneToMany(mappedBy="user")
 	private List<InventoryItem> inventoryItems;
 	

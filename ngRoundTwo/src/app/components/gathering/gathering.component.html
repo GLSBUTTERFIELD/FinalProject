@@ -1,4 +1,5 @@
-<h1>Meet Ups!</h1>
+<h1>Game Gatherings!</h1><br>
+
 @if (!selected && !showNewEventForm) {
   <div>
     <button class="btn btn-info" (click)="toggleNewEventForm()">Add Gathering</button>
@@ -18,8 +19,11 @@
 
 
  <div *ngIf="selected && !showNewEventForm && !editGathering">
-  <div id="seperatingGatheringName">
-    <h1>{{selected.name}}</h1>
+   <div id="seperatingGatheringName">
+     <h1>{{selected.name}}</h1>
+     <button class="btn btn-info" (click)="selected = null">Back</button>
+     <button *ngIf="selected.host.id === currentUser?.id" class="btn btn-warning" (click)="setEditGathering()">Edit</button>
+     <button *ngIf="selected.host.id !== currentUser?.id" class="btn btn-success" (click)="addGatheringParticipant(selected.id)">Join this Gathering</button>
     <p>Hosted by {{selected.host.username}}</p>
    </div>
    <img *ngIf="selected.imageUrl" [src]="selected.imageUrl"><br>
@@ -36,14 +40,11 @@
    {{selected.address.zip}}
    <p>{{selected.minParticipants}}-{{selected.maxParticipants}} players</p>
    Last Updated {{selected.lastUpdate}}<br>
-   <button class="btn btn-info" (click)="selected = null">Back</button>
    <!-- need to add security to only allow whoever made the post to edit the post -->
-   <button *ngIf="selected.host.id === currentUser?.id" class="btn btn-warning" (click)="setEditGathering()">Edit</button>
- <hr>
+   <hr>
 </div>
 
 <div *ngIf="showNewEventForm">
-
         <form>
           <label for="name">Gathering Name: </label>
           <input type="text"  name="name" placeholder="name" [(ngModel)]="newGathering.name"><br>
@@ -114,8 +115,10 @@
   delete the gathering. This would all be under the pretence that you yourself are the user who created the gathering-->
   <div *ngIf="editGathering">
     <form>
+      <!-- <button class="btn btn-info" (click)="selected == null && editGathering = null">See All Gatherings</button><br> -->
       <label for="name">Gathering Name</label>
       <input type="text" name="name" [(ngModel)]="editGathering.name"><br>
+
 
       <label for="description">Description</label>
       <textarea name="description" [(ngModel)]="editGathering.description"></textarea><br>
@@ -155,7 +158,8 @@
       </select><br>
 
       <div *ngIf="!showNewAddressForm">
-        <button type="button" class="btn btn-secondary" (click)="showNewAddressForm = !showNewAddressForm">Create New Address</button>
+       <br> <button type="button" class="btn btn-primary" (click)="showNewAddressForm = !showNewAddressForm">Create New Address</button>
+
       </div>
       <div *ngIf="showNewAddressForm">
         <form>
@@ -179,9 +183,9 @@
           <button type="button" class="btn btn-secondary" (click)="showNewAddressForm = false">Cancel</button>
         </form>
       </div>
-
-      <button class="btn btn-warning" (click)="updateGathering(editGathering)">Save</button>
+      <br>
       <button class="btn btn-secondary" (click)="editGathering = null">Back</button>
+      <button class="btn btn-warning" (click)="updateGathering(editGathering)">Save</button>
       <button class="btn btn-danger" (click)="deleteGathering(editGathering.id)">Delete</button>
     </form>
   </div>

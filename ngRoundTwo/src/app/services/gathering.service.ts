@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { Gathering } from '../models/gathering';
 import { catchError, Observable, throwError } from 'rxjs';
+import { GatheringParticipant } from '../models/gathering-participant';
 
 @Injectable({
   providedIn: 'root'
@@ -79,5 +80,15 @@ update(gathering: Gathering) : Observable<Gathering> {
     );
   }
 
+  addAttendee(gatheringId: number): Observable <GatheringParticipant> {
+    return this.http.post<GatheringParticipant>(`${this.url}/${gatheringId}/participants`, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('gatheringService.addAttendee(): error adding gatheringParticipant ' + err)
+        );
+      })
+    )
+  }
 
 }
