@@ -1,5 +1,5 @@
 <h1>Meet Ups!</h1>
-@if (!selected) {
+@if (!selected && !showNewEventForm) {
   <div>
     <button class="btn btn-info" (click)="toggleNewEventForm()">Add Gathering</button>
   </div>
@@ -17,7 +17,7 @@
 }
 
 
- <div *ngIf="selected">
+ <div *ngIf="selected && !showNewEventForm">
   <div id="seperatingGatheringName">
     <h1>{{selected.name}}</h1>
     <p>Hosted by {{selected.host.username}}</p>
@@ -40,27 +40,36 @@
  <hr>
 </div>
 
-<div class="modal fade show d-block" role="dialog" *ngIf="showNewEventForm">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Add New Gathering!</h5>
-      </div>
-      <div class="modal-body">
-        <form>
-          <!-- <input type="text" id="username" name="username" placeholder="Username" [(ngModel)]="newUser.username"><br>
-          <input type="text" id="firstName" name="firstName" placeholder="First Name" [(ngModel)]="newUser.firstName"><br>
-          <input type="text" id="lastName" name="lastName" placeholder="Last Name" [(ngModel)]="newUser.lastName"><br>
-          <input type="password" id="password" name="password" placeholder="Password" [(ngModel)]="newUser.password"><br>
-          <input type="email" id="email" name="email" placeholder="Email" [(ngModel)]="newUser.email"><br>
-          <div class="modal-footer">-->
-            <!-- IMPORTANT: need to add add event click!!! -->
-            <button type="submit" class="btn btn-success">Submit</button>
-            <button type="button" class="btn btn-secondary" (click)="toggleNewEventForm()">Close</button>
-          </form>
-        </div>
+<div *ngIf="showNewEventForm">
 
-    </div>
-  </div>
+        <form>
+          <label for="name">Name: </label>
+          <input type="text"  name="name" placeholder="name" [(ngModel)]="newGathering.name"><br>
+          <label for="description">Description: </label>
+          <textarea name="description" placeholder="description" [(ngModel)]="newGathering.description"></textarea><br>
+          <label for="fee">Fee: </label>
+          <input type="number"  name="fee" placeholder="fee" [(ngModel)]="newGathering.fee"><br>
+          <label for="minParticipants">Min Participants: </label>
+          <input type="number"  name="minParticipants" placeholder="minParticipants" [(ngModel)]="newGathering.minParticipants"><br>
+          <label for="maxParticipants">Max Participants: </label>
+          <input type="number" name="maxParticipants" placeholder="maxParticipants" [(ngModel)]="newGathering.maxParticipants"><br>
+          <label for="startTime">Start Time: </label>
+          <input type="time" name="startTime" placeholder="startTime" [(ngModel)]="newGathering.startTime"><br>
+          <label for="endTime">End Time: </label>
+          <input type="time" name="endTime" placeholder="endTime" [(ngModel)]="newGathering.endTime"><br>
+          <label for="startDate">Start Date: </label>
+          <input type="date" name="startDate" placeholder="startDate" [(ngModel)]="newGathering.startDate"><br>
+          <label for="endDate">End Date: </label>
+          <input type="date" name="endDate" placeholder="endDate" [(ngModel)]="newGathering.endDate"><br>
+          <label for="imageUrl">Image Url: </label>
+          <input type="text"  name="imageUrl" placeholder="imageUrl" [(ngModel)]="newGathering.imageUrl"><br>
+
+            <!-- IMPORTANT: need to add add event click!!! -->
+            <button type="submit" class="btn btn-success" (click)="addGathering(newGathering)">Submit</button>
+            <button type="button" class="btn btn-secondary" (click)="toggleNewEventForm()">Close</button>
+
+        </form>
+
+
 </div>
 

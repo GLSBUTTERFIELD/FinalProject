@@ -71,24 +71,15 @@ export class GatheringComponent implements OnInit{
   toggleNewEventForm() {
     this.showNewEventForm = !this.showNewEventForm;
   }
-  /*
-  need to have something like the show gathering with the gathering Id going into the method,
-  this will then recive all relavant data as the participants are included in with the gathering
-  (according to postman), will need to do a for loop to parse the user id per participant, then
-  with each Id (another for loop) run that through a get User by Id, then parse the users name
-  in order to print out each of the users names for whom is RSVPing.
-  -- how do we add another RSVPing user?
-  -- reverse that logic to unRSVP to the event
-
-  addendum: may need a participantsId model and add that into the gathering participants
-  in order to parse each userId
-  */
 
   addGathering(newGathering: Gathering) {
+    newGathering.address.id = 1;
+
     this.gatheringService.create(newGathering).subscribe({
       next: (gathering) => {
         this.newGathering = new Gathering();
         this.reload();
+        this.toggleNewEventForm();
       },
       error: (err) => {
         console.error('Error creating gathering in gathering component');
