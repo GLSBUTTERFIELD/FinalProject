@@ -25,9 +25,6 @@ public class GatheringParticipantController {
 	@Autowired
 	private GatheringParticipantService gatheringParticipantService;
 	
-	@Autowired
-	private GatheringService gatheringService;
-	
 	@PostMapping("gatherings/{gatheringId}/participants")
 	public GatheringParticipant addParticipant (@PathVariable("gatheringId") int gatheringId, HttpServletResponse resp, HttpServletRequest req, Principal principal) {
 		GatheringParticipant createdParticipant = null;

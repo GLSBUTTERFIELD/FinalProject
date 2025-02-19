@@ -215,7 +215,18 @@ export class GatheringComponent implements OnInit{
 addGatheringParticipant(gatheringId: number){
   this.gatheringService.addAttendee(gatheringId).subscribe({
     next:()=>{
-      this.selected = null;
+      this.reload();
+    },
+    error:(fail)=> {
+      console.log('gatheringComponent.addGatheringParticipant(): failed to add GatheringParticipant');
+      console.log(fail);
+    }
+  });
+}
+
+removeGatheringParticipant(gatheringId: number){
+  this.gatheringService.removeAttendee(gatheringId).subscribe({
+    next:()=>{
       this.reload();
     },
     error:(fail)=> {

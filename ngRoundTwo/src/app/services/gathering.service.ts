@@ -124,4 +124,17 @@ update(gathering: Gathering) : Observable<Gathering> {
     )
   }
 
+  removeAttendee(gatheringId: number): Observable <GatheringParticipant> {
+    return this.http.delete<GatheringParticipant>(`${this.url}/${gatheringId}/participants`, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('gatheringService.removeAttendee(): error removing gatheringParticipant ' + err)
+        );
+      })
+    )
+  }
+
+
+  
 }
