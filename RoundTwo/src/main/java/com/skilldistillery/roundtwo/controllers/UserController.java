@@ -32,7 +32,7 @@ public class UserController {
 		return userService.findAll(principal.getName());		
 	}
 	
-	// ------------------------------------------------------------------------------------------\\
+// ------------------------------------------------------------------------------------------\\
 				//Showing User
 	
 	@GetMapping("users/{userId}")

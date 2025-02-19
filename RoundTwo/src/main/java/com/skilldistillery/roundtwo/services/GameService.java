@@ -9,5 +9,6 @@ public interface GameService {
 	Game findById(int gameId);
 	Game create(Game game);
 	Game edit(Game game, int gameId);
+	boolean destroy (String username, int gameId);
 
 }
