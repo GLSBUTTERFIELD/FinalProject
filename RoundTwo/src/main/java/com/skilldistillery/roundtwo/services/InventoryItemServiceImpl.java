@@ -17,7 +17,7 @@ public class InventoryItemServiceImpl implements InventoryItemService{
 	
 	@Override
 	public List<InventoryItem> showAvailable() {
-		return inventoryItemRepo.findByAvaliableTrue();
+		return inventoryItemRepo.findByAvailableTrue();
 	}
 
 	@Override
@@ -32,7 +32,7 @@ public class InventoryItemServiceImpl implements InventoryItemService{
 			managedInventoryItem.setName(inventoryItem.getName());
 			managedInventoryItem.setNotes(inventoryItem.getNotes());
 			managedInventoryItem.setImageUrl(inventoryItem.getImageUrl());
-			managedInventoryItem.setAvaliable(inventoryItem.isAvaliable());
+			managedInventoryItem.setAvailable(inventoryItem.isAvailable());
 			managedInventoryItem.setCondition(inventoryItem.getCondition());
 			inventoryItemRepo.saveAndFlush(managedInventoryItem);
 		}

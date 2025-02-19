@@ -31,7 +31,7 @@ public class InventoryItem {
 	
 	private String notes;
 	
-	private boolean avaliable;
+	private boolean available;
 	
 	@Column(name = "image_url")
 	private String imageUrl;
@@ -90,12 +90,12 @@ public class InventoryItem {
 		this.notes = notes;
 	}
 
-	public boolean isAvaliable() {
-		return avaliable;
+	public boolean isAvailable() {
+		return available;
 	}
 
-	public void setAvaliable(boolean avaliable) {
-		this.avaliable = avaliable;
+	public void setAvailable(boolean avaliable) {
+		this.available = avaliable;
 	}
 
 	public String getImageUrl() {
@@ -185,7 +185,7 @@ public class InventoryItem {
 		this.id = id;
 		this.name = name;
 		this.notes = notes;
-		this.avaliable = avaliable;
+		this.available = avaliable;
 		this.imageUrl = imageUrl;
 		this.enabled = enabled;
 		this.createDate = createDate;
@@ -194,7 +194,7 @@ public class InventoryItem {
 
 	@Override
 	public String toString() {
-		return "InventoryItem [id=" + id + ", name=" + name + ", notes=" + notes + ", avaliable=" + avaliable
+		return "InventoryItem [id=" + id + ", name=" + name + ", notes=" + notes + ", available=" + available
 				+ ", imageUrl=" + imageUrl + ", enabled=" + enabled + ", createDate=" + createDate + ", lastUpdate="
 				+ lastUpdate + "]";
 	}

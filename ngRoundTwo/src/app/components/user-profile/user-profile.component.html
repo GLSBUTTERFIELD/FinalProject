@@ -135,8 +135,8 @@
           <label>Notes</label>
           <input type="text" name="notes" [(ngModel)]="newInventoryItemInfo.notes"><br>
 
-          <label>Available</label>
-          <input type="checkbox" name="available" [(ngModel)]="newInventoryItemInfo.available"><br>
+          <label>available</label>
+          <input type="checkbox" name="available" [(ngModel)]="newInventoryItemInfo.available" [checked]="newInventoryItemInfo.available">
 
           <label>Condition</label>
           <select name="condition" [(ngModel)]="newInventoryItemInfo.condition.name">

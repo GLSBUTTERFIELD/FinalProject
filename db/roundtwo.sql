@@ -139,7 +139,7 @@ DROP TABLE IF EXISTS `inventory_item` ;
 CREATE TABLE IF NOT EXISTS `inventory_item` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `notes` TEXT NULL,
-  `avaliable` TINYINT NOT NULL DEFAULT 1,
+  `available` TINYINT NOT NULL DEFAULT 1,
   `image_url` TEXT NULL,
   `enabled` TINYINT NOT NULL DEFAULT 1,
   `create_date` DATETIME NULL,
@@ -550,16 +550,16 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `roundtwodb`;
-INSERT INTO `inventory_item` (`id`, `notes`, `avaliable`, `image_url`, `enabled`, `create_date`, `last_update`, `name`, `game_id`, `condition_id`, `user_id`) VALUES (1, 'No imperfections, never opened', 1, 'https://m.media-amazon.com/images/I/31lGanNsjvL.__AC_QL70_FMwebp_.jpg', 1, NULL, NULL, 'Twister', 1, 1, 1);
-INSERT INTO `inventory_item` (`id`, `notes`, `avaliable`, `image_url`, `enabled`, `create_date`, `last_update`, `name`, `game_id`, `condition_id`, `user_id`) VALUES (2, 'I lost 12 peices', 1, 'https://m.media-amazon.com/images/I/61TMW+yg9cL.jpg', 1, NULL, NULL, 'Jigsaw Puzzle', 7, 2, 3);
-INSERT INTO `inventory_item` (`id`, `notes`, `avaliable`, `image_url`, `enabled`, `create_date`, `last_update`, `name`, `game_id`, `condition_id`, `user_id`) VALUES (3, 'Only have half of the 100 bills', 1, 'https://www.maziply.com/cdn/shop/files/monopoly-board-game-main.jpg?v=1698936214', 1, NULL, NULL, 'Monopoly', 5, 2, 5);
-INSERT INTO `inventory_item` (`id`, `notes`, `avaliable`, `image_url`, `enabled`, `create_date`, `last_update`, `name`, `game_id`, `condition_id`, `user_id`) VALUES (4, 'I ate one of the ships. ', 1, 'https://cdn.shoplightspeed.com/shops/638935/files/51079211/600x800x2/hasbro-battleship.jpg', 1, NULL, NULL, 'Battle Ship', 4, 3, 6);
-INSERT INTO `inventory_item` (`id`, `notes`, `avaliable`, `image_url`, `enabled`, `create_date`, `last_update`, `name`, `game_id`, `condition_id`, `user_id`) VALUES (5, 'Perfect Condition, brand new!', 1, 'https://cdn.shoplightspeed.com/shops/638935/files/24878523/600x800x2/winning-moves-games-clue.jpg', 1, NULL, NULL, 'Clue', 6, 5, 7);
-INSERT INTO `inventory_item` (`id`, `notes`, `avaliable`, `image_url`, `enabled`, `create_date`, `last_update`, `name`, `game_id`, `condition_id`, `user_id`) VALUES (6, 'dog chewed on a couple peices and some are lost. Still useable ', 1, 'https://store.asmodee.com/cdn/shop/files/CN32070-image3_2000_535x.jpg?v=1703861152', 1, NULL, NULL, 'Catan', 2, 4, 8);
-INSERT INTO `inventory_item` (`id`, `notes`, `avaliable`, `image_url`, `enabled`, `create_date`, `last_update`, `name`, `game_id`, `condition_id`, `user_id`) VALUES (7, 'Perfect condition, only played once.', 1, 'https://i5.walmartimages.com/seo/Sorry-Game_e3be08d0-d8d5-45d2-a44c-1880e78fa0fd.1c0c60fd64a32dbe63ac4a7211f71d73.jpeg', 1, NULL, NULL, 'Sorry', 8, 1, 9);
-INSERT INTO `inventory_item` (`id`, `notes`, `avaliable`, `image_url`, `enabled`, `create_date`, `last_update`, `name`, `game_id`, `condition_id`, `user_id`) VALUES (8, NULL, 1, 'https://cdn.shoplightspeed.com/shops/638935/files/24879847/600x800x2/hasbro-jenga-mini-giant.jpg', 1, NULL, NULL, 'Jenga', 9, 3, 4);
-INSERT INTO `inventory_item` (`id`, `notes`, `avaliable`, `image_url`, `enabled`, `create_date`, `last_update`, `name`, `game_id`, `condition_id`, `user_id`) VALUES (9, NULL, 1, 'https://cdn.shoplightspeed.com/shops/638935/files/24879205/600x800x2/hasbro-risk.jpg', 1, NULL, NULL, 'Risk', 10, 2, 1);
-INSERT INTO `inventory_item` (`id`, `notes`, `avaliable`, `image_url`, `enabled`, `create_date`, `last_update`, `name`, `game_id`, `condition_id`, `user_id`) VALUES (10, NULL, 1, 'https://cdn.shoplightspeed.com/shops/638935/files/26824468/600x800x2/winning-solutions-scrabble-luxury-editions.jpg', 1, NULL, NULL, 'Scrabble', 11, 5, 1);
+INSERT INTO `inventory_item` (`id`, `notes`, `available`, `image_url`, `enabled`, `create_date`, `last_update`, `name`, `game_id`, `condition_id`, `user_id`) VALUES (1, 'No imperfections, never opened', 1, 'https://m.media-amazon.com/images/I/31lGanNsjvL.__AC_QL70_FMwebp_.jpg', 1, NULL, NULL, 'Twister', 1, 1, 1);
+INSERT INTO `inventory_item` (`id`, `notes`, `available`, `image_url`, `enabled`, `create_date`, `last_update`, `name`, `game_id`, `condition_id`, `user_id`) VALUES (2, 'I lost 12 peices', 1, 'https://m.media-amazon.com/images/I/61TMW+yg9cL.jpg', 1, NULL, NULL, 'Jigsaw Puzzle', 7, 2, 3);
+INSERT INTO `inventory_item` (`id`, `notes`, `available`, `image_url`, `enabled`, `create_date`, `last_update`, `name`, `game_id`, `condition_id`, `user_id`) VALUES (3, 'Only have half of the 100 bills', 1, 'https://www.maziply.com/cdn/shop/files/monopoly-board-game-main.jpg?v=1698936214', 1, NULL, NULL, 'Monopoly', 5, 2, 5);
+INSERT INTO `inventory_item` (`id`, `notes`, `available`, `image_url`, `enabled`, `create_date`, `last_update`, `name`, `game_id`, `condition_id`, `user_id`) VALUES (4, 'I ate one of the ships. ', 1, 'https://cdn.shoplightspeed.com/shops/638935/files/51079211/600x800x2/hasbro-battleship.jpg', 1, NULL, NULL, 'Battle Ship', 4, 3, 6);
+INSERT INTO `inventory_item` (`id`, `notes`, `available`, `image_url`, `enabled`, `create_date`, `last_update`, `name`, `game_id`, `condition_id`, `user_id`) VALUES (5, 'Perfect Condition, brand new!', 1, 'https://cdn.shoplightspeed.com/shops/638935/files/24878523/600x800x2/winning-moves-games-clue.jpg', 1, NULL, NULL, 'Clue', 6, 5, 7);
+INSERT INTO `inventory_item` (`id`, `notes`, `available`, `image_url`, `enabled`, `create_date`, `last_update`, `name`, `game_id`, `condition_id`, `user_id`) VALUES (6, 'dog chewed on a couple peices and some are lost. Still useable ', 1, 'https://store.asmodee.com/cdn/shop/files/CN32070-image3_2000_535x.jpg?v=1703861152', 1, NULL, NULL, 'Catan', 2, 4, 8);
+INSERT INTO `inventory_item` (`id`, `notes`, `available`, `image_url`, `enabled`, `create_date`, `last_update`, `name`, `game_id`, `condition_id`, `user_id`) VALUES (7, 'Perfect condition, only played once.', 1, 'https://i5.walmartimages.com/seo/Sorry-Game_e3be08d0-d8d5-45d2-a44c-1880e78fa0fd.1c0c60fd64a32dbe63ac4a7211f71d73.jpeg', 1, NULL, NULL, 'Sorry', 8, 1, 9);
+INSERT INTO `inventory_item` (`id`, `notes`, `available`, `image_url`, `enabled`, `create_date`, `last_update`, `name`, `game_id`, `condition_id`, `user_id`) VALUES (8, NULL, 1, 'https://cdn.shoplightspeed.com/shops/638935/files/24879847/600x800x2/hasbro-jenga-mini-giant.jpg', 1, NULL, NULL, 'Jenga', 9, 3, 4);
+INSERT INTO `inventory_item` (`id`, `notes`, `available`, `image_url`, `enabled`, `create_date`, `last_update`, `name`, `game_id`, `condition_id`, `user_id`) VALUES (9, NULL, 1, 'https://cdn.shoplightspeed.com/shops/638935/files/24879205/600x800x2/hasbro-risk.jpg', 1, NULL, NULL, 'Risk', 10, 2, 1);
+INSERT INTO `inventory_item` (`id`, `notes`, `available`, `image_url`, `enabled`, `create_date`, `last_update`, `name`, `game_id`, `condition_id`, `user_id`) VALUES (10, NULL, 1, 'https://cdn.shoplightspeed.com/shops/638935/files/26824468/600x800x2/winning-solutions-scrabble-luxury-editions.jpg', 1, NULL, NULL, 'Scrabble', 11, 5, 1);
 
 COMMIT;
 
