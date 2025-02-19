@@ -114,8 +114,8 @@ public class GatheringController {
 		return gathering;
 	}
 
-	// ------------------------------------------------------------------------------------------\\
-	// Deleting User
+// ------------------------------------------------------------------------------------------\\
+// Deleting Gathering
 	@DeleteMapping("gatherings/{gatheringId}")
 	public void destroy(HttpServletResponse resp, Principal principal, @PathVariable("gatheringId") int gatheringId) {
 		try {

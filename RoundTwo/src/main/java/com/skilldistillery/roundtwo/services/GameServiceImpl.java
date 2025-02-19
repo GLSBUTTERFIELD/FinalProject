@@ -6,15 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.roundtwo.entities.Game;
-import com.skilldistillery.roundtwo.entities.InventoryItem;
 import com.skilldistillery.roundtwo.entities.User;
 import com.skilldistillery.roundtwo.repositories.GameRepository;
+import com.skilldistillery.roundtwo.repositories.UserRepository;
 
 @Service
 public class GameServiceImpl implements GameService {
 
 	@Autowired
 	private GameRepository gameRepo;
+	
+	@Autowired
+	private UserRepository userRepo;
 
 	@Override
 	public List<Game> listAll() {
@@ -47,4 +50,20 @@ public class GameServiceImpl implements GameService {
 		return managedGame;
 	}
 
+	@Override
+	public boolean destroy(String username, int gameId) {
+		boolean deleted = false;
+		Game managedAdminGame  = gameRepo.findById(gameId).orElse(null);
+		User checkAdmin = userRepo.findByUsername(username);
+		User admin = userRepo.findById(1).orElse(null);
+		if(checkAdmin.getRole() == admin.getRole()) {
+			if (managedAdminGame != null) {
+				gameRepo.deleteById(gameId);
+				deleted = true;
+			}
+		}
+		return deleted;
+	}
+
+	
 }
