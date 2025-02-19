@@ -65,6 +65,18 @@ public class GatheringServiceImpl implements GatheringService {
 	@Override
 	public boolean destroy(String username, int gatheringId) {
 		boolean deleted = false;
+		
+		Gathering managedAdminGathering = gatheringRepo.findById(gatheringId).orElse(null);
+		User checkAdmin = userRepo.findByUsername(username);
+		User admin = userRepo.findById(1).orElse(null);
+		if(checkAdmin.getRole() == admin.getRole()) {
+			if (managedAdminGathering != null) {
+				managedAdminGathering.setEnabled(false);
+				gatheringRepo.saveAndFlush(managedAdminGathering);
+				deleted = true;
+			}
+	}
+	//----------------------------------------------------------------------------------------------\\
 		Gathering managedGathering = gatheringRepo.findByHostUsernameAndId(username, gatheringId);
 		if (managedGathering != null) {
 			managedGathering.setEnabled(false);
