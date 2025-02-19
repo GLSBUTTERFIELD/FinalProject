@@ -1,16 +1,53 @@
-<div *ngFor="let game of games">
-  <h1>
-    <a href="{{game.websiteUrl}}" target="_blank">{{game.name}}</a>
-  </h1>
-  {{game.description}}<br>
-  <img *ngIf="game.imageUrl" [src]="game.imageUrl" alt="Game Image">
-  <div *ngIf="game.categories">
-    Categories:
+<div class="container" *ngIf="!showNewGameForm">
+<button class="btn btn-info" (click)="toggleNewGameForm()">Add Game</button>
+
+  <div *ngFor="let game of games">
+    <h1>
+      <a href="{{game.websiteUrl}}" target="_blank">{{game.name}}</a>
+    </h1>
+    {{game.description}}<br>
+    <img *ngIf="game.imageUrl" [src]="game.imageUrl" alt="Game Image">
+    <div *ngIf="game.categories">
+      Categories:
       <ul *ngFor="let category of game.categories">
         <li>
           {{category.name}}
         </li>
       </ul>
+    </div>
+    <hr>
   </div>
-  <hr>
+</div>
+
+<div *ngIf="showNewGameForm">
+  <form>
+    <label for="name">Game</label>
+    <input type="text"  name="name" placeholder="name" [(ngModel)]="newGame.name"><br>
+    <label for="description">Description: </label>
+    <textarea name="description" placeholder="description" [(ngModel)]="newGame.description"></textarea><br>
+
+  <!-- not working correctly -->
+    <label for="categories">Select Category </label>
+    <select name="categories" [(ngModel)]="newGame.categories" required>
+    <option *ngFor="let category of categories" [ngValue]="category">{{ category.name }}</option>
+    </select><br>
+
+    <label for="minAge">Min Age: </label>
+    <input type="number"  name="minAge" placeholder="minAge" [(ngModel)]="newGame.minAge"><br>
+
+    <label for="minPlayers">Min Players: </label>
+    <input type="number" name="minPlayers" placeholder="minPlayers" [(ngModel)]="newGame.minPlayers"><br>
+
+    <label for="maxPlayers">Max Players: </label>
+    <input type="number" name="maxPlayers" placeholder="maxPlayers" [(ngModel)]="newGame.maxPlayers"><br>
+
+    <label for="websiteUrl">Website Url: </label>
+    <input type="text"  name="websiteUrl" placeholder="websiteUrl" [(ngModel)]="newGame.websiteUrl"><br>
+
+    <label for="imageUrl">Image Url: </label>
+    <input type="text"  name="imageUrl" placeholder="imageUrl" [(ngModel)]="newGame.imageUrl"><br>
+
+    <button type="submit" class="btn btn-success" (click)="addGame(newGame)">Submit</button>
+    <button type="button" class="btn btn-secondary" (click)="toggleNewGameForm()">Close</button>
+  </form>
 </div>

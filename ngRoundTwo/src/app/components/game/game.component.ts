@@ -17,6 +17,8 @@ import { Category } from '../../models/category';
 export class GameComponent implements OnInit {
 games: Game[] = [];
 categories: Category[] = [];
+newGame: Game = new Game();
+showNewGameForm: boolean = false;
 
   constructor(
     private gameService: GameService,
@@ -28,13 +30,30 @@ categories: Category[] = [];
 
   loadGames() {
     this.gameService.showAll().subscribe({
-next: (games) => {
-this.games = games;
-},
-error: (err) => {
-console.log("GameComponent.loadGames: failed to load Game list");
-}
+      next: (games) => {
+      this.games = games;
+    },
+    error: (err) => {
+      console.log("GameComponent.loadGames: failed to load Game list");
+    }
     })
   }
+
+  toggleNewGameForm(){
+    this.showNewGameForm = !this.showNewGameForm;
+  }
+
+  addGame(newGame: Game) {
+      this.gameService.create(newGame).subscribe({
+        next: () => {
+          this.newGame = new Game();
+          this.loadGames();
+          this.toggleNewGameForm();
+        },
+        error: (err:any) => {
+          console.error('Error creating game in Game component' + err);
+        }
+      });
+    }
 
 }
