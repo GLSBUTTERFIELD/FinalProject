@@ -18,17 +18,12 @@
         <a class="nav-item nav-link" [routerLink]="['/trade']">Trade</a>
         <a class="nav-item nav-link" [routerLink]="['/games']">Games</a>
         <a class="nav-item nav-link" [routerLink]="['/gathering']">Gathering</a>
-        
 
-<<<<<<< HEAD
 
-        <div *ngIf="loggingInUser.role === 'chadmin'">
-          <a class="nav-item nav-link" [routerLink]="['/admin']">Admin </a>
-=======
+
         @if(loggedInUser){
         <div *ngIf="loggedInUser.role === 'chadmin'">
           <a class="nav-item nav-link" [routerLink]="['/admin']">Admin</a>
->>>>>>> 002a798905867e3d9531df1ad09b229954de0404
         </div>
         }
 
