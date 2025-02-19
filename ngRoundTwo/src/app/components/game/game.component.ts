@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { GameService } from '../../services/game.service';
 import { Game } from '../../models/game';
 import { Category } from '../../models/category';
+import { CategoryService } from '../../services/category.service';
 
 @Component({
   selector: 'app-game',
@@ -22,10 +23,12 @@ showNewGameForm: boolean = false;
 
   constructor(
     private gameService: GameService,
+    private categoryService: CategoryService,
   ){}
 
   ngOnInit(): void {
     this.loadGames();
+    this.loadCategories();
   }
 
   loadGames() {
@@ -54,6 +57,17 @@ showNewGameForm: boolean = false;
           console.error('Error creating game in Game component' + err);
         }
       });
+    }
+
+    loadCategories(){
+      this.categoryService.listCategories().subscribe({
+        next: (categories)=>{
+          this.categories = categories;
+        },
+        error: (err:any)=>{
+          console.error('Error retrieving list of categories in Game Component' + err);
+        }
+      })
     }
 
 }
