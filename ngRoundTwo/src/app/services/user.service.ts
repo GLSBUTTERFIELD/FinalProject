@@ -28,11 +28,22 @@ export class UserService {
       catchError((err: any) => {
         console.log(err);
         return throwError(
-          () => new Error('UserService.show(): error finding specified UserId: ' + err)
+          () => new Error('UserService.show(): error finding all Users: ' + err)
         );
       })
     );
   }
+
+  showAll(): Observable<User[]>{
+      return this.http.get<User[]>(this.url, this.getHttpOptions()).pipe(
+        catchError((err: any) => {
+                console.log(err);
+                return throwError(
+                  () => new Error('UserService.show(): error finding all users: ' + err)
+                );
+              })
+            );
+    }
 
   update(user: User) : Observable<User> {
       // this.getHttpOptions() authenticates the users action. Make sure to add
@@ -56,4 +67,17 @@ export class UserService {
       })
     );
   }
+
+  public checkAdmin() : Observable<User> {
+    return this.http.get<User>(this.url + "/" + 1, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('UserService.show(): error finding all Users: ' + err)
+        );
+      })
+    );
+  }
+
 }
+
