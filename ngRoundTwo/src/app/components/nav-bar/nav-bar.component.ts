@@ -30,7 +30,7 @@ export class NavBarComponent {
 
   userButtons: boolean = false;
 
-  admin: User = new User();
+  loggedInUser: User | null = null;
 
   constructor(
     private authService: AuthService,
@@ -51,6 +51,7 @@ export class NavBarComponent {
               // this.router.navigateByUrl('/todo');
               this.router.navigateByUrl('/home');
               this.toggleSignUp();
+              this.getLoggedInUser();
             },
             error: (problem) => {
               console.error('NavBarComponent.register(): Error logging in user:');
@@ -73,6 +74,7 @@ export class NavBarComponent {
       next: (displayingUser) => {
         this.router.navigateByUrl('/home');
         this.toggleLogin();
+        this.getLoggedInUser();
         console.log(displayingUser);
       }, error: (err) => {
         console.log(err);
@@ -96,13 +98,14 @@ toggleUserButtonView(): boolean {
 logout() {
   this.authService.logout();
   this.router.navigateByUrl("");
+  this.loggedInUser = null;
   console.log("Logout button pressed");
 }
 
-loadAdmin() {
-  this.userService.checkAdmin().subscribe({
-      next: (adminCreds) => {
-        this.admin = adminCreds;
+getLoggedInUser() {
+  this.authService.getLoggedInUser().subscribe({
+      next: (loggedInUser) => {
+        this.loggedInUser = loggedInUser;
       },
       error: (fail) => {
         console.log('NavBarComponent.loadAdmin(): failed to load admin', fail);

@@ -19,11 +19,11 @@
         <a class="nav-item nav-link" [routerLink]="['/games']">Games</a>
         <a class="nav-item nav-link" [routerLink]="['/gathering']">Gathering</a>
 
-
-        <div *ngIf="loggingInUser.role == admin.role">
-          <a class="nav-item nav-link" [routerLink]="['/admin']">Admin </a>
+        @if(loggedInUser){
+        <div *ngIf="loggedInUser.role === 'chadmin'">
+          <a class="nav-item nav-link" [routerLink]="['/admin']">Admin</a>
         </div>
-
+        }
 
         <div *ngIf="toggleUserButtonView()">
           <button class="btn btn-warning" (click)="toggleSignUp()">Sign Up</button>
