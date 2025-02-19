@@ -28,8 +28,8 @@ public class UserController {
 	private UserService userService;
 	
 	@GetMapping ("users")
-	public List<User> showAll(){
-		return userService.findAll();		
+	public List<User> showAll(Principal principal){
+		return userService.findAll(principal.getName());		
 	}
 	
 	// ------------------------------------------------------------------------------------------\\

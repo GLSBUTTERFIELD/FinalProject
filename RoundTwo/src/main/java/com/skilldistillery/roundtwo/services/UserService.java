@@ -6,7 +6,7 @@ import com.skilldistillery.roundtwo.entities.User;
 
 public interface UserService {
 	
-	public List<User> findAll();
+	public List<User> findAll(String username);
 	
 	public User findUserById(String username, int userId);
 	
