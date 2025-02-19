@@ -1,3 +1,4 @@
+import { TradeService } from './../../services/trade.service';
 import { InventoryItem } from './../../models/inventory-item';
 import { User } from './../../models/user';
 import { CommonModule } from '@angular/common';
@@ -35,6 +36,7 @@ export class UserProfileComponent {
     private gatheringService: GatheringService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
+    private tradeService: TradeService,
 
   ){}
 
@@ -81,7 +83,7 @@ export class UserProfileComponent {
   }
 
   setNewInventoryItemInfo(item: InventoryItem) {
-    this.newInventoryItemInfo = { ...item };
+    this.newInventoryItemInfo = JSON.parse(JSON.stringify(item));
     this.viewInventoryItemEditForm = true;
   }
 
@@ -157,7 +159,15 @@ export class UserProfileComponent {
 
   updateItem(inventoryItemInfo: InventoryItem) {
     console.log('New item Info:', this.newInventoryItemInfo);
-    // this.inventoryService.update(this.newInventoryItemInfo).subscribe(...)
-    this.closeModal();
+    this.tradeService.update(inventoryItemInfo).subscribe({
+      next: (inventoryInfo) => {
+        this.reload();
+        this.closeModal();
+
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    });
   }
 }
