@@ -50,10 +50,12 @@ public class InventoryItem {
 	@JoinColumn(name="condition_id")
 	private ItemCondition condition;
 	
+	@JsonIgnoreProperties({"inventoryItems"})
 	@ManyToOne
 	@JoinColumn(name="game_id")
 	private Game game;
 	
+	@JsonIgnoreProperties({"gatheringsAttended","inventoryItems"})
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;

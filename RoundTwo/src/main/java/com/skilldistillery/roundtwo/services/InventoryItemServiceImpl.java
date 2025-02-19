@@ -30,15 +30,15 @@ public class InventoryItemServiceImpl implements InventoryItemService{
 	}
 
 	@Override
-	public InventoryItem edit(User user, int itemId, InventoryItem inventoryItem) {
-		InventoryItem managedInventoryItem = inventoryItemRepo.findByUserAndId(user, itemId);
+	public InventoryItem edit(String username, int itemId, InventoryItem inventoryItem) {
+		InventoryItem managedInventoryItem = inventoryItemRepo.findByUser_UsernameAndId(username, itemId);
 		if (managedInventoryItem != null) {
 			managedInventoryItem.setName(inventoryItem.getName());
 			managedInventoryItem.setNotes(inventoryItem.getNotes());
 			managedInventoryItem.setImageUrl(inventoryItem.getImageUrl());
 			managedInventoryItem.setAvailable(inventoryItem.isAvailable());
 			managedInventoryItem.setCondition(inventoryItem.getCondition());
-			inventoryItemRepo.saveAndFlush(managedInventoryItem);
+			return inventoryItemRepo.saveAndFlush(managedInventoryItem);
 		}
 		return managedInventoryItem;
 	}

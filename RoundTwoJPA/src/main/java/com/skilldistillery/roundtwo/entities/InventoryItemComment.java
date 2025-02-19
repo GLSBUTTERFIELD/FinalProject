@@ -35,7 +35,6 @@ public class InventoryItemComment {
 	private LocalDateTime lastUpdate;
 	
 	@ManyToOne
-
 	@JoinColumn(name = "user_id")
 	private User user;
 	

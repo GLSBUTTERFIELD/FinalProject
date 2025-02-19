@@ -10,5 +10,5 @@ import com.skilldistillery.roundtwo.entities.User;
 public interface InventoryItemRepository extends JpaRepository <InventoryItem, Integer> {
 	
 	List<InventoryItem> findByAvailableTrue();
-	InventoryItem findByUserAndId(User user, int id);
+	InventoryItem findByUser_UsernameAndId(String username, int id);
 }
