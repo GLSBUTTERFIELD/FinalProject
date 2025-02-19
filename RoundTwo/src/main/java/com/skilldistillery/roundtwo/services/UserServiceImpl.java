@@ -60,10 +60,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<User> findAll(String username) {
 		User checkAdmin = userRepo.findByUsername(username);
-		if(checkAdmin.getRole().toString() == "chadmin") {
-		return userRepo.findAll();
+		User admin = userRepo.findById(1).orElse(null);
+		if(checkAdmin.getRole() == admin.getRole()) {
+			return userRepo.findAll();
 	}
-	return null;
+		return null;
 }
 
 }
