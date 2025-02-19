@@ -1,3 +1,4 @@
+import { GameService } from './../../services/game.service';
 import { ItemConditionService } from './../../services/item-condition.service';
 import { TradeService } from './../../services/trade.service';
 import { InventoryItem } from './../../models/inventory-item';
@@ -11,6 +12,7 @@ import { AuthService } from '../../services/auth.service';
 import { Gathering } from '../../models/gathering';
 import { GatheringService } from '../../services/gathering.service';
 import { ItemCondition } from '../../models/item-condition';
+import { Game } from '../../models/game';
 
 @Component({
   selector: 'app-user-profile',
@@ -34,6 +36,7 @@ export class UserProfileComponent {
   newInventoryItemInfo: InventoryItem = new InventoryItem();
   newInventoryItem: InventoryItem = new InventoryItem();
   viewNewInventoryItemForm: boolean = false;
+  games: Game[] = [];
 
   constructor(
     private userService: UserService,
@@ -43,6 +46,7 @@ export class UserProfileComponent {
     private activatedRoute: ActivatedRoute,
     private tradeService: TradeService,
     private itemConditionService: ItemConditionService,
+    private gameService: GameService,
   ){}
 
 
@@ -52,6 +56,7 @@ export class UserProfileComponent {
     this.loadFutureGatherings();
     this.loadPastGatherings();
     this.loadConditions();
+    this.loadGames();
   }
 
  reload() {
@@ -199,6 +204,17 @@ export class UserProfileComponent {
         console.log(error);
       }
     });
+  }
+
+  loadGames() {
+    this.gameService.showAll().subscribe({
+      next: (games) => {
+      this.games = games;
+    },
+    error: (err) => {
+      console.log("GameComponent.loadGames: failed to load Game list");
+    }
+    })
   }
 
 }

@@ -166,6 +166,11 @@
       </div>
       <div class="modal-body">
         <form>
+          <label>Game</label>
+          <select name="game" [(ngModel)]="newInventoryItem.game">
+          <option *ngFor="let game of games" [ngValue]="game">{{ game.name }}</option>
+          </select><br>
+
           <label>Name</label>
           <input type="text" name="name" [(ngModel)]="newInventoryItem.name"><br>
 
