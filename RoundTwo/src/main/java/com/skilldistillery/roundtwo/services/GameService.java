@@ -7,5 +7,7 @@ import com.skilldistillery.roundtwo.entities.Game;
 public interface GameService {
 	List<Game> listAll();
 	Game findById(int gameId);
+	Game create(Game game);
+	Game edit(Game game, int gameId);
 
 }

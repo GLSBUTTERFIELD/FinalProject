@@ -177,9 +177,9 @@ public class Game {
 		this.favoritedUsers = favoritedUsers;
 	}
 
-	public int getNumberOfFavoritedUsers() {
-		return this.favoritedUsers.size();
-	}
+//	public int getNumberOfFavoritedUsers() {
+//		return this.favoritedUsers.size();
+//	}
 
 	public List<GameComment> getGameComments() {
 		return gameComments;
