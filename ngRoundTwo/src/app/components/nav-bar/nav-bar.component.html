@@ -18,9 +18,10 @@
         <a class="nav-item nav-link" [routerLink]="['/trade']">Trade</a>
         <a class="nav-item nav-link" [routerLink]="['/games']">Games</a>
         <a class="nav-item nav-link" [routerLink]="['/gathering']">Gathering</a>
+        
 
 
-        <div *ngIf="loggingInUser.role == admin.role">
+        <div *ngIf="loggingInUser.role === 'chadmin'">
           <a class="nav-item nav-link" [routerLink]="['/admin']">Admin </a>
         </div>
 
