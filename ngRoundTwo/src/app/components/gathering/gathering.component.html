@@ -2,7 +2,7 @@
 
 @if (!selected && !showNewEventForm) {
   <div>
-    <button class="btn btn-info" (click)="toggleNewEventForm()">Add Gathering</button>
+    <button *ngIf="isLoggedIn" class="btn btn-info" (click)="toggleNewEventForm()">Add Gathering</button>
   </div>
   <div *ngFor="let gathering of gatherings" (click)="showGathering(gathering.id)" id="seperatingGatheringName">
     <p>Hosted by {{gathering.host.username}}</p>

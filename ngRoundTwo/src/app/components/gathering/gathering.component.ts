@@ -38,6 +38,7 @@ export class GatheringComponent implements OnInit{
   showGatheringEditForm: boolean = false;
   currentUser: User | null = null;
   games: Game[] = [];
+  isLoggedIn: boolean = false;
 
 
 
@@ -56,6 +57,7 @@ export class GatheringComponent implements OnInit{
     this.reloadAddreses();
     this.loadCurrentUser();
     this.reloadGames();
+    this.isLoggedIn = this.authService.checkLogin();
   }
 
   reload() {
