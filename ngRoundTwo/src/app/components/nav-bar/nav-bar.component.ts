@@ -32,6 +32,7 @@ export class NavBarComponent {
 
   admin: User = new User();
 
+
   constructor(
     private authService: AuthService,
     private router: Router,
