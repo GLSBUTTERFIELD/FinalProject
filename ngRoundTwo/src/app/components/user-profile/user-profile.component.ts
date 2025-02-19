@@ -1,3 +1,4 @@
+import { ItemConditionService } from './../../services/item-condition.service';
 import { TradeService } from './../../services/trade.service';
 import { InventoryItem } from './../../models/inventory-item';
 import { User } from './../../models/user';
@@ -9,6 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { Gathering } from '../../models/gathering';
 import { GatheringService } from '../../services/gathering.service';
+import { ItemCondition } from '../../models/item-condition';
 
 @Component({
   selector: 'app-user-profile',
@@ -27,6 +29,7 @@ export class UserProfileComponent {
   selected: User | null = null;
   gatheringsAttending: Gathering[] = [];
   gatheringsAttended: Gathering[] = [];
+  conditions: ItemCondition[] = [];
   viewInventoryItemEditForm: boolean = false;
   newInventoryItemInfo: InventoryItem = new InventoryItem();
 
@@ -37,7 +40,7 @@ export class UserProfileComponent {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private tradeService: TradeService,
-
+    private itemConditionService: ItemConditionService,
   ){}
 
 
@@ -46,12 +49,24 @@ export class UserProfileComponent {
     this.loadGatheringsHosted();
     this.loadFutureGatherings();
     this.loadPastGatherings();
+    this.loadConditions();
   }
 
  reload() {
   this.loadLoggedInUser();
     this.loadGatheringsHosted();
  }
+ loadConditions() {
+  this.itemConditionService.index().subscribe({
+    next: (conditionList) => {
+      console.log('Conditions loaded:', conditionList);
+      this.conditions = conditionList;
+    },
+    error: (fail) => {
+      console.log('UserProfileComponent.loadConditions(): failed to load condition list.', fail);
+    }
+  });
+}
 
   loadProfileById(userId: number) {
     this.userService.show(userId).subscribe({
