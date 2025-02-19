@@ -14,9 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.roundtwo.entities.InventoryItem;
-import com.skilldistillery.roundtwo.entities.User;
 import com.skilldistillery.roundtwo.services.InventoryItemService;
-import com.skilldistillery.roundtwo.services.UserService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -28,9 +26,6 @@ public class InventoryItemController {
 
 	@Autowired
 	private InventoryItemService inventoryItemService;
-
-	@Autowired
-	private UserService userService;
 
 	// --------------------------------------------------------------------------------------\\
 	// GET All
