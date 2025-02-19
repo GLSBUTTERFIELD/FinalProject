@@ -22,6 +22,34 @@
     </thead>
     <tbody>
       <tr *ngFor="let item of userToDisplay.inventoryItems">
+        <div class="modal fade show d-block" role="dialog" >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Edit Inventory Item</h5>
+            </div>
+            <div class="modal-body">
+              <form>
+                <input type="text" name="name" placeholder={{item.name}} [(ngModel)]="item.name"><br>
+                <input type="text"  name="notes" placeholder={{item.notes}} [(ngModel)]="item.notes"><br>
+                <input type="radio"  name="available" placeholder={{item.available}} [(ngModel)]="item.available"><br>
+               <select name="condition" [(ngModel)]="item.condition.name">
+                <option value="New">New</option>
+                <option value="Excellent">Excellent</option>
+                <option value="Good">Good</option>
+                <option value="Fair">Fair</option>
+                <option value="Bad">Bad</option>
+              </select>
+                <input type="text"  name="imageUrl" placeholder={{item.imageUrl}} [(ngModel)]="item.imageUrl"><br>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary">Save</button>
+                  <button type="button" class="btn btn-secondary">Close</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
         <td>{{item.game.name}}</td>
         <td>{{item.name}}</td>
         <td>{{item.condition.name}}</td>
