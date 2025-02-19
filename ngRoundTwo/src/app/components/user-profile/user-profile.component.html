@@ -7,7 +7,8 @@
   <p><strong>Email:</strong> {{ userToDisplay.email }}</p>
   <p><strong>Role:</strong> {{ userToDisplay.role }}</p>
   <p><strong>Biography:</strong> {{ userToDisplay.biography }}</p>
-<hr>
+  <hr>
+  <button class="btn btn-info" (click)="viewNewInventoryItemForm = true">Add Inventory Item</button>
 
 <div *ngIf="userToDisplay.inventoryItems">
   <h2>Inventory Items</h2>
@@ -148,6 +149,42 @@
 
           <div class="modal-footer">
             <button type="button" class="btn btn-success" (click)="updateItem(newInventoryItemInfo)">Save</button>
+            <button type="button" class="btn btn-danger" (click)="closeModal()">Close</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade show d-block" role="dialog" *ngIf="viewNewInventoryItemForm">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">New Inventory Item</h5>
+        <button type="button" class="close" (click)="closeModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <label>Name</label>
+          <input type="text" name="name" [(ngModel)]="newInventoryItem.name"><br>
+
+          <label>Notes</label>
+          <input type="text" name="notes" [(ngModel)]="newInventoryItem.notes"><br>
+
+          <label>available</label>
+          <input type="checkbox" name="available" [(ngModel)]="newInventoryItem.available">
+
+          <label>Condition</label>
+          <select name="condition" [(ngModel)]="newInventoryItem.condition">
+          <option *ngFor="let condition of conditions" [ngValue]="condition">{{ condition.name }}</option>
+          </select><br>
+
+          <label>Image URL</label>
+          <input type="text" name="imageUrl" [(ngModel)]="newInventoryItem.imageUrl"><br>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success" (click)="addInventoryItem(newInventoryItem)">Save</button>
             <button type="button" class="btn btn-danger" (click)="closeModal()">Close</button>
           </div>
         </form>

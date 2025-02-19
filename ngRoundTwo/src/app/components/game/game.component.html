@@ -1,5 +1,7 @@
 <div class="container" *ngIf="!showNewGameForm">
-<button class="btn btn-info" (click)="toggleNewGameForm()">Add Game</button>
+  <div *ngIf="isLoggedIn">
+    <button class="btn btn-info" (click)="toggleNewGameForm()">Add Game</button>
+  </div>
 
   <div *ngFor="let game of games">
     <h1>
@@ -26,16 +28,16 @@
     <label for="description">Description: </label>
     <textarea name="description" placeholder="description" [(ngModel)]="newGame.description"></textarea><br>
 
-    <label for="categories">Select Category </label>
+    <!-- <label for="categories">Select Category </label>
     <select name="categories" [(ngModel)]="newGame.categories" required>
-    <option *ngFor="let category of categories" [ngValue]="category">{{ category.name }}</option>
-    </select><br>
+    <option *ngFor="let category of categories" [ngValue]="category.id">{{ category.name }}</option>
+    </select><br> -->
 
     <label for="minAge">Min Age: </label>
     <input type="number"  name="minAge" placeholder="minAge" [(ngModel)]="newGame.minAge"><br>
 
     <label for="minPlayers">Min Players: </label>
-    <input type="number" name="minPlayers" placeholder="minPlayers" [(ngModel)]="newGame.minPlayers"><br>
+    <input type="number" name="minPlayers" placeholder="minPlayers" [(ngModel)]="newGame.minPlayers" required><br>
 
     <label for="maxPlayers">Max Players: </label>
     <input type="number" name="maxPlayers" placeholder="maxPlayers" [(ngModel)]="newGame.maxPlayers"><br>

@@ -5,6 +5,8 @@ import { GameService } from '../../services/game.service';
 import { Game } from '../../models/game';
 import { Category } from '../../models/category';
 import { CategoryService } from '../../services/category.service';
+import { User } from '../../models/user';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-game',
@@ -20,15 +22,23 @@ games: Game[] = [];
 categories: Category[] = [];
 newGame: Game = new Game();
 showNewGameForm: boolean = false;
+newGameCategories: Category[] = [];
+currentUser: User | null = null;
+isLoggedIn: boolean = false;
+
 
   constructor(
     private gameService: GameService,
     private categoryService: CategoryService,
+    private authService: AuthService,
   ){}
 
   ngOnInit(): void {
     this.loadGames();
-    this.loadCategories();
+    // this.loadCategories();
+    this.loadCurrentUser();
+    this.isLoggedIn = this.authService.checkLogin();
+
   }
 
   loadGames() {
@@ -48,7 +58,7 @@ showNewGameForm: boolean = false;
 
   addGame(newGame: Game) {
       this.gameService.create(newGame).subscribe({
-        next: () => {
+        next: (newGameEntity) => {
           this.newGame = new Game();
           this.loadGames();
           this.toggleNewGameForm();
@@ -59,13 +69,27 @@ showNewGameForm: boolean = false;
       });
     }
 
-    loadCategories(){
-      this.categoryService.listCategories().subscribe({
-        next: (categories)=>{
-          this.categories = categories;
+    // loadCategories(){
+    //   this.categoryService.listCategories().subscribe({
+    //     next: (categories)=>{
+    //       this.categories = categories;
+    //     },
+    //     error: (err:any)=>{
+    //       console.error('Error retrieving list of categories in Game Component' + err);
+    //     }
+    //   })
+    // }
+
+
+    loadCurrentUser() {
+      this.authService.getLoggedInUser().subscribe({
+        next:(loggedInUser) =>{
+          this.currentUser = loggedInUser;
+
         },
-        error: (err:any)=>{
-          console.error('Error retrieving list of categories in Game Component' + err);
+        error: (err) =>{
+          console.log('GatheringComponent.loadCurrentUser(): failed to get current user.', err);
+
         }
       })
     }

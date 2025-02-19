@@ -32,6 +32,8 @@ export class UserProfileComponent {
   conditions: ItemCondition[] = [];
   viewInventoryItemEditForm: boolean = false;
   newInventoryItemInfo: InventoryItem = new InventoryItem();
+  newInventoryItem: InventoryItem = new InventoryItem();
+  viewNewInventoryItemForm: boolean = false;
 
   constructor(
     private userService: UserService,
@@ -170,6 +172,7 @@ export class UserProfileComponent {
   closeModal() {
     this.viewInventoryItemEditForm = false;
     this.newInventoryItemInfo = new InventoryItem;
+    this.viewNewInventoryItemForm = false;
   }
 
   updateItem(inventoryItemInfo: InventoryItem) {
@@ -178,11 +181,24 @@ export class UserProfileComponent {
       next: (inventoryInfo) => {
         this.reload();
         this.closeModal();
-
       },
       error: (error) => {
         console.log(error);
       }
     });
   }
+
+  addInventoryItem(inventoryItem: InventoryItem){
+    console.log('New item Info:', this.newInventoryItemInfo);
+    this.tradeService.create(inventoryItem).subscribe({
+      next: (addedInventoryItem) => {
+        this.newInventoryItem = addedInventoryItem;
+        this.reload();
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    });
+  }
+
 }

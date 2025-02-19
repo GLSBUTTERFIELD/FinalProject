@@ -24,6 +24,7 @@ export class CategoryService {
     };
     return options;
   }
+
   listCategories(): Observable<Category[]> {
         return this.http.get<Category[]>(this.url, this.getHttpOptions()).pipe(
           catchError((err: any) => {

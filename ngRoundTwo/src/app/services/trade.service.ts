@@ -58,4 +58,16 @@ getInventoryItemById(inventoryItemId: number): Observable<InventoryItem> {
        })
      );
    }
+
+   create(inventoryItem: InventoryItem): Observable<InventoryItem>{
+    return this.http.post<InventoryItem>(this.inventoryItemUrl, inventoryItem, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.error(err);
+        return throwError(
+          () => new Error('inventoryItemService.update(): error updating InventoryItem: ' + err)
+        );
+      })
+    );
+   }
+
 }
