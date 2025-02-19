@@ -13,6 +13,9 @@ import { Gathering } from '../../models/gathering';
 import { GatheringService } from '../../services/gathering.service';
 import { ItemCondition } from '../../models/item-condition';
 import { Game } from '../../models/game';
+import { Observable, catchError, throwError } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-user-profile',
@@ -25,6 +28,7 @@ import { Game } from '../../models/game';
 })
 export class UserProfileComponent {
 
+  private url = environment.baseUrl + 'api/user';
   userToDisplay: User | null = null;
   editProfile: User | null = null;
   gatheringsHosted: Gathering[] = [];
@@ -37,6 +41,7 @@ export class UserProfileComponent {
   newInventoryItem: InventoryItem = new InventoryItem();
   viewNewInventoryItemForm: boolean = false;
   games: Game[] = [];
+  users: User[] = [];
 
   constructor(
     private userService: UserService,
@@ -47,6 +52,7 @@ export class UserProfileComponent {
     private tradeService: TradeService,
     private itemConditionService: ItemConditionService,
     private gameService: GameService,
+    private http: HttpClient,
   ){}
 
 
@@ -57,6 +63,7 @@ export class UserProfileComponent {
     this.loadPastGatherings();
     this.loadConditions();
     this.loadGames();
+    this.showAllUsers();
   }
 
  reload() {
@@ -137,6 +144,19 @@ export class UserProfileComponent {
       }
     })
   }
+
+  showAllUsers() {
+      this.userService.showAll().subscribe({
+        next: (users) => {
+          this.users = users;
+          this.reload();
+        },
+        error: (err) => {
+          console.log("failed to load all users");
+        }
+      })
+
+    }
 
   loadGatheringsHosted() {
     this.gatheringService.showHostedGatherings().subscribe({

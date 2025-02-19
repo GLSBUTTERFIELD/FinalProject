@@ -5,6 +5,7 @@ declare var $: any;
 import { FormsModule } from '@angular/forms';
 import { User } from '../../models/user';
 import { Router, RouterLink } from '@angular/router';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -29,9 +30,12 @@ export class NavBarComponent {
 
   userButtons: boolean = false;
 
+  admin: User = new User();
+
   constructor(
     private authService: AuthService,
     private router: Router,
+    private userService: UserService,
   ){}
 
 
@@ -95,5 +99,15 @@ logout() {
   console.log("Logout button pressed");
 }
 
+loadAdmin() {
+  this.userService.checkAdmin().subscribe({
+      next: (adminCreds) => {
+        this.admin = adminCreds;
+      },
+      error: (fail) => {
+        console.log('NavBarComponent.loadAdmin(): failed to load admin', fail);
+      }
+    });
+  }
 
 }
