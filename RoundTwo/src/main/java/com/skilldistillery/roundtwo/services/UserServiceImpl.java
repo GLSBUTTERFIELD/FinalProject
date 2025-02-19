@@ -1,5 +1,6 @@
 package com.skilldistillery.roundtwo.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +55,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User findByUsername(String username) {
 		return userRepo.findByUsername(username);
+	}
+
+	@Override
+	public List<User> findAll() {
+		return userRepo.findAll();
 	}
 
 }

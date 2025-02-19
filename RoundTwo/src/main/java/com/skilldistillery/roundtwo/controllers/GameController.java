@@ -1,6 +1,5 @@
 package com.skilldistillery.roundtwo.controllers;
 
-import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skilldistillery.roundtwo.entities.Address;
 import com.skilldistillery.roundtwo.entities.Game;
-import com.skilldistillery.roundtwo.entities.User;
 import com.skilldistillery.roundtwo.services.GameService;
 
 import jakarta.servlet.http.HttpServletRequest;

@@ -1,8 +1,12 @@
 package com.skilldistillery.roundtwo.services;
 
+import java.util.List;
+
 import com.skilldistillery.roundtwo.entities.User;
 
 public interface UserService {
+	
+	public List<User> findAll();
 	
 	public User findUserById(String username, int userId);
 	

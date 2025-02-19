@@ -199,6 +199,7 @@ export class UserProfileComponent {
       next: (addedInventoryItem) => {
         this.newInventoryItem = addedInventoryItem;
         this.reload();
+        this.closeModal();
       },
       error: (error) => {
         console.log(error);
