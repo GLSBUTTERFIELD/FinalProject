@@ -34,4 +34,15 @@ export class GameService {
           );
   }
 
+  create(game:Game) : Observable<Game> {
+    return this.http.post<Game>(this.url, game, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+      console.log(err);
+      return throwError(
+        () => new Error('gameService.create(): error creating game: ' + err)
+       );
+      })
+    );
+  }
+
 }
