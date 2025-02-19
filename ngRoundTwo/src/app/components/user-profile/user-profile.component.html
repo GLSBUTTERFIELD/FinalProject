@@ -21,35 +21,7 @@
       <th>Last Updated</th>
     </thead>
     <tbody>
-      <tr *ngFor="let item of userToDisplay.inventoryItems">
-        <div class="modal fade show d-block" role="dialog" >
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Edit Inventory Item</h5>
-            </div>
-            <div class="modal-body">
-              <form>
-                <input type="text" name="name" placeholder={{item.name}} [(ngModel)]="item.name"><br>
-                <input type="text"  name="notes" placeholder={{item.notes}} [(ngModel)]="item.notes"><br>
-                <input type="radio"  name="available" placeholder={{item.available}} [(ngModel)]="item.available"><br>
-               <select name="condition" [(ngModel)]="item.condition.name">
-                <option value="New">New</option>
-                <option value="Excellent">Excellent</option>
-                <option value="Good">Good</option>
-                <option value="Fair">Fair</option>
-                <option value="Bad">Bad</option>
-              </select>
-                <input type="text"  name="imageUrl" placeholder={{item.imageUrl}} [(ngModel)]="item.imageUrl"><br>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary">Save</button>
-                  <button type="button" class="btn btn-secondary">Close</button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
+      <tr *ngFor="let item of userToDisplay.inventoryItems" (click)="setNewInventoryItemInfo(item)">
         <td>{{item.game.name}}</td>
         <td>{{item.name}}</td>
         <td>{{item.condition.name}}</td>
@@ -146,4 +118,44 @@
 
     <button class="btn btn-danger" (click)="deleteUser(editProfile.id)">Delete</button>
  </form>
+</div>
+
+<div class="modal fade show d-block" role="dialog" *ngIf="viewInventoryItemEditForm">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit Inventory Item</h5>
+        <button type="button" class="close" (click)="closeModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <label>Name</label>
+          <input type="text" name="name" [(ngModel)]="newInventoryItemInfo.name"><br>
+
+          <label>Notes</label>
+          <input type="text" name="notes" [(ngModel)]="newInventoryItemInfo.notes"><br>
+
+          <label>Available</label>
+          <input type="checkbox" name="available" [(ngModel)]="newInventoryItemInfo.available"><br>
+
+          <label>Condition</label>
+          <select name="condition" [(ngModel)]="newInventoryItemInfo.condition.name">
+            <option value="New">New</option>
+            <option value="Excellent">Excellent</option>
+            <option value="Good">Good</option>
+            <option value="Fair">Fair</option>
+            <option value="Bad">Bad</option>
+          </select><br>
+
+          <label>Image URL</label>
+          <input type="text" name="imageUrl" [(ngModel)]="newInventoryItemInfo.imageUrl"><br>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success" (click)="updateItem(newInventoryItemInfo)">Save</button>
+            <button type="button" class="btn btn-danger" (click)="closeModal()">Close</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>

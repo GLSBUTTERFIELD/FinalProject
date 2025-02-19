@@ -1,3 +1,4 @@
+import { InventoryItem } from './../../models/inventory-item';
 import { User } from './../../models/user';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
@@ -25,6 +26,8 @@ export class UserProfileComponent {
   selected: User | null = null;
   gatheringsAttending: Gathering[] = [];
   gatheringsAttended: Gathering[] = [];
+  viewInventoryItemEditForm: boolean = false;
+  newInventoryItemInfo: InventoryItem = new InventoryItem();
 
   constructor(
     private userService: UserService,
@@ -75,6 +78,11 @@ export class UserProfileComponent {
 
   setEditProfile() : void {
     this.editProfile = Object.assign({}, this.userToDisplay)
+  }
+
+  setNewInventoryItemInfo(item: InventoryItem) {
+    this.newInventoryItemInfo = { ...item };
+    this.viewInventoryItemEditForm = true;
   }
 
   updateProfile(user: User) {
@@ -142,5 +150,14 @@ export class UserProfileComponent {
     })
   }
 
+  closeModal() {
+    this.viewInventoryItemEditForm = false;
+    this.newInventoryItemInfo = new InventoryItem;
+  }
 
+  updateItem(inventoryItemInfo: InventoryItem) {
+    console.log('New item Info:', this.newInventoryItemInfo);
+    // this.inventoryService.update(this.newInventoryItemInfo).subscribe(...)
+    this.closeModal();
+  }
 }

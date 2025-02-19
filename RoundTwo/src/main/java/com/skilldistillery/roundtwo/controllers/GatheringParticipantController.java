@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.roundtwo.entities.GatheringParticipant;
 import com.skilldistillery.roundtwo.services.GatheringParticipantService;
-import com.skilldistillery.roundtwo.services.GatheringService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

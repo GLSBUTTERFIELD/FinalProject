@@ -47,4 +47,15 @@ getInventoryItemById(inventoryItemId: number): Observable<InventoryItem> {
   );
  }
 
+ update(inventoryItem: InventoryItem) : Observable<InventoryItem> {
+       // this.getHttpOptions() authenticates the users action. Make sure to add
+     return this.http.put<InventoryItem>(this.inventoryItemUrl + '/' + inventoryItem.id, inventoryItem, this.getHttpOptions()).pipe(
+       catchError((err: any) => {
+         console.log(err);
+         return throwError(
+           () => new Error('inventoryItemService.update(): error updating InventoryItem: ' + err)
+         );
+       })
+     );
+   }
 }
