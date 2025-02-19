@@ -8,12 +8,16 @@ import org.springframework.stereotype.Service;
 import com.skilldistillery.roundtwo.entities.InventoryItem;
 import com.skilldistillery.roundtwo.entities.User;
 import com.skilldistillery.roundtwo.repositories.InventoryItemRepository;
+import com.skilldistillery.roundtwo.repositories.UserRepository;
 
 @Service
 public class InventoryItemServiceImpl implements InventoryItemService{
 
 	@Autowired
 	private InventoryItemRepository inventoryItemRepo;
+	
+	@Autowired
+	private UserRepository userRepo;
 	
 	@Override
 	public List<InventoryItem> showAvailable() {
@@ -39,5 +43,16 @@ public class InventoryItemServiceImpl implements InventoryItemService{
 		return managedInventoryItem;
 	}
 
+	@Override
+	public InventoryItem create(String username, InventoryItem inventoryItem) {
+		User managedUser = userRepo.findByUsername(username);
+		if (managedUser == null) {
+			return null;
+		}
+		inventoryItem.setUser(managedUser);
+		return inventoryItemRepo.saveAndFlush(inventoryItem);
+	}
 	
+
+
 }
