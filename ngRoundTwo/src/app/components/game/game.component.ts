@@ -7,6 +7,8 @@ import { Category } from '../../models/category';
 import { CategoryService } from '../../services/category.service';
 import { User } from '../../models/user';
 import { AuthService } from '../../services/auth.service';
+import { GameResource } from '../../models/game-resource';
+import { GameResourceService } from '../../services/game-resource.service';
 
 @Component({
   selector: 'app-game',
@@ -25,12 +27,14 @@ showNewGameForm: boolean = false;
 newGameCategories: Category[] = [];
 currentUser: User | null = null;
 isLoggedIn: boolean = false;
+resources: GameResource[] = [];
 
 
   constructor(
     private gameService: GameService,
     private categoryService: CategoryService,
     private authService: AuthService,
+    private gameResourceService: GameResourceService,
   ){}
 
   ngOnInit(): void {
@@ -38,6 +42,7 @@ isLoggedIn: boolean = false;
     // this.loadCategories();
     this.loadCurrentUser();
     this.isLoggedIn = this.authService.checkLogin();
+    this.loadGameResources();
 
   }
 
@@ -48,6 +53,17 @@ isLoggedIn: boolean = false;
     },
     error: (err) => {
       console.log("GameComponent.loadGames: failed to load Game list");
+    }
+    })
+  }
+
+  loadGameResources() {
+    this.gameResourceService.showAll().subscribe({
+      next: (resources) => {
+      this.resources = resources;
+    },
+    error: (err) => {
+      console.log("GameComponent.loadGameResources: failed to load Game Resource list");
     }
     })
   }
@@ -69,6 +85,9 @@ isLoggedIn: boolean = false;
       });
     }
 
+    setEditGame(){
+      console.log('waaaaahhhhhhh, the button is working!!!');
+    }
     // loadCategories(){
     //   this.categoryService.listCategories().subscribe({
     //     next: (categories)=>{
@@ -85,11 +104,9 @@ isLoggedIn: boolean = false;
       this.authService.getLoggedInUser().subscribe({
         next:(loggedInUser) =>{
           this.currentUser = loggedInUser;
-
         },
         error: (err) =>{
           console.log('GatheringComponent.loadCurrentUser(): failed to get current user.', err);
-
         }
       })
     }

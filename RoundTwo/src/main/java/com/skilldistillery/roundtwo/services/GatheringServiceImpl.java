@@ -20,6 +20,7 @@ public class GatheringServiceImpl implements GatheringService {
 	@Autowired
 	private UserRepository userRepo;
 
+	private static final String ADMINROLE = "chadmin";
 	@Override
 	public List<Gathering> index() {
 		return gatheringRepo.findByEnabledTrue();
@@ -43,8 +44,11 @@ public class GatheringServiceImpl implements GatheringService {
 
 	@Override
 	public Gathering edit(String username, int gatheringId, Gathering gathering) {
-		Gathering managedGathering = gatheringRepo.findByHostUsernameAndId(username, gatheringId);
-		if (managedGathering != null) {
+		
+		User user = userRepo.findByUsername(username);
+		
+		Gathering managedGathering = gatheringRepo.findById(gatheringId).orElse(null);
+		if (managedGathering != null && (managedGathering.getHost().getId() == user.getId() || user.getRole().equals(ADMINROLE))) {
 			managedGathering.setAddress(gathering.getAddress());
 			managedGathering.setDescription(gathering.getDescription());
 			managedGathering.setStartDate(gathering.getStartDate());
@@ -66,19 +70,10 @@ public class GatheringServiceImpl implements GatheringService {
 	public boolean destroy(String username, int gatheringId) {
 		boolean deleted = false;
 		
-		Gathering managedAdminGathering = gatheringRepo.findById(gatheringId).orElse(null);
-		User checkAdmin = userRepo.findByUsername(username);
-		User admin = userRepo.findById(1).orElse(null);
-		if(checkAdmin.getRole() == admin.getRole()) {
-			if (managedAdminGathering != null) {
-				managedAdminGathering.setEnabled(false);
-				gatheringRepo.saveAndFlush(managedAdminGathering);
-				deleted = true;
-			}
-	}
-	//----------------------------------------------------------------------------------------------\\
-		Gathering managedGathering = gatheringRepo.findByHostUsernameAndId(username, gatheringId);
-		if (managedGathering != null) {
+		Gathering managedGathering = gatheringRepo.findById(gatheringId).orElse(null);
+		User user = userRepo.findByUsername(username);
+		
+		if (managedGathering != null && (managedGathering.getHost().getId() == user.getId() || user.getRole().equals(ADMINROLE))) {
 			managedGathering.setEnabled(false);
 			gatheringRepo.saveAndFlush(managedGathering);
 			deleted = true;

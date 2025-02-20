@@ -17,6 +17,30 @@
         </li>
       </ul>
     </div>
+    <div *ngIf="game.resources">
+      Resources:
+      <table class="table">
+        <thead>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Posted By</th>
+          <th>Last Updated</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let resource of game.resources">
+            <td><a href="{{resource.resourceUrl}}">{{resource.name}}</a></td>
+            <td>{{resource.description}}</td>
+            <td>{{resource.user.username}}</td>
+            <td>{{resource.lastUpdate}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    @if(currentUser){
+      <div *ngIf="currentUser.role === 'chadmin'">
+       <button class="btn btn-warning" (click)="setEditGame()">Edit</button>
+      </div>
+      }
     <hr>
   </div>
 </div>

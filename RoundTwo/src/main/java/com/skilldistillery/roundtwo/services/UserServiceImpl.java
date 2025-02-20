@@ -1,7 +1,6 @@
 package com.skilldistillery.roundtwo.services;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +13,9 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private UserRepository userRepo;
+	
+	private static final String ADMINROLE = "chadmin";
+
 
 	@Override
 	public User findUserById(String username, int userId) {
@@ -22,31 +24,37 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User update(String username, int userId, User newUserData) {
-		User updatingUser = userRepo.findByUsernameAndId(username, userId);
-		if(updatingUser == null) {
-			return updatingUser;
+		User managedUser = userRepo.findById(userId).orElse(null);
+		
+		if(managedUser == null) {
+			return managedUser;
 		}
-		if(updatingUser.getId() == newUserData.getId()) {
-			updatingUser.setUsername(newUserData.getUsername());
-			updatingUser.setPassword(newUserData.getPassword());
-			updatingUser.setImageUrl(newUserData.getImageUrl());
-			updatingUser.setBiography(newUserData.getBiography());
-			updatingUser.setEmail(newUserData.getEmail());
-			userRepo.saveAndFlush(updatingUser);
+
+		User userDoingUpdating = userRepo.findByUsername(username);
+		
+		
+		if (managedUser != null && (managedUser.getId() == userDoingUpdating.getId() || userDoingUpdating.getRole().equals(ADMINROLE))) {
+		
+			managedUser.setUsername(newUserData.getUsername());
+			managedUser.setPassword(newUserData.getPassword());
+			managedUser.setImageUrl(newUserData.getImageUrl());
+			managedUser.setBiography(newUserData.getBiography());
+			managedUser.setEmail(newUserData.getEmail());
+			managedUser.setEnabled(newUserData.isEnabled());
+			userRepo.saveAndFlush(managedUser);
 		}
-		return updatingUser;
+		return managedUser;
 	}
 	
 	@Override
 	public boolean destroy(String username, int todoId) {
 		boolean deleted = false;
-		User deleteUser = userRepo.findByUsernameAndId(username, todoId);
-		Optional<User> userOpt = userRepo.findById(todoId);
-		User checkUser = userOpt.get();
-		if(deleteUser != checkUser) {
-			return false;
-		}else if (deleteUser == checkUser) {
-			userRepo.deleteById(todoId);
+		User deleteUser = userRepo.findByUsername(username);
+		User managedUser = userRepo.findById(todoId).orElse(null);
+		
+		if (managedUser != null && (managedUser.getId() == deleteUser.getId() || deleteUser.getRole().equals(ADMINROLE))) {
+			managedUser.setEnabled(false);
+			userRepo.saveAndFlush(managedUser);
 			deleted = true;
 		}
 		return deleted;

@@ -1,1 +1,35 @@
-<p>admin works!</p>
+<div class="container">
+  <br>
+  <h1 class="tableCaption">RoundTwo Users</h1>
+  <hr>
+  <table class="table">
+    <thead>
+     <th><strong>Username</strong></th>
+     <th><strong>Name</strong></th>
+     <th><strong>Email</strong></th>
+     <th><strong>Role</strong></th>
+     <th><strong>Enabled</strong></th>
+     <th><strong>Last Updated</strong></th>
+    </thead>
+   <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{user.username}}</td>
+      <td>{{user.firstName}} {{user.lastName}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.role}}</td>
+      <td>
+      <!-- <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+        <label class="form-check-label" for="flexSwitchCheckChecked">Checked switch checkbox input</label> -->
+      <!-- </div> -->
+      <label class="switch" name="enabled">
+        <input type="checkbox" [(ngModel)]="user.enabled" (change)="onToggleChange(user)" [checked]="user.enabled">
+        <span class="slider round"></span>
+      </label>
+    </td>
+      <td>{{user.lastUpdate}}</td>
+    </tr>
+   </tbody>
+  </table>
+</div>
+
