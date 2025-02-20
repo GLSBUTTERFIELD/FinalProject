@@ -45,4 +45,15 @@ export class GameService {
     );
   }
 
+  update(game: Game) : Observable<Game> {
+        // this.getHttpOptions() authenticates the users action. Make sure to add
+      return this.http.put<Game>(`${this.url}/${game.id}`, game, this.getHttpOptions()).pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError(
+            () => new Error('userService.update(): error updating user: ' + err)
+          );
+        })
+      );
+    }
 }

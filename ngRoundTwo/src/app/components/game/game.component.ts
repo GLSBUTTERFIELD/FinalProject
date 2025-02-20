@@ -68,7 +68,9 @@ isLoggedIn: boolean = false;
         }
       });
     }
-
+    setEditGame(){
+      console.log('waaaaahhhhhhh, the button is working!!!');
+    }
     // loadCategories(){
     //   this.categoryService.listCategories().subscribe({
     //     next: (categories)=>{

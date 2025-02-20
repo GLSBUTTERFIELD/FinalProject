@@ -1,7 +1,6 @@
 package com.skilldistillery.roundtwo.services;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,12 +16,7 @@ public class UserServiceImpl implements UserService {
 	
 	private static final String ADMINROLE = "chadmin";
 
-<<<<<<< HEAD
-	private static final String ADMINROLE = "chadmin";
 
-=======
-	
->>>>>>> f5f884a2ffe6d6ae242f82ba4c04b3fc6d8cb399
 	@Override
 	public User findUserById(String username, int userId) {
 		return userRepo.findByUsernameAndId(username, userId);

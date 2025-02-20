@@ -17,6 +17,11 @@
         </li>
       </ul>
     </div>
+    @if(currentUser){
+      <div *ngIf="currentUser.role === 'chadmin'">
+       <button class="btn btn-warning" (click)="setEditGame()">Edit</button>
+      </div>
+      }
     <hr>
   </div>
 </div>
