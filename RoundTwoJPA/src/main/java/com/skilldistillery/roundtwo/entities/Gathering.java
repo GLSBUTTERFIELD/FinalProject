@@ -73,7 +73,7 @@ public class Gathering {
 	@OneToMany(mappedBy = "gathering")
 	private List<GatheringParticipant> participants;
 
-	@JsonIgnore
+	@JsonIgnoreProperties({"gathering", "subComment", "parentComment"})
 	@OneToMany(mappedBy = "gathering")
 	private List<GatheringComment> comments;
 
@@ -81,7 +81,7 @@ public class Gathering {
 	@ManyToMany(mappedBy = "gatherings")
 	private List<Game> games;
 	
-	@JsonIgnoreProperties("gatheringsAttended")
+	@JsonIgnoreProperties({"gatheringsAttended", "inventoryItems", "password", "biography", "createDate", "lastUpdate"})
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User host;

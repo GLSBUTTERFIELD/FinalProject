@@ -6,7 +6,7 @@ import java.util.Objects;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -31,6 +31,7 @@ public class GatheringComment {
 	@CreationTimestamp
 	private LocalDateTime createDate;
 	
+	@JsonIgnoreProperties({"gatheringsAttended", "inventoryItems"})
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
@@ -43,7 +44,7 @@ public class GatheringComment {
 	@JoinColumn(name = "in_reply_to_id")
 	private GatheringComment parentComment;
 	
-	
+	@JsonIgnoreProperties({"gatheringsAttended", "gathering"})
 	@OneToMany(mappedBy = "parentComment")
 	private List<GatheringComment> subComment;
 	

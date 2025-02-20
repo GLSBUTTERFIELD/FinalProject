@@ -8,6 +8,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -34,6 +35,7 @@ public class InventoryItemComment {
 	@Column(name = "last_update")
 	private LocalDateTime lastUpdate;
 	
+	@JsonIgnoreProperties({"address", "gatheringsAttended", "inventoryItems"})
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -91,4 +92,21 @@ public class InventoryItemController {
 		System.out.println(createdItem);
 		return createdItem;
 	}
+	
+	@DeleteMapping("inventoryItems/{itemId}")
+	public void destroy(HttpServletResponse resp, Principal principal, @PathVariable("itemId") int itemId) {
+		try {
+			boolean wasdeleted = inventoryItemService.disable(principal.getName(), itemId);
+			if (!wasdeleted) {
+				resp.setStatus(HttpServletResponse.SC_NOT_FOUND);// 404
+			} else {
+				resp.setStatus(HttpServletResponse.SC_NO_CONTENT);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);// 400
+		}
+	}
+	
+	
 }

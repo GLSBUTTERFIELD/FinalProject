@@ -28,7 +28,8 @@ newGameCategories: Category[] = [];
 currentUser: User | null = null;
 isLoggedIn: boolean = false;
 resources: GameResource[] = [];
-
+newGameResource: GameResource = new GameResource();
+showNewGameResourceForm: boolean = false;
 
   constructor(
     private gameService: GameService,
@@ -72,6 +73,10 @@ resources: GameResource[] = [];
     this.showNewGameForm = !this.showNewGameForm;
   }
 
+  toggleNewGameResourceForm(){
+    this.showNewGameResourceForm = !this.showNewGameResourceForm;
+  }
+
   addGame(newGame: Game) {
       this.gameService.create(newGame).subscribe({
         next: (newGameEntity) => {
@@ -111,4 +116,18 @@ resources: GameResource[] = [];
       })
     }
 
+addGameResource(newGameResource: GameResource){
+  this.gameResourceService.create(newGameResource).subscribe({
+    next: (newResource) => {
+      this.newGameResource = new GameResource;
+      this.loadGames();
+      this.toggleNewGameForm();
+    },
+    error: (err) => {
+      console.log("GameComponent.loadGameResources: failed to load Game Resource list");
+    }
+    })
+  }
+
 }
+
