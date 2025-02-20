@@ -38,9 +38,34 @@
 <p *ngFor="let comment of selected.comments">
   "{{comment.comment}}" -{{comment.user?.username}}
 </p>
+
+<!-- <div *ngIf="isLoggedIn"> -->
+<button class="btn btn-success" (click)="toggleNewCommentForm()">Add a Comment</button>
+<!-- </div> -->
    <button class="btn btn-info" (click)="selected = null">Back</button>
  <hr>
 </div>
+
+<div class="modal fade show d-block" role="dialog" *ngIf="showNewCommentForm && selected">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add a Comment</h5>
+      </div>
+      <div class="modal-body">
+        <form>
+          <label for="comment"></label>
+          <textarea name="comment" [(ngModel)]="newComment.comment"></textarea><br>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success" (click)="addComment(newComment)">Save</button>
+            <button type="button" class="btn btn-danger" (click)="closeModal()">Close</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
 </div>
 
 
