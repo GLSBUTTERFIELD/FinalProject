@@ -41,8 +41,6 @@ export class GatheringComponent implements OnInit{
   games: Game[] = [];
   isLoggedIn: boolean = false;
 
-
-
   constructor(
     private gatheringService: GatheringService,
     private userService: UserService,
@@ -94,6 +92,7 @@ export class GatheringComponent implements OnInit{
       }
     });
   }
+
   loadCurrentUser() {
     this.authService.getLoggedInUser().subscribe({
       next:(loggedInUser) =>{
@@ -138,6 +137,16 @@ export class GatheringComponent implements OnInit{
     });
     return guestList;
   }
+
+checkAttendance(): boolean {
+  let isAttending: boolean | undefined = false;
+  if (this.currentUser) {
+    isAttending = this.selected?.participants.some((participant) => {
+      return participant.participantUsername === this.currentUser?.username;
+    });
+  }
+  return isAttending ? isAttending : false;
+}
 
   toggleNewEventForm() {
     this.showNewEventForm = !this.showNewEventForm;
@@ -228,7 +237,7 @@ export class GatheringComponent implements OnInit{
 addGatheringParticipant(gatheringId: number){
   this.gatheringService.addAttendee(gatheringId).subscribe({
     next:()=>{
-      this.reload();
+      this.showGathering(gatheringId);
     },
     error:(fail)=> {
       console.log('gatheringComponent.addGatheringParticipant(): failed to add GatheringParticipant');
@@ -240,7 +249,7 @@ addGatheringParticipant(gatheringId: number){
 removeGatheringParticipant(gatheringId: number){
   this.gatheringService.removeAttendee(gatheringId).subscribe({
     next:()=>{
-      this.reload();
+      this.showGathering(gatheringId);
     },
     error:(fail)=> {
       console.log('gatheringComponent.addGatheringParticipant(): failed to add GatheringParticipant');
