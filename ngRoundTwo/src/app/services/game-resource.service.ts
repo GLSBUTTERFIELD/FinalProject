@@ -35,8 +35,8 @@ getHttpOptions() {
           );
   }
 
-  create(gameResource:GameResource) : Observable<GameResource> {
-    return this.http.post<GameResource>(this.url, gameResource, this.getHttpOptions()).pipe(
+  create(gameResource:GameResource, gameId: number) : Observable<GameResource> {
+    return this.http.post<GameResource>(this.url + "/" + gameId + "/resources",  gameResource, this.getHttpOptions()).pipe(
       catchError((err: any) => {
       console.log(err);
       return throwError(
