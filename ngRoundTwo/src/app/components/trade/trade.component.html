@@ -1,7 +1,6 @@
-<div class="container">
   @if (!selected) {
-<h1>Available Items to Trade</h1>
-  <div>
+    <div>
+    <h1>Available Items to Trade</h1>
     <table class="table">
       <thead>
         <th>Name</th>
@@ -26,11 +25,10 @@
 <div *ngIf="selected">
   <div id="seperatingInventoryItemName">
     <h1>{{selected.name}}</h1>
-    {{selected.notes}}<br>
-   </div>
-
-    {{selected.condition.name}}<br>
-    {{selected.condition.description}}<br>
+  </div>
+  <strong>Condition: </strong>{{selected.condition.name}}<br>
+  <strong>Notes: </strong>{{selected.notes}}<br>
+  <strong>Description: </strong>{{selected.condition.description}}<br>
    Listed by {{selected.user.username}} on {{selected.createDate}}<br>
    Last Update {{selected.lastUpdate}}<br>
    <img *ngIf="selected.imageUrl" [src]="selected.imageUrl"><br>
@@ -66,7 +64,6 @@
   </div>
 
 
-</div>
 
 
 
