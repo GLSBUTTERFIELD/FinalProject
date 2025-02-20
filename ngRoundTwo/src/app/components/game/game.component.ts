@@ -27,9 +27,12 @@ showNewGameForm: boolean = false;
 newGameCategories: Category[] = [];
 currentUser: User | null = null;
 isLoggedIn: boolean = false;
+editGame: Game = new Game();
+viewGameEditForm: boolean = false;
 resources: GameResource[] = [];
 newGameResource: GameResource = new GameResource();
 showNewGameResourceForm: boolean = false;
+
 
   constructor(
     private gameService: GameService,
@@ -90,9 +93,23 @@ showNewGameResourceForm: boolean = false;
       });
     }
 
-    setEditGame(){
-      console.log('waaaaahhhhhhh, the button is working!!!');
+    setEditGame(gameEdit: Game){
+      this.editGame = JSON.parse(JSON.stringify(gameEdit));
+    this.viewGameEditForm = true;
     }
+
+    updateGame(game: Game){
+      console.log('waaaaahhhhhhh, the button is working!!!');
+      this.gameService.update(game).subscribe({
+        next: (updatedGame) => {
+
+        },
+        error: (error) => {
+          console.log(error);
+        }
+      });
+    }
+
     // loadCategories(){
     //   this.categoryService.listCategories().subscribe({
     //     next: (categories)=>{
@@ -115,6 +132,13 @@ showNewGameResourceForm: boolean = false;
         }
       })
     }
+
+
+
+    closeModal() {
+        this.viewGameEditForm = false;
+        this.editGame = new Game;
+      }
 
 addGameResource(newGameResource: GameResource, gameId: number){
   this.gameResourceService.create(newGameResource).subscribe({

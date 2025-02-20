@@ -66,9 +66,9 @@ public class GameController {
 	}
 
 	@PutMapping("games/{gameId}")
-	public Game edit(@PathVariable("gameId") int gameId, @RequestBody Game game, HttpServletRequest req,
+	public Game edit(@PathVariable("gameId") int gameId, @RequestBody Game game,Principal principal, HttpServletRequest req,
 			HttpServletResponse res) {
-		game = gameService.edit(game, gameId);
+		game = gameService.edit(game, gameId, principal.getName());
 		try {
 			if (game == null) {
 				res.setStatus(HttpServletResponse.SC_NOT_FOUND);

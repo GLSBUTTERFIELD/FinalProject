@@ -18,6 +18,8 @@ public class GameServiceImpl implements GameService {
 	
 	@Autowired
 	private UserRepository userRepo;
+	
+	private static final String ADMINROLE = "chadmin";
 
 	@Override
 	public List<Game> listAll() {
@@ -35,9 +37,15 @@ public class GameServiceImpl implements GameService {
 	}
 
 	@Override
-	public Game edit(Game game, int gameId) {
+	public Game edit(Game game, int gameId, String username) {
 		Game managedGame = gameRepo.findById(gameId).orElse(null);
-		if (managedGame != null) {
+		User user = userRepo.findByUsername(username);
+		
+		if(managedGame == null) {
+			return managedGame;
+		}
+		
+		if (managedGame != null &&  user.getRole().equals(ADMINROLE)) {
 			managedGame.setName(game.getName());
 			managedGame.setDescription(game.getDescription());
 			managedGame.setMinimumAge(game.getMinimumAge());
