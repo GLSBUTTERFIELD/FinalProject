@@ -17,6 +17,10 @@
         </li>
       </ul>
     </div>
+    @if(currentUser){
+      <div *ngIf="currentUser.role === 'chadmin'">
+        <button class="btn btn-warning" (click)="setEditGame(game)">Edit Game</button>
+      </div><br>
     <div *ngIf="game.resources.length >0">
       <h5>Game Resources:</h5>
       <table class="table">
@@ -36,22 +40,18 @@
         </tbody>
       </table>
     </div>
-    @if(currentUser){
-      <button class="btn btn-success" (click)="addGameResource(newGameResource, game.id)">Add Game Resource</button>
-      <div *ngIf="currentUser.role === 'chadmin'">
-       <button class="btn btn-warning" (click)="setEditGame(game)">Edit</button>
-      </div>
 
-    <div>
-      <form>
-        <label for="name">Game Resource</label>
-        <input type="text" name="name" placeholder="name" [(ngModel)]="newGameResource.name"><br>
+      <div>
+        <form>
+          <label for="name">Game Resource</label>
+          <input type="text" name="name" placeholder="name" [(ngModel)]="newGameResource.name"><br>
 
-        <label for="description">Description</label>
-        <textarea name="description" placeholder="description" [(ngModel)]="newGameResource.description"></textarea><br>
+          <label for="description">Description</label>
+          <textarea name="description" placeholder="description" [(ngModel)]="newGameResource.description"></textarea><br>
 
-        <label for="resourceUrl">Resource Url</label>
-        <input type="text"  name="resourceUrl" placeholder="Resource Url" [(ngModel)]="newGameResource.resourceUrl"><br>
+          <label for="resourceUrl">Resource Url</label>
+          <input type="text"  name="resourceUrl" placeholder="Resource Url" [(ngModel)]="newGameResource.resourceUrl"><br><br>
+          <button class="btn btn-success" (click)="addGameResource(newGameResource, game.id)">Add Game Resource</button>
       </form>
     </div>
     }
