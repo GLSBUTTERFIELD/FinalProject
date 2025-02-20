@@ -141,11 +141,12 @@ showNewGameResourceForm: boolean = false;
       }
 
 addGameResource(newGameResource: GameResource, gameId: number){
-  this.gameResourceService.create(newGameResource).subscribe({
+  this.gameResourceService.create(newGameResource, gameId).subscribe({
     next: (newResource) => {
       this.newGameResource = new GameResource;
       this.loadGameResources();
       this.toggleNewGameResourceForm();
+      this.loadGames();
     },
     error: (err) => {
       console.log("GameComponent.loadGameResources: failed to load Game Resource list");
