@@ -4,7 +4,7 @@ import { TradeService } from './../../services/trade.service';
 import { InventoryItem } from './../../models/inventory-item';
 import { User } from './../../models/user';
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -26,7 +26,7 @@ import { environment } from '../../../environments/environment';
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.css'
 })
-export class UserProfileComponent {
+export class UserProfileComponent implements OnInit{
 
   private url = environment.baseUrl + 'api/user';
   userToDisplay: User | null = null;
