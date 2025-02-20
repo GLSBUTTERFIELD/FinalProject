@@ -37,6 +37,7 @@
       </table>
     </div>
     @if(currentUser){
+      <button class="btn btn-success" (click)="addGameResource(newGameResource, game.id)">Add Game Resource</button>
       <div *ngIf="currentUser.role === 'chadmin'">
        <button class="btn btn-warning" (click)="setEditGame(game)">Edit</button>
       </div>
@@ -51,7 +52,6 @@
 
         <label for="resourceUrl">Resource Url</label>
         <input type="text"  name="resourceUrl" placeholder="Resource Url" [(ngModel)]="newGameResource.resourceUrl"><br>
-        <button class="btn btn-success" (click)="addGameResource(newGameResource, game.id)">Add Game Resource</button>
       </form>
     </div>
     }
@@ -90,7 +90,6 @@
     <button type="button" class="btn btn-secondary" (click)="toggleNewGameForm()">Close</button>
   </form>
 </div>
-
 
 <div class="modal fade show d-block" role="dialog" *ngIf="viewGameEditForm">
   <div class="modal-dialog" role="document">
@@ -135,4 +134,3 @@
     </div>
   </div>
 </div>
-
