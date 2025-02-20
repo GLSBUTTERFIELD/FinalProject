@@ -7,6 +7,9 @@
   <p><strong>Email:</strong> {{ userToDisplay.email }}</p>
   <p><strong>Role:</strong> {{ userToDisplay.role }}</p>
   <p><strong>Biography:</strong> {{ userToDisplay.biography }}</p>
+  <!-- Moved edit button here -->
+  <button class="btn btn-warning" (click)="setEditProfile()">Edit Profile</button>
+
   <hr>
   <button class="btn btn-info" (click)="viewNewInventoryItemForm = true">Add Inventory Item</button>
 
@@ -46,7 +49,8 @@
     </thead>
     <tbody>
       <tr *ngFor="let gathering of gatheringsAttending">
-        <td>{{gathering.name}}</td>
+        <!-- added click event -->
+        <td (click)="viewGathering(gathering.id)">{{gathering.name}}</td>
         <td>{{gathering.startDate}} from {{gathering.startTime}} to {{gathering.endTime}} {{gathering.endDate}}</td>
         <td>{{gathering.address.name}}</td>
         <td>{{gathering.host.username}}</td>
@@ -91,7 +95,8 @@
     </thead>
     <tbody>
       <tr *ngFor="let gathering of gatheringsHosted">
-        <td>{{gathering.name}}</td>
+        <!-- added click event -->
+        <td (click)="viewGathering(gathering.id)">{{gathering.name}}</td>
         <td>{{gathering.startDate}} from {{gathering.startTime}} to {{gathering.endTime}} {{gathering.endDate}}</td>
         <td>{{gathering.address.name}}</td>
         <td>{{gathering.maxParticipants}}</td>
@@ -100,8 +105,7 @@
     </tbody>
   </table>
 </div>
-
-  <button class="btn btn-warning" (click)="setEditProfile()">Edit Profile</button>
+<!-- edit profile button originally here -->
 </div>
 
 <div *ngIf="editProfile">
@@ -118,6 +122,8 @@
     <button class="btn btn-warning" (click)="updateProfile(editProfile)">Save</button>
 
     <button class="btn btn-danger" (click)="deleteUser(editProfile.id)">Delete</button>
+<!-- FIX BACK BUTTON -->
+    <button class="btn btn-success" (click)="loadLoggedInUser()">Back</button>
  </form>
 </div>
 
