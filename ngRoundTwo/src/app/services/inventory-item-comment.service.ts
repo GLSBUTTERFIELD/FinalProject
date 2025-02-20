@@ -1,3 +1,4 @@
+import { InventoryItem } from './../models/inventory-item';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
@@ -9,9 +10,12 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class InventoryItemCommentService {
-  private url = environment.baseUrl + 'api/inventoryItems/comments';
+  private url = environment.baseUrl + 'api/inventoryItems';
 
-  constructor(private http: HttpClient, private auth: AuthService) { }
+  constructor(
+    private http: HttpClient,
+    private auth: AuthService
+  ) { }
 
   getHttpOptions() {
       let options = {
@@ -24,7 +28,7 @@ export class InventoryItemCommentService {
     }
 
     showAll(): Observable<InventoryItemComment[]>{
-      return this.http.get<InventoryItemComment[]>(this.url).pipe(
+      return this.http.get<InventoryItemComment[]>(this.url + '/comments').pipe(
         catchError((err: any) => {
                 console.log(err);
                 return throwError(
@@ -35,7 +39,7 @@ export class InventoryItemCommentService {
     }
 
     create(newComment:InventoryItemComment): Observable<InventoryItemComment> {
-      return this.http.post<InventoryItemComment>(this.url, newComment, this.getHttpOptions()).pipe(
+      return this.http.post<InventoryItemComment>(this.url + '/' + newComment.item?.id + '/comments', newComment, this.getHttpOptions()).pipe(
         catchError((err: any) => {
         console.log(err);
         return throwError(

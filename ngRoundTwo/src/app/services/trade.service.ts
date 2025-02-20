@@ -4,6 +4,8 @@ import { AuthService } from './auth.service';
 import { catchError, Observable, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { InventoryItem } from '../models/inventory-item';
+import { Game } from '../models/game';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +15,13 @@ export class TradeService {
 
   private inventoryItemUrl = this.baseUrl + 'api/inventoryItems'
 
-  constructor(private http: HttpClient, private auth: AuthService) { }
+  constructor(
+    private http: HttpClient,
+    private auth: AuthService)
+    { }
+
+  currentUser: User | null = null;
+  isLoggedIn: boolean = false;
 
   getHttpOptions() {
     let options = {
@@ -69,5 +77,7 @@ getInventoryItemById(inventoryItemId: number): Observable<InventoryItem> {
       })
     );
    }
+
+
 
 }
