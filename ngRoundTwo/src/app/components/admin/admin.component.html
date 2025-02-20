@@ -23,7 +23,7 @@
         <label class="form-check-label" for="flexSwitchCheckChecked">Checked switch checkbox input</label> -->
       <!-- </div> -->
       <label class="switch" name="enabled">
-        <input type="checkbox" [(ngModel)]="user.enabled" (change)="onToggleChange()">
+        <input type="checkbox" [(ngModel)]="user.enabled" (change)="onToggleChange(user)" [checked]="user.enabled">
         <span class="slider round"></span>
       </label>
     </td>

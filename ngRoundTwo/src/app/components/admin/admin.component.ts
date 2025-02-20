@@ -50,17 +50,21 @@ showAllUsers() {
   })
 }
 
-onToggleChange() {
-  this.enabled= !this.enabled;
-  console.log('Checkbox toggled: enabled?' + this.user.enabled);
-  this.userService.update(this.user).subscribe({
-    next: (response) => {
-      console.log('User updated successfully:', response);
-    },
-    error: (err) => {
-      console.log('Error updating user:', err);
-    }
-  });
+onToggleChange(updatedUser: User) {
+  const index = this.users.findIndex(user => user.id === updatedUser.id);
+  
+  if (index !== -1) {
+    this.users[index].enabled = updatedUser.enabled;
+
+    this.userService.update(this.users[index]).subscribe({
+      next: (response) => {
+        console.log('User updated successfully:', response);
+      },
+      error: (err) => {
+        console.log('Error updating user:', err);
+      }
+    });
+  }
 }
 }
 
