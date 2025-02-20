@@ -28,7 +28,7 @@ export class InventoryItemCommentService {
     }
 
     showAll(): Observable<InventoryItemComment[]>{
-      return this.http.get<InventoryItemComment[]>(this.url + '/comments').pipe(
+      return this.http.get<InventoryItemComment[]>(this.url + '/comments', this.getHttpOptions()).pipe(
         catchError((err: any) => {
                 console.log(err);
                 return throwError(
@@ -38,8 +38,8 @@ export class InventoryItemCommentService {
             );
     }
 
-    create(newComment:InventoryItemComment): Observable<InventoryItemComment> {
-      return this.http.post<InventoryItemComment>(this.url + '/' + newComment.item?.id + '/comments', newComment, this.getHttpOptions()).pipe(
+    create(newComment : InventoryItemComment, itemId: number): Observable<InventoryItemComment> {
+      return this.http.post<InventoryItemComment>(this.url + '/' + itemId + '/comments', newComment, this.getHttpOptions()).pipe(
         catchError((err: any) => {
         console.log(err);
         return throwError(

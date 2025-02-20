@@ -57,7 +57,7 @@
           <label for="comment"></label>
           <textarea name="comment" [(ngModel)]="newComment.comment"></textarea><br>
           <div class="modal-footer">
-            <button type="button" class="btn btn-success" (click)="addComment(newComment)">Save</button>
+            <button type="button" class="btn btn-success" (click)="addComment(newComment, selected.id)">Save</button>
             <button type="button" class="btn btn-danger" (click)="closeModal()">Close</button>
           </div>
         </form>
