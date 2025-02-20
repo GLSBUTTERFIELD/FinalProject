@@ -46,6 +46,7 @@ public class InventoryItemCommentServiceImpl implements InventoryItemCommentServ
 		}
 		newComment.setComment(comment.getComment());
 		newComment.setParentComment(comment.getParentComment());
+		newComment.setInventoryItem(managedItem);
 		newComment.setUser(managedUser);
 		newComment.setEnabled(true);
 		managedItem.getComments().add(newComment);
