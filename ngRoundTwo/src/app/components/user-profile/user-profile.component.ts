@@ -70,6 +70,7 @@ export class UserProfileComponent implements OnInit{
   this.loadLoggedInUser();
     this.loadGatheringsHosted();
  }
+
  loadConditions() {
   this.itemConditionService.index().subscribe({
     next: (conditionList) => {

@@ -120,8 +120,8 @@ addGameResource(newGameResource: GameResource){
   this.gameResourceService.create(newGameResource).subscribe({
     next: (newResource) => {
       this.newGameResource = new GameResource;
-      this.loadGames();
-      this.toggleNewGameForm();
+      this.loadGameResources();
+      this.toggleNewGameResourceForm();
     },
     error: (err) => {
       console.log("GameComponent.loadGameResources: failed to load Game Resource list");
