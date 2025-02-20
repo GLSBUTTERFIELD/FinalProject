@@ -237,5 +237,10 @@ export class UserProfileComponent implements OnInit{
     }
     })
   }
-
+// added this method
+  viewGathering(gatheringId: number) {
+    this.router.navigate(['/gathering', gatheringId]);
+    console.log(gatheringId);
+  }
+// --------------------------
 }
