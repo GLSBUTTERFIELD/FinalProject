@@ -35,12 +35,12 @@ public class InventoryItemComment {
 	@Column(name = "last_update")
 	private LocalDateTime lastUpdate;
 	
-	@JsonIgnoreProperties({"address", "gatheringsAttended", "inventoryItems"})
+	@JsonIgnoreProperties({"address", "gatheringsAttended", "inventoryItems", "biography", "creatDate", "lastUpate"})
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
 	
-	@JsonIgnore
+	@JsonIgnoreProperties({"comments", "lastUpdate", "createDate", "imageUrl", "game"})
 	@ManyToOne
 	@JoinColumn(name = "inventory_item_id")
 	private InventoryItem inventoryItem;
@@ -52,8 +52,6 @@ public class InventoryItemComment {
 	@JsonIgnore
 	@OneToMany(mappedBy = "parentComment")
 	private List<InventoryItemComment> subComment;
-	
-	
 
 	public InventoryItemComment() {
 	}

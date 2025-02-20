@@ -55,7 +55,7 @@ public class InventoryItem {
 	@JoinColumn(name="game_id")
 	private Game game;
 	
-	@JsonIgnoreProperties({"gatheringsAttended","inventoryItems"})
+	@JsonIgnoreProperties({"gatheringsAttended","inventoryItems", "biography", "createDate", "lastUpdate", "address", "password"} )
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
