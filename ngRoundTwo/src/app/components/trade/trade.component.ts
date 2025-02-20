@@ -7,7 +7,6 @@ import { InventoryItemCommentService } from '../../services/inventory-item-comme
 import { User } from '../../models/user';
 import { AuthService } from '../../services/auth.service';
 import { FormsModule } from '@angular/forms';
-// import { InventoryItemCommentService } from '../../services/inventory-item-comment.service';
 
 @Component({
   selector: 'app-trade',
