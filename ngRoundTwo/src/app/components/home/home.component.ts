@@ -15,7 +15,15 @@ import { NgbCarousel, NgbModule, NgbSlideEvent, NgbSlideEventSource } from '@ng-
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  images = [62, 83, 466, 965, 982, 1043, 738].map((n) => `https://picsum.photos/id/${n}/900/500`);
+  images = [
+    "images/boardgames-2048px-1551.jpg",
+    "images/Depositphotos_318049006_XL-scaled.webp",
+    "images/DSC1182.jpg",
+    "images/family-playing-board-game.jpg",
+    "images/il_fullxfull.1940458793_pn92.webp",
+    "images/IMG_3979.jpg",
+    "images/istockphoto-1339065197-640x640.jpg",
+  ]
 
 	paused = false;
 	unpauseOnArrow = false;
