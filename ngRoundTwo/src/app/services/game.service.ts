@@ -51,7 +51,7 @@ export class GameService {
         catchError((err: any) => {
           console.log(err);
           return throwError(
-            () => new Error('userService.update(): error updating user: ' + err)
+            () => new Error('gameService.update(): error editing game: ' + err)
           );
         })
       );
