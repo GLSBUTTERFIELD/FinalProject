@@ -8,7 +8,7 @@ public interface GameService {
 	List<Game> listAll();
 	Game findById(int gameId);
 	Game create(Game game);
-	Game edit(Game game, int gameId);
+	Game edit(Game game, int gameId, String username);
 	boolean destroy (String username, int gameId);
 
 }
