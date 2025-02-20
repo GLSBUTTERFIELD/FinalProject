@@ -28,8 +28,10 @@
     <p>Hosted by {{selected.host.username}}</p>
    </div>
    <img *ngIf="selected.imageUrl" [src]="selected.imageUrl"><br>
-  {{selected.startDate}} from {{selected.startTime}} - {{selected.endTime}}<br>
-   {{selected.description}}<br>
+  {{selected.startDate}} from {{selected.startTime}} - {{selected.endTime}}<br><br>
+  <h2>Description</h2>
+   {{selected.description}}<br><br>
+   <h2>Guest List</h2>
    <ul>
     <li *ngFor="let name of generateGuestList()">{{name}}</li>
    </ul>
