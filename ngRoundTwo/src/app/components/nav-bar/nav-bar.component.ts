@@ -32,6 +32,7 @@ export class NavBarComponent {
 
   loggedInUser: User | null = null;
 
+
   constructor(
     private authService: AuthService,
     private router: Router,

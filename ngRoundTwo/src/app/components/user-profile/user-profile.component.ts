@@ -70,6 +70,7 @@ export class UserProfileComponent implements OnInit{
   this.loadLoggedInUser();
     this.loadGatheringsHosted();
  }
+
  loadConditions() {
   this.itemConditionService.index().subscribe({
     next: (conditionList) => {
@@ -237,5 +238,10 @@ export class UserProfileComponent implements OnInit{
     }
     })
   }
-
+// added this method
+  viewGathering(gatheringId: number) {
+    this.router.navigate(['/gathering', gatheringId]);
+    console.log(gatheringId);
+  }
+// --------------------------
 }

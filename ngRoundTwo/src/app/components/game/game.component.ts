@@ -7,6 +7,8 @@ import { Category } from '../../models/category';
 import { CategoryService } from '../../services/category.service';
 import { User } from '../../models/user';
 import { AuthService } from '../../services/auth.service';
+import { GameResource } from '../../models/game-resource';
+import { GameResourceService } from '../../services/game-resource.service';
 
 @Component({
   selector: 'app-game',
@@ -27,12 +29,16 @@ currentUser: User | null = null;
 isLoggedIn: boolean = false;
 editGame: Game = new Game();
 viewGameEditForm: boolean = false;
+resources: GameResource[] = [];
+newGameResource: GameResource = new GameResource();
+showNewGameResourceForm: boolean = false;
 
 
   constructor(
     private gameService: GameService,
     private categoryService: CategoryService,
     private authService: AuthService,
+    private gameResourceService: GameResourceService,
   ){}
 
   ngOnInit(): void {
@@ -40,6 +46,7 @@ viewGameEditForm: boolean = false;
     // this.loadCategories();
     this.loadCurrentUser();
     this.isLoggedIn = this.authService.checkLogin();
+    this.loadGameResources();
 
   }
 
@@ -54,8 +61,23 @@ viewGameEditForm: boolean = false;
     })
   }
 
+  loadGameResources() {
+    this.gameResourceService.showAll().subscribe({
+      next: (resources) => {
+      this.resources = resources;
+    },
+    error: (err) => {
+      console.log("GameComponent.loadGameResources: failed to load Game Resource list");
+    }
+    })
+  }
+
   toggleNewGameForm(){
     this.showNewGameForm = !this.showNewGameForm;
+  }
+
+  toggleNewGameResourceForm(){
+    this.showNewGameResourceForm = !this.showNewGameResourceForm;
   }
 
   addGame(newGame: Game) {
@@ -104,11 +126,9 @@ viewGameEditForm: boolean = false;
       this.authService.getLoggedInUser().subscribe({
         next:(loggedInUser) =>{
           this.currentUser = loggedInUser;
-
         },
         error: (err) =>{
           console.log('GatheringComponent.loadCurrentUser(): failed to get current user.', err);
-
         }
       })
     }
@@ -116,7 +136,20 @@ viewGameEditForm: boolean = false;
     closeModal() {
         this.viewGameEditForm = false;
         this.editGame = new Game;
-
       }
+      
+addGameResource(newGameResource: GameResource){
+  this.gameResourceService.create(newGameResource).subscribe({
+    next: (newResource) => {
+      this.newGameResource = new GameResource;
+      this.loadGameResources();
+      this.toggleNewGameResourceForm();
+    },
+    error: (err) => {
+      console.log("GameComponent.loadGameResources: failed to load Game Resource list");
+    }
+    })
+  }
 
 }
+

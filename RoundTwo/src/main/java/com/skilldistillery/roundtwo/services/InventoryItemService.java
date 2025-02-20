@@ -11,4 +11,5 @@ public interface InventoryItemService {
 	public InventoryItem findById(int itemId);
 	public InventoryItem edit(String username, int itemId, InventoryItem inventoryItem);
 	public InventoryItem create(String username, InventoryItem inventoryItem);
+	public boolean disable(String username, int itemId);
 }

@@ -15,6 +15,7 @@ export const routes: Routes = [
   {path: 'gathering', component: GatheringComponent},
   {path: 'games', component: GameComponent},
   {path: 'gathering/:gatheringId', component: GatheringComponent},
+  // {path: 'gathering/:id', component: GatheringComponent},
   {path: 'trade', component: TradeComponent},
   {path: 'userprofile/:userId', component: UserProfileComponent},
   {path: 'userprofile', component: UserProfileComponent}

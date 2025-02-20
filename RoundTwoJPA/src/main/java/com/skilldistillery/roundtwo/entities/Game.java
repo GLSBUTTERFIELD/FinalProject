@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -53,7 +54,7 @@ public class Game {
 	@OneToMany(mappedBy = "game")
 	private List<InventoryItem> inventoryItems;
 
-	@JsonIgnore
+	@JsonIgnoreProperties({"game"})
 	@OneToMany(mappedBy = "game")
 	private List<GameResource> resources;
 
@@ -64,7 +65,6 @@ public class Game {
 	@JsonIgnore
 	@OneToMany(mappedBy = "game")
 	private List<GameComment> gameComments;
-	
 	
 
 	public Game() {

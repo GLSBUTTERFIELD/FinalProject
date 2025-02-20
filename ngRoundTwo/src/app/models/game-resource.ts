@@ -1,3 +1,5 @@
+import { User } from "./user";
+
 export class GameResource {
   id: number;
   name: string;
@@ -6,6 +8,7 @@ export class GameResource {
   lastUpdate: string;
   enabled: boolean;
   resourceUrl: string;
+  user: User;
 
   constructor(
     id: number = 0,
@@ -15,6 +18,7 @@ export class GameResource {
     lastUpdate: string = '',
     enabled: boolean = false,
     resourceUrl: string = '',
+    user: User = new User(),
   ){
     this.id = id;
     this.name = name;
@@ -23,6 +27,6 @@ export class GameResource {
     this.lastUpdate = lastUpdate;
     this.enabled = enabled;
     this.resourceUrl = resourceUrl;
-
+    this.user = user;
   }
 }

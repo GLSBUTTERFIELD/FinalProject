@@ -8,18 +8,39 @@
       <a href="{{game.websiteUrl}}" target="_blank">{{game.name}}</a>
     </h1>
     {{game.description}}<br>
-    <img *ngIf="game.imageUrl" [src]="game.imageUrl" alt="Game Image">
+    <img *ngIf="game.imageUrl" [src]="game.imageUrl" alt="Game Image"><br>
     <div *ngIf="game.categories">
-      Categories:
+      <h5>Categories:</h5>
       <ul *ngFor="let category of game.categories">
         <li>
           {{category.name}}
         </li>
       </ul>
     </div>
+    <div *ngIf="game.resources.length >0">
+      <h5>Game Resources:</h5>
+      <table class="table">
+        <thead>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Posted By</th>
+          <th>Last Updated</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let resource of game.resources">
+            <td><a href="{{resource.resourceUrl}}">{{resource.name}}</a></td>
+            <td>{{resource.description}}</td>
+            <td>{{resource.user.username}}</td>
+            <td>{{resource.lastUpdate}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
     @if(currentUser){
+      <button class="btn btn-info">Add Game Resource</button>
       <div *ngIf="currentUser.role === 'chadmin'">
        <button class="btn btn-warning" (click)="setEditGame(game)">Edit</button>
+
       </div>
       }
     <hr>

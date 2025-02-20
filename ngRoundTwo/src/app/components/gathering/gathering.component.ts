@@ -14,6 +14,7 @@ import { Game } from '../../models/game';
 import { HttpClient } from '@angular/common/http';
 import { GameService } from '../../services/game.service';
 import { AuthService } from '../../services/auth.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-gathering',
@@ -50,6 +51,7 @@ export class GatheringComponent implements OnInit{
     private gameService: GameService,
     private authService: AuthService,
     // private router: Router,
+    private route: ActivatedRoute
   ){}
 
   ngOnInit() {
@@ -58,6 +60,15 @@ export class GatheringComponent implements OnInit{
     this.loadCurrentUser();
     this.reloadGames();
     this.isLoggedIn = this.authService.checkLogin();
+
+    // ----------------------------- ray added to navigate from profile page to gathering details
+    this.route.paramMap.subscribe(params => {
+      const gatheringId = Number(params.get('gatheringId'));
+      if (gatheringId) {
+        this.showGathering(gatheringId);
+      }
+    });
+    // ------------------------------------
   }
 
   reload() {

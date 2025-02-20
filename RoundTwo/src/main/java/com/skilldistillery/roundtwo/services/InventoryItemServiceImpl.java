@@ -19,6 +19,9 @@ public class InventoryItemServiceImpl implements InventoryItemService{
 	@Autowired
 	private UserRepository userRepo;
 	
+	private static final String ADMINROLE = "chadmin";
+
+	
 	@Override
 	public List<InventoryItem> showAvailable() {
 		return inventoryItemRepo.findByAvailableTrue();
@@ -52,7 +55,19 @@ public class InventoryItemServiceImpl implements InventoryItemService{
 		inventoryItem.setUser(managedUser);
 		return inventoryItemRepo.saveAndFlush(inventoryItem);
 	}
-	
 
+	@Override
+	public boolean disable(String username, int itemId) {
+		boolean deleted = false;
+		InventoryItem managedItem = inventoryItemRepo.findByUser_UsernameAndId(username, itemId);
+		User managedUser = userRepo.findByUsername(username);
+		if (managedItem != null && (managedItem.getUser().getId() == managedUser.getId() || managedUser.getRole().equals(ADMINROLE))) {
+			managedItem.setEnabled(false);
+			inventoryItemRepo.saveAndFlush(managedItem);
+			deleted = true;
+		}
+		return deleted;
+	}
+	
 
 }
