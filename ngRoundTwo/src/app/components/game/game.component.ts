@@ -25,6 +25,8 @@ showNewGameForm: boolean = false;
 newGameCategories: Category[] = [];
 currentUser: User | null = null;
 isLoggedIn: boolean = false;
+editGame: Game = new Game();
+viewGameEditForm: boolean = false;
 
 
   constructor(
@@ -68,9 +70,24 @@ isLoggedIn: boolean = false;
         }
       });
     }
-    setEditGame(){
-      console.log('waaaaahhhhhhh, the button is working!!!');
+
+    setEditGame(gameEdit: Game){
+      this.editGame = JSON.parse(JSON.stringify(gameEdit));
+    this.viewGameEditForm = true;
     }
+
+    updateGame(game: Game){
+      console.log('waaaaahhhhhhh, the button is working!!!');
+      this.gameService.update(game).subscribe({
+        next: (updatedGame) => {
+
+        },
+        error: (error) => {
+          console.log(error);
+        }
+      });
+    }
+
     // loadCategories(){
     //   this.categoryService.listCategories().subscribe({
     //     next: (categories)=>{
@@ -95,5 +112,11 @@ isLoggedIn: boolean = false;
         }
       })
     }
+
+    closeModal() {
+        this.viewGameEditForm = false;
+        this.editGame = new Game;
+
+      }
 
 }
