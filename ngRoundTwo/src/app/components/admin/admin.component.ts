@@ -30,10 +30,6 @@ ngOnInit(): void {
   this.showAllUsers();
 }
 
-reload() {
-  this.showAllUsers();
- }
-
 showAllUsers() {
   this.userService.showAll().subscribe({
     next: (users) => {
@@ -42,7 +38,6 @@ showAllUsers() {
         // Assign the first user or whichever user you need
         this.user = { ...this.users[0] }; // Create a shallow copy of the user to prevent reference issues
       }
-      // this.reload();
     },
     error: (err) => {
       console.log("failed to load all users");
@@ -52,7 +47,7 @@ showAllUsers() {
 
 onToggleChange(updatedUser: User) {
   const index = this.users.findIndex(user => user.id === updatedUser.id);
-  
+
   if (index !== -1) {
     this.users[index].enabled = updatedUser.enabled;
 
@@ -65,6 +60,7 @@ onToggleChange(updatedUser: User) {
       }
     });
   }
+
 }
 }
 

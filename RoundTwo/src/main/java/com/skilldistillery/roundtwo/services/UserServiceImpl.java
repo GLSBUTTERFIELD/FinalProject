@@ -14,9 +14,15 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private UserRepository userRepo;
-
+	
 	private static final String ADMINROLE = "chadmin";
 
+<<<<<<< HEAD
+	private static final String ADMINROLE = "chadmin";
+
+=======
+	
+>>>>>>> f5f884a2ffe6d6ae242f82ba4c04b3fc6d8cb399
 	@Override
 	public User findUserById(String username, int userId) {
 		return userRepo.findByUsernameAndId(username, userId);
@@ -49,13 +55,12 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean destroy(String username, int todoId) {
 		boolean deleted = false;
-		User deleteUser = userRepo.findByUsernameAndId(username, todoId);
-		Optional<User> userOpt = userRepo.findById(todoId);
-		User checkUser = userOpt.get();
-		if(deleteUser != checkUser) {
-			return false;
-		}else if (deleteUser == checkUser) {
-			userRepo.deleteById(todoId);
+		User deleteUser = userRepo.findByUsername(username);
+		User managedUser = userRepo.findById(todoId).orElse(null);
+		
+		if (managedUser != null && (managedUser.getId() == deleteUser.getId() || deleteUser.getRole().equals(ADMINROLE))) {
+			managedUser.setEnabled(false);
+			userRepo.saveAndFlush(managedUser);
 			deleted = true;
 		}
 		return deleted;
