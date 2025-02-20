@@ -1,3 +1,4 @@
+import { GameResource } from './game-resource';
 import { Category } from "./category";
 
 // gatherings, inventory items, favoritedUsers?
@@ -11,7 +12,7 @@ export class Game {
   minPlayers : number;
   maxPlayers : number;
   categories : Category[];
-  // resources : Resource[];
+  resources : GameResource[];
   // comments : GameComment[];
 
   constructor(
@@ -24,7 +25,7 @@ export class Game {
   minPlayers : number = 0,
   maxPlayers : number = 0,
   categories : Category[] = [],
-  // resources : Resource[] = []
+  resources : GameResource[] = []
   // comments : GameComment[] = []
   ){
     this.id =  id;
@@ -36,7 +37,7 @@ export class Game {
     this.minPlayers = minPlayers;
     this.maxPlayers = maxPlayers;
     this.categories = categories;
-    // this.resources : Resource[] = []
+    this.resources = resources;
     // this.comments : GameComment[] = []
   }
 }
