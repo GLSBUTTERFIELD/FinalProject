@@ -116,7 +116,7 @@ showNewGameResourceForm: boolean = false;
       })
     }
 
-addGameResource(newGameResource: GameResource){
+addGameResource(newGameResource: GameResource, gameId: number){
   this.gameResourceService.create(newGameResource).subscribe({
     next: (newResource) => {
       this.newGameResource = new GameResource;

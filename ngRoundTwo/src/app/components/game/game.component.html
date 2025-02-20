@@ -37,11 +37,24 @@
       </table>
     </div>
     @if(currentUser){
-      <button class="btn btn-info">Add Game Resource</button>
       <div *ngIf="currentUser.role === 'chadmin'">
-       <button class="btn btn-warning" (click)="setEditGame()">Edit Game</button>
+        <button class="btn btn-warning" (click)="setEditGame()">Edit Game</button>
       </div>
-      }
+
+    <div>
+      <form>
+        <label for="name">Game Resource</label>
+        <input type="text" name="name" placeholder="name" [(ngModel)]="newGameResource.name"><br>
+
+        <label for="description">Description</label>
+        <textarea name="description" placeholder="description" [(ngModel)]="newGameResource.description"></textarea><br>
+
+        <label for="resourceUrl">Resource Url</label>
+        <input type="text"  name="resourceUrl" placeholder="Resource Url" [(ngModel)]="newGameResource.resourceUrl"><br>
+        <button class="btn btn-success" (click)="addGameResource(newGameResource, game.id)">Add Game Resource</button>
+      </form>
+    </div>
+    }
     <hr>
   </div>
 </div>
@@ -77,3 +90,4 @@
     <button type="button" class="btn btn-secondary" (click)="toggleNewGameForm()">Close</button>
   </form>
 </div>
+
