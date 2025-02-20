@@ -1,6 +1,6 @@
 import { AuthService } from './../../services/auth.service';
 import { CommonModule } from '@angular/common';
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, OnInit } from '@angular/core';
 declare var $: any;
 import { FormsModule } from '@angular/forms';
 import { User } from '../../models/user';
@@ -18,7 +18,7 @@ import { UserService } from '../../services/user.service';
   styleUrl: './nav-bar.component.css'
 })
 
-export class NavBarComponent {
+export class NavBarComponent implements OnInit{
 
   showSignUpForm: boolean = false;
 
@@ -33,11 +33,18 @@ export class NavBarComponent {
   loggedInUser: User | null = null;
 
 
+
   constructor(
     private authService: AuthService,
     private router: Router,
     private userService: UserService,
   ){}
+
+  ngOnInit(): void {
+    if(this.authService.checkLogin()){
+     this.getLoggedInUser();
+    }
+  }
 
 
   register(addingUser: User){
