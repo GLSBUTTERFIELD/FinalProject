@@ -72,12 +72,15 @@ export class TradeComponent implements OnInit {
     })
   }
 
-  addComment(newComment:InventoryItemComment){
-    this.commentService.create(newComment).subscribe({
+  addComment(newComment:InventoryItemComment, selectedId: number){
+    this.commentService.create(newComment, selectedId).subscribe({
       next: (addedComment) => {
         this.newComment = new InventoryItemComment();
         this.toggleNewCommentForm();
         this.loadInventoryItemComments();
+        this.closeModal();
+        this.reload();
+        this.showItem(selectedId);
       },
       error: (err) => {
         console.log(newComment);
