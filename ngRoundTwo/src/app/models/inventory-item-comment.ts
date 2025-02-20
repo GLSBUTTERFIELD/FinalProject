@@ -6,8 +6,8 @@ comment: string;
 createDate: string;
 lastUpdate: string;
 enabled: boolean;
-user: User;
-inReplyTo: InventoryItemComment;
+user: User | null;
+inReplyTo: InventoryItemComment | null;
 
 constructor(
   id: number = 0,
@@ -15,8 +15,8 @@ constructor(
   createDate: string = '',
   lastUpdate: string = '',
   enabled: boolean = false,
-  user: User = new User(),
-  inReplyTo: InventoryItemComment = new InventoryItemComment(),
+  user: (User | null) = null,
+  inReplyTo: InventoryItemComment | null = null,
 ){
 this.id = id;
 this.comment= comment;

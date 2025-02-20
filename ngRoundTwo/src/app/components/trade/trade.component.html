@@ -36,7 +36,7 @@
    <img *ngIf="selected.imageUrl" [src]="selected.imageUrl"><br>
 <hr>
 <p *ngFor="let comment of selected.comments">
-  Comment #{{comment.id}} "{{comment.comment}}" -{{comment.user.username}}
+  "{{comment.comment}}" -{{comment.user?.username}}
 </p>
    <button class="btn btn-info" (click)="selected = null">Back</button>
  <hr>
