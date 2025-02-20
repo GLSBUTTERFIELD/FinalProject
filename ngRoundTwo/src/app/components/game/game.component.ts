@@ -31,7 +31,8 @@ editGame: Game = new Game();
 viewGameEditForm: boolean = false;
 resources: GameResource[] = [];
 newGameResource: GameResource = new GameResource();
-showNewGameResourceForm: boolean = false;
+viewNewResourceForm: boolean = false;
+currentGameId: number = -1;
 
 
   constructor(
@@ -76,8 +77,10 @@ showNewGameResourceForm: boolean = false;
     this.showNewGameForm = !this.showNewGameForm;
   }
 
-  toggleNewGameResourceForm(){
-    this.showNewGameResourceForm = !this.showNewGameResourceForm;
+  setNewGameResource(gameId : number){
+    console.log("womp womp");
+    this.viewNewResourceForm = true;
+    this.currentGameId = gameId;
   }
 
   addGame(newGame: Game) {
@@ -94,6 +97,7 @@ showNewGameResourceForm: boolean = false;
     }
 
     setEditGame(gameEdit: Game){
+
       this.editGame = JSON.parse(JSON.stringify(gameEdit));
     this.viewGameEditForm = true;
     }
@@ -138,21 +142,25 @@ showNewGameResourceForm: boolean = false;
     closeModal() {
         this.viewGameEditForm = false;
         this.editGame = new Game;
+        this.viewNewResourceForm = false;
       }
 
-addGameResource(newGameResource: GameResource, gameId: number){
-  this.gameResourceService.create(newGameResource, gameId).subscribe({
-    next: (newResource) => {
-      this.newGameResource = new GameResource;
-      this.loadGameResources();
-      this.toggleNewGameResourceForm();
-      this.loadGames();
-    },
-    error: (err) => {
-      console.log("GameComponent.loadGameResources: failed to load Game Resource list");
-    }
-    })
-  }
-
+      addGameResource(newGameResource: GameResource) {
+        if (this.currentGameId !== -1) {
+          this.gameResourceService.create(newGameResource, this.currentGameId).subscribe({
+            next: (newResource) => {
+              this.newGameResource = new GameResource();
+              this.loadGameResources();
+              this.loadGames();
+              this.closeModal();
+            },
+            error: (err) => {
+              console.log("GameComponent.loadGameResources: failed to load Game Resource list");
+            }
+          });
+        } else {
+          console.error("Invalid game ID.");
+        }
+      }
 }
 
