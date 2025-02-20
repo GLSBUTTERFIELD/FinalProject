@@ -32,8 +32,8 @@
           <button class="btn btn-info" (click)="toggleLogin()">Login</button>
         </div>
 
-        <div *ngIf="!toggleUserButtonView() && loggingInUser" class="d-flex align-items-center gap-2">
-          <a class="nav-item nav-link" [routerLink]="['/userprofile']">Hello, {{loggingInUser.username}}</a>
+        <div *ngIf="!toggleUserButtonView() && loggedInUser" class="d-flex align-items-center gap-2">
+          <a class="nav-item nav-link" [routerLink]="['/userprofile']">Hello, {{loggedInUser.username}}</a>
           <button class="nav-item btn btn-danger"(click)="logout()">Logout</button>
         </div>
       </div>
