@@ -1,4 +1,13 @@
+
 img{
   height: 500px;
   width: 450px;
+}
+
+div{
+  font-family: 'Parkinsans';
+}
+#seperatingInventoryItemName {
+  font-family: 'Parkinsans';
+  /* font-style: italic; */
 }
