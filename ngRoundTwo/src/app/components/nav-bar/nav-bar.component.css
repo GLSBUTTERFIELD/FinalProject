@@ -1,6 +1,14 @@
+
+img {
+  width: 100px;
+  height: 100px;
+
+}
+
 div{
   font-family: 'Parkinsans';
   font-size: large;
+
 }
 .btn-info {
   background-color: #39B54A;
