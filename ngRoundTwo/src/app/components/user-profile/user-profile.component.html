@@ -22,7 +22,7 @@
 
   <div *ngIf="userToDisplay.inventoryItems">
     <div class="row align-items-center">
-      <h2 class="col">Inventory Items</h2>
+      <h2 class="col" id="inventory">Inventory Items</h2>
       <div class="col-auto">
         <button class="btn btn-info" (click)="viewNewInventoryItemForm = true">Add Inventory Item</button>
       </div>
@@ -51,7 +51,7 @@
 </div>
 
 <div *ngIf="gatheringsAttending.length > 0">
-  <h2>Upcoming Gatherings</h2><br>
+  <h2 id="upcoming">Upcoming Gatherings</h2><br>
   <table class="table">
     <thead>
       <th>Name</th>
@@ -74,7 +74,7 @@
 </div>
 
 <div *ngIf="gatheringsAttended.length >0">
-  <h2>Past Gatherings</h2><br>
+  <h2 id="past">Past Gatherings</h2><br>
   <table class="table">
     <thead>
       <th>Name</th>
@@ -96,7 +96,7 @@
 </div>
 
 <div *ngIf="gatheringsHosted.length > 0">
-  <h2>Gatherings Hosted</h2><br>
+  <h2 id="hosted">Gatherings Hosted</h2><br>
   <table class="table">
     <thead>
       <th>Name</th>

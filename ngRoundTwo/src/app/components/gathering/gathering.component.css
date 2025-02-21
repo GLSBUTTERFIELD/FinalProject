@@ -8,6 +8,15 @@ div{
 }
 
 #header{
+  background: rgb(0, 163, 224, 0.7);
+  color: rgba(0, 0, 0, 0.9);
+  text-align: center;
+  font-weight: 800;
+  height: auto;
+  padding: 30px 30px;
+  font-size: 40px;
+  width: 100%;
+  background-position: center;
   text-align:center;
   font-size: 60px;
   font-family: 'Parkinsans';
@@ -49,12 +58,8 @@ div .info{
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: center;
-<<<<<<< HEAD
-  gap: 20px
-=======
   gap: 20px;
   width: 100%;
->>>>>>> c9ed71c9e2c6f1ad8a2854b4c30aba3cfac9f6db
 }
 
 #lastUpdate{
