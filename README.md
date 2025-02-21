@@ -11,6 +11,7 @@ RoundTwo is an application that allows users to trade puzzles and board games, i
 - Vidal (Database Administrator)
 - Will (SCRUM Master)
 
+## **RESTful API's**
 
 ### Authenticate
 | HTTP Verb | URI                                         | Request Body                             | Response Body                                  | Response Codes  |
