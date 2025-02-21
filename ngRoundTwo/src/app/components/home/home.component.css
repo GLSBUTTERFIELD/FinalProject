@@ -3,13 +3,26 @@ img {
   height: 600px;
 }
 
-div{
+div, p{
   font-family: 'Parkinsans';
+  text-align: center;
 }
-h1 {
+h1,h2,h3 {
   font-family: 'Parkinsans';
+  text-align: center;
+  color: black;
+  text-decoration: underline;
 }
-
+#body-text{
+  font-family: 'Parkinsans';
+  text-align: center;
+  color: black;
+}
+body{
+  font-family: 'Parkinsans';
+  font-size: large;
+  text-align: center;
+}
 #header {
   /* background: rgba(213, 0, 109, 0.7); */
   /* background: rgba(57, 181, 74); */
