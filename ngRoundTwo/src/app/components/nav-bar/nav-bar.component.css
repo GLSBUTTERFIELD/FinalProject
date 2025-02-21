@@ -1,15 +1,38 @@
 
 img {
-  width: 60px;
-  height: 60px;
+  width: 150px;
+  height: 150px;
+ display: center;
 
+}
+
+#logoImage {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  /* width: 50%; */
 }
 
 div{
   font-family: 'Parkinsans';
   font-size: large;
-
 }
+
+.navbar-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+}
+
+.navbar-nav > div,
+.navbar-nav > a,
+.navbar-nav > button {
+  flex: 0.15;
+  text-align: center;
+}
+
 .btn-info {
   background-color: #39B54A;
   border-color: #39B54A;
