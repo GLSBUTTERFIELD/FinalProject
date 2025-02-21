@@ -1,7 +1,7 @@
 <div class="container">
 <div *ngIf="userToDisplay">
   <div class="row align-items-center">
-    <h1 class="col welcome">Hello, {{ userToDisplay.username }}</h1>
+    <h1 class="col welcome" id="greeting">Hello, {{ userToDisplay.username }}</h1>
       <div class="col-auto">
         <button class="btn btn-warning" (click)="setEditProfile()">Edit Profile</button>
       </div>
