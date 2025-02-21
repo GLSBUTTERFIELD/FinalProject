@@ -55,9 +55,9 @@
           <textarea name="description" placeholder="description" [(ngModel)]="newGathering.description"></textarea><br>
 
           <label for="games">Select Game: </label>
-          <select name="games" [(ngModel)]="newGathering.games" required>
-          <option *ngFor="let game of games" [ngValue]="game">{{ game.name }}</option>
-          </select><br>
+<select name="games" [(ngModel)]="selectedGame" (change)="addGameToGathering()" required>
+  <option *ngFor="let game of games" [ngValue]="game">{{ game.name }}</option>
+</select><br>
 
           <label for="fee">Fee: </label>
           <input type="number"  name="fee" placeholder="fee" [(ngModel)]="newGathering.fee"><br>

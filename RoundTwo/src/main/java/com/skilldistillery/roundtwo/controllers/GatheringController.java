@@ -80,6 +80,8 @@ public class GatheringController {
 			Principal principal) {
 		Gathering createdGathering = null;
 		try {
+			System.out.println("issue with the controller"+principal.getName());
+			System.out.println("issue with the controller"+gathering);
 			createdGathering = gatheringService.create(principal.getName(), gathering);
 			if (createdGathering == null) {
 				res.setStatus(HttpServletResponse.SC_NOT_FOUND);
