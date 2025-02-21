@@ -32,7 +32,6 @@ export class GatheringComponent implements OnInit{
   selected: Gathering | null = null;
   showNewEventForm: boolean = false;
   showNewAddressForm: boolean = false;
-  newGathering: Gathering = new Gathering();
   newAddress: Address = new Address();
   editGathering: Gathering | null = null;
   gatheringToDisplay: Gathering | null = null;
@@ -40,6 +39,9 @@ export class GatheringComponent implements OnInit{
   currentUser: User | null = null;
   games: Game[] = [];
   isLoggedIn: boolean = false;
+  //DO NOT TOUCH THESE TWO!!!
+  selectedGame: any;
+  newGathering: any = { games: [] };
 
   constructor(
     private gatheringService: GatheringService,
@@ -58,15 +60,12 @@ export class GatheringComponent implements OnInit{
     this.loadCurrentUser();
     this.reloadGames();
     this.isLoggedIn = this.authService.checkLogin();
-
-    // ----------------------------- ray added to navigate from profile page to gathering details
     this.route.paramMap.subscribe(params => {
       const gatheringId = Number(params.get('gatheringId'));
       if (gatheringId) {
         this.showGathering(gatheringId);
       }
     });
-    // ------------------------------------
   }
 
   reload() {
@@ -91,6 +90,16 @@ export class GatheringComponent implements OnInit{
         console.log('GatheringComponent.reloadAddresses(): failed to load address list.', fail);
       }
     });
+  }
+
+  addGameToGathering() {
+    if (!this.newGathering.games) {
+      this.newGathering.games = [];
+    }
+
+    if (this.selectedGame && !this.newGathering.games.includes(this.selectedGame)) {
+      this.newGathering.games.push(this.selectedGame);
+    }
   }
 
   loadCurrentUser() {
@@ -170,6 +179,7 @@ checkAttendance(): boolean {
       return;
     }
 
+    console.log(newGathering);
     this.gatheringService.create(newGathering).subscribe({
       next: (gathering) => {
         this.newGathering = new Gathering();

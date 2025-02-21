@@ -7,23 +7,24 @@
     <h1>
       <a href="{{game.websiteUrl}}" target="_blank">{{game.name}}</a>
     </h1>
-    {{game.description}}<br>
+    <p>{{game.description}}</p>
     <img *ngIf="game.imageUrl" [src]="game.imageUrl" alt="Game Image"><br>
     <div *ngIf="game.categories">
-      <h5>Categories:</h5>
+     <br> <h4>Categories:</h4>
       <ul *ngFor="let category of game.categories">
-        <li>
-          {{category.name}}
-        </li>
+        <li>{{category.name}}</li>
       </ul>
     </div>
-    @if(currentUser){
-      <div *ngIf="currentUser.role === 'chadmin'">
-        <button class="btn btn-warning" (click)="setEditGame(game)">Edit Game</button>
-        <button class="btn btn-info" (click)="setNewGameResource(game.id)">Add Resource</button>
-      </div><br>
+
+    <div *ngIf="currentUser && currentUser.role === 'chadmin'">
+      <button class="btn btn-warning" (click)="setEditGame(game)">Edit Game</button>
+    </div><br>
     <div *ngIf="game.resources.length >0">
-      <h5>Game Resources:</h5>
+      <div class="row">
+       <div class="col"><h4>Game Resources:</h4></div>
+       <div class="col"><button *ngIf="(currentUser)" class="btn btn-info" (click)="setNewGameResource(game.id)">Add Resource</button>
+       </div>
+      </div>
       <table class="table">
         <thead>
           <th>Name</th>
@@ -41,7 +42,6 @@
         </tbody>
       </table>
     </div>
-    }
     <hr>
   </div>
 </div>

@@ -39,6 +39,7 @@ public class GatheringServiceImpl implements GatheringService {
 		}
 		gathering.setHost(managedUser);
 		gathering.setEnabled(true);
+		System.out.println(gathering+"issue with the service impl");
 		return gatheringRepo.saveAndFlush(gathering);
 	}
 

@@ -6,6 +6,100 @@ img{
 div{
   font-family: 'Parkinsans';
 }
+
+#header{
+  text-align:center;
+  font-size: 60px;
+  font-family: 'Parkinsans';
+}
+
+div .info{
+  font-size: 23px;
+}
+
+#timeInfo{
+  font-size: large;
+}
+
+#separatingGatheringName {
+  font-family: 'Parkinsans';
+  font-size: 45px;
+}
+
+.container img {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 150px;
+  height: 150px;
+}
+.container{
+  border-radius: 8px;
+  padding: 15px;
+}
+
+.image{
+  padding: 5px;
+  width: 350px;
+  height: 350px;
+}
+
+.post-div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+#lastUpdate{
+  text-align: center;
+  font-size:medium;
+}
+
+#updated{
+  text-align: right;
+  font-size:medium;
+}
+
+.left-div{
+  flex-wrap: wrap;
+  height: auto;
+  padding-right: 100px;
+  padding: 10px;
+  flex: 0.75;
+}
+
+h3{
+  font-family: 'Parkinsans';
+}
+
+li {
+  font-size: large;
+}
+
+.row {
+  font-size: larger;
+}
+
+p {
+  font-size: large;
+}
+
+.address{
+  font-size: large;
+}
+
+td {
+  font-size: large;
+}
+
+.buttons {
+  margin: auto;
+  display: flex;
+}
+
 .btn-info {
   background-color: #39B54A;
   border-color: #39B54A;

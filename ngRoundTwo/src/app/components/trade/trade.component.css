@@ -7,12 +7,41 @@ img{
 div{
   font-family: 'Parkinsans';
   font-size: medium;
+}
+
+p{
+  font-size:larger;
+}
+
+#separatingInventoryItemName {
+  font-family: 'Parkinsans';
+  font-size: 45px;
 
 }
-#seperatingInventoryItemName {
+
+#header{
+  text-align:center;
+  font-size: 60px;
   font-family: 'Parkinsans';
-  /* font-style: italic; */
 }
+
+thead{
+  border-left: black;
+  border-right: black;
+  border-top:#00A3E0;
+}
+
+th{
+  font-size: x-large;
+  /* text-align: center; */
+  padding: 15px;
+}
+
+td{
+  font-size: large;
+  padding: 10px;
+}
+
 .btn-info {
   background-color: #39B54A;
   border-color: #39B54A;
@@ -71,4 +100,8 @@ div{
   background-color: #D24B23;
   border-color: #D24B23;
   color: black;
+}
+
+.info {
+  font-size: 23px;
 }

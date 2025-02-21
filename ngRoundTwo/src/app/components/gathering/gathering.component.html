@@ -1,51 +1,98 @@
-<h1>Game Gatherings!</h1><br>
+<h1 id="header">Game Gatherings</h1><br>
 
-@if (!selected && !showNewEventForm) {
+<div *ngIf="(!selected && !showNewEventForm)">
   <div>
-    <button *ngIf="isLoggedIn" class="btn btn-info" (click)="toggleNewEventForm()">Add Gathering</button>
+    <button *ngIf="isLoggedIn" class="btn btn-info" (click)="toggleNewEventForm()">Add Gathering</button><br><br>
   </div>
-  <div *ngFor="let gathering of gatherings" (click)="showGathering(gathering.id)" id="seperatingGatheringName">
-    <p>Hosted by {{gathering.host.username}}</p>
-    <h2>{{gathering.name}}</h2>
-    {{gathering.startDate}} from {{gathering.startTime}} - {{gathering.endTime}}<br>
-    {{gathering.description}}<br>
-    {{gathering.fee}}<br>
-    <p>{{gathering.minParticipants}}-{{gathering.maxParticipants}} players</p>
-    <img *ngIf="gathering.imageUrl" [src]="gathering.imageUrl"><br>
-    Last Updated {{gathering.lastUpdate}}
-    <hr>
+
+  <div class="container" *ngFor="let gathering of gatherings" (click)="showGathering(gathering.id)">
+    <div class="container border border-secondary shadow-lg pop-out"  >
+      <h2>{{gathering.name}}</h2>
+      <p>Hosted by {{gathering.host.username}}</p>
+      <div id="timeInfo">{{gathering.startTime}} {{gathering.startDate}}<span *ngIf="gathering.endTime"> to {{gathering.endTime}} {{gathering.endDate}}</span></div><br>
+      <p>{{gathering.minParticipants}}-{{gathering.maxParticipants}} players</p>
+      <p></p>
+      <p *ngIf="gathering.fee > 0">Registration Cost: ${{gathering.fee}}</p>
+      <div *ngIf="gathering.imageUrl"><img [src]="gathering.imageUrl"></div>
+      <p class="text-muted" id="updated">Last Updated {{gathering.lastUpdate}}</p>
+    </div>
   </div>
-}
-
-
- <div *ngIf="selected && !showNewEventForm && !editGathering">
-   <div id="seperatingGatheringName">
-     <h1>{{selected.name}}</h1>
-     <button class="btn btn-info" (click)="selected = null">Back</button>
-     <button *ngIf="selected.host.id === currentUser?.id || currentUser?.role === 'chadmin'" class="btn btn-warning" (click)="setEditGathering()">Edit</button>
-     <button *ngIf="!checkAttendance()" class="btn btn-success" (click)="addGatheringParticipant(selected.id)">Join this Gathering</button>
-     <button *ngIf="checkAttendance()" class="btn btn-danger" (click)="removeGatheringParticipant(selected.id)">Leave this Gathering</button>
-    <p>Hosted by {{selected.host.username}}</p>
-   </div>
-   <img *ngIf="selected.imageUrl" [src]="selected.imageUrl"><br>
-  {{selected.startDate}} from {{selected.startTime}} - {{selected.endTime}}<br><br>
-  <h2>Description</h2>
-   {{selected.description}}<br><br>
-   <h2>Guest List</h2>
-   <ul>
-    <li *ngFor="let name of generateGuestList()">{{name}}</li>
-   </ul>
-   {{selected.fee}}<br>
-   {{selected.address.name}}<br>
-   {{selected.address.street}}<br>
-   {{selected.address.city}}
-   {{selected.address.stateAbbr}}
-   {{selected.address.zip}}
-   <p>{{selected.minParticipants}}-{{selected.maxParticipants}} players</p>
-   Last Updated {{selected.lastUpdate}}<br>
-   <!-- need to add security to only allow whoever made the post to edit the post -->
-   <hr>
+  <br><br>
 </div>
+
+
+<div *ngIf="selected && !showNewEventForm && !editGathering">
+  <!-- Gathering Header -->
+  <div class="row align-items-center">
+    <h1 id="separatingGatheringName" class="col text-primary">{{selected.name}}</h1>
+    <div class="col-auto">
+      <button class="btn btn-info" (click)="selected = null">Back</button>
+    </div>
+    <div class="col-auto">
+      <button *ngIf="selected.host.id === currentUser?.id || currentUser?.role === 'chadmin'"
+              class="btn btn-warning" (click)="setEditGathering()">Edit</button>
+    </div>
+    <div class="col-auto">
+      <button *ngIf="!checkAttendance()" class="btn btn-success"
+              (click)="addGatheringParticipant(selected.id)">Join</button>
+    </div>
+    <div class="col-auto">
+      <button *ngIf="checkAttendance()" class="btn btn-danger"
+              (click)="removeGatheringParticipant(selected.id)">Leave</button>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Gathering Info -->
+  <div class="row info">
+    <div class="col"><strong>Hosted by:</strong> {{selected.host.username}}</div>
+    <div class="col"><strong>Date:</strong> {{selected.startDate}} <span *ngIf="selected.endDate"> - {{selected.endDate}}</span></div>
+    <div class="col"><strong>Time:</strong> {{selected.startTime}}<span *ngIf="selected.endTime"> - {{selected.endTime}}</span></div>
+    <div class="col"><strong>Players:</strong> {{selected.minParticipants}}-{{selected.maxParticipants}}</div>
+  </div>
+
+  <p *ngIf="selected.fee > 0" class="text-danger"><strong>Registration Cost:</strong> ${{selected.fee}}</p>
+
+  <br>
+
+
+  <h3>Description</h3>
+  <p class="text-muted">{{selected.description}}</p>
+
+
+
+  <!-- Guest List & Image Section -->
+  <div class="post-div">
+    <!-- Left Section: Guest List & Location -->
+    <div class="left-div">
+      <h3>Guest List</h3>
+      <ul>
+        <li *ngFor="let name of generateGuestList()">{{name}}</li>
+      </ul>
+
+      <div class="mt-5">
+        <h3>Location</h3>
+        <p>
+          <strong>{{selected.address.name}}</strong><br>
+          {{selected.address.street}}<br>
+          {{selected.address.city}}, {{selected.address.stateAbbr}} {{selected.address.zip}}
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <img class="image img-fluid rounded shadow" *ngIf="selected.imageUrl" [src]="selected.imageUrl" alt="Gathering Image">
+    </div>
+
+  </div>
+  <br><br><br><br><br>
+  <p id="lastUpdate" class="text-muted">Last Updated: {{selected.lastUpdate}}</p>
+</div>
+
+
+
+   <!-- need to add security to only allow whoever made the post to edit the post -->
 
 <div *ngIf="showNewEventForm">
         <form>
@@ -55,9 +102,9 @@
           <textarea name="description" placeholder="description" [(ngModel)]="newGathering.description"></textarea><br>
 
           <label for="games">Select Game: </label>
-          <select name="games" [(ngModel)]="newGathering.games" required>
-          <option *ngFor="let game of games" [ngValue]="game">{{ game.name }}</option>
-          </select><br>
+<select name="games" [(ngModel)]="selectedGame" (change)="addGameToGathering()" required>
+  <option *ngFor="let game of games" [ngValue]="game">{{ game.name }}</option>
+</select><br>
 
           <label for="fee">Fee: </label>
           <input type="number"  name="fee" placeholder="fee" [(ngModel)]="newGathering.fee"><br>

@@ -6,6 +6,20 @@ img{
 div{
   font-family: 'Parkinsans';
 }
+
+p{
+  font-family: 'Parkinsans';
+  font-size:20px;;
+}
+
+td{
+  font-size: large;
+}
+
+li{
+  font-size: large;
+}
+
 .btn-info {
   background-color: #39B54A;
   border-color: #39B54A;
