@@ -26,6 +26,7 @@ export class Gathering {
   participants: GatheringParticipant[];
   host: User;
   lastUpdate: string;
+  spotsLeft: number;
 
   constructor(
   id: number = 0,
@@ -45,6 +46,7 @@ export class Gathering {
   address: Address = new Address(),
   games: Game [] = [],
   participants: GatheringParticipant[] = [],
+  spotsLeft: number = participants.length - maxParticipants,
   ){
     this.id = id;
     this.name = name;
@@ -63,5 +65,6 @@ export class Gathering {
     this.address = address;
     this.games = games;
     this.participants = participants;
+    this.spotsLeft = spotsLeft;
   }
 }
