@@ -17,6 +17,10 @@ div .info{
   font-size: 23px;
 }
 
+#timeInfo{
+  font-size: large;
+}
+
 #separatingGatheringName {
   font-family: 'Parkinsans';
   font-size: 45px;
@@ -45,12 +49,17 @@ div .info{
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: center;
-  gap: 20px
+  gap: 20px;
   width: 100%;
 }
 
 #lastUpdate{
   text-align: center;
+  font-size:medium;
+}
+
+#updated{
+  text-align: right;
   font-size:medium;
 }
 

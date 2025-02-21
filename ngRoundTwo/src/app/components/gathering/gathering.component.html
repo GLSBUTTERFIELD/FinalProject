@@ -9,14 +9,12 @@
     <div class="container border border-secondary shadow-lg pop-out"  >
       <h2>{{gathering.name}}</h2>
       <p>Hosted by {{gathering.host.username}}</p>
-      {{gathering.startDate}} from {{gathering.startTime}} - {{gathering.endTime}}<br>
-      {{gathering.description}}<br>
-      {{gathering.fee}}<br>
+      <div id="timeInfo">{{gathering.startTime}} {{gathering.startDate}}<span *ngIf="gathering.endTime"> to {{gathering.endTime}} {{gathering.endDate}}</span></div><br>
       <p>{{gathering.minParticipants}}-{{gathering.maxParticipants}} players</p>
-
-      <img *ngIf="gathering.imageUrl" [src]="gathering.imageUrl"><br>
-
-      Last Updated {{gathering.lastUpdate}}
+      <p></p>
+      <p *ngIf="gathering.fee > 0">Registration Cost: ${{gathering.fee}}</p>
+      <div *ngIf="gathering.imageUrl"><img [src]="gathering.imageUrl"></div>
+      <p class="text-muted" id="updated">Last Updated {{gathering.lastUpdate}}</p>
     </div>
   </div>
   <br><br>

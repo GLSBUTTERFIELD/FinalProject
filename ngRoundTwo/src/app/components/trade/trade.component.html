@@ -23,8 +23,14 @@
 }
 
 <div *ngIf="selected">
-  <h1 id="separatingInventoryItemName">{{selected.name}}</h1>
-  <button class="btn btn-info" (click)="selected = null">Back</button><hr>
+  <div class="row align-items-center">
+  <h1 class="col text-primary" id="separatingInventoryItemName">{{selected.name}}</h1>
+    <div class="col-auto">
+    <button class="btn btn-info" (click)="selected = null">Back</button>
+  </div>
+  <hr>
+   </div>
+  <!-- item info -->
   <div class="row">
     <div class="col info"><strong>Listed by {{selected.user.username}}</strong> <span *ngIf="selected.createDate"> on {{selected.createDate}}></span></div>
     <div class="col info"><strong>Condition: </strong>{{selected.condition.name}}</div>
@@ -36,12 +42,15 @@
    <img *ngIf="selected.imageUrl" [src]="selected.imageUrl"><br>
 <hr>
 <div *ngIf="selected.comments.length > 0">
-<h3>Comments</h3>
+  <div class="row align-items-center">
+    <h3 class="col text-primary">Comments</h3>
+    <div class="col-auto">
+      <button class="btn btn-success" (click)="toggleNewCommentForm()">Add a Comment</button>
+    </div>
   <p *ngFor="let comment of selected.comments">
     "{{comment.comment}}" -{{comment.user?.username}}
   </p>
   </div>
-    <button class="btn btn-success" (click)="toggleNewCommentForm()">Add a Comment</button>
  <hr>
 </div>
 
