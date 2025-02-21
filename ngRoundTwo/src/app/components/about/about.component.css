@@ -3,17 +3,22 @@ div{
   font-size: 35px;
   padding: 2%;
   /* background-image: url('/images/prwlcw1g99511.jpg'); */
-  background-image: url('/images/f7e41de9-0883-4308-979b-06dd94e03ac5_large.webp');
   background-size: cover;
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-position: center center;
-  background-color: rgba(255, 255, 255, 0.3); /* Light background with transparency */
 
   position: relative; /* To allow overlay positioning */
-  color: white; /* Adjust text color to white (or another light color) */
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* Add a dark text shadow for contrast */
+  color: black; /* Adjust text color to white (or another light color) */
+  text-shadow: 1px 1px 3px black(238, 10, 10, 0.7); /* Add a dark text shadow for contrast */
   text-align: center;
+}
+
+#about-us {
+  background-image: url('/images/Cards.jpg');
+  background-color: rgba(255, 255, 255, 0.6); /* Light background with transparency */
+  background-blend-mode: overlay;
+
 }
 
 div::before {
@@ -26,7 +31,6 @@ div::before {
   background: rgba(0, 0, 0, 0.2); /* Darken the background slightly (adjust alpha value as needed) */
   z-index: -1; /* Ensure the overlay is behind the content */
 }
-
 
 .btn-info {
   background-color: #39B54A;

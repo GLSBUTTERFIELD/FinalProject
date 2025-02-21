@@ -16,13 +16,16 @@ import { NgbCarousel, NgbModule, NgbSlideEvent, NgbSlideEventSource } from '@ng-
 })
 export class HomeComponent {
   images = [
-    "images/boardgames-2048px-1551.jpg",
     "images/Depositphotos_318049006_XL-scaled.webp",
-    "images/DSC1182.jpg",
+    "images/Scrabble.png",
     "images/family-playing-board-game.jpg",
+    "images/boardgames-2048px-1551.jpg",
+    "images/DSC1182.jpg",
+    "images/Diverse gathering.webp",
     "images/il_fullxfull.1940458793_pn92.webp",
-    "images/IMG_3979.jpg",
     "images/istockphoto-1339065197-640x640.jpg",
+    "images/IMG_3979.jpg",
+
   ]
 
 	paused = false;
