@@ -32,10 +32,6 @@ div::before {
   z-index: -1; /* Ensure the overlay is behind the content */
 }
 
-body {
-  background-color: aqua !important;
-}
-
 .btn-info {
   background-color: #39B54A;
   border-color: #39B54A;

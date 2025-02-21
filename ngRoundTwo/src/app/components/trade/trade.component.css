@@ -26,7 +26,7 @@ p{
 
 thead{
   border-left: black;
-  border-right: black;
+  border-right: black(242, 9, 9);
   border-top:#00A3E0;
 }
 
