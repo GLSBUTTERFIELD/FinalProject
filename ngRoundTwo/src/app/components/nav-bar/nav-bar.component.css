@@ -92,3 +92,94 @@ div{
   border-color: #D24B23;
   color: black;
 }
+.modal-content {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 500px;
+  margin: 50px auto;
+}
+
+.modal-header {
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.modal-header .modal-title {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.modal-body {
+  padding: 20px 0;
+}
+
+.modal-body input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.modal-body input:focus {
+  border-color: #66afe9;
+  outline: none;
+  box-shadow: 0 0 5px rgba(102, 175, 233, 0.6);
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+}
+
+.modal-footer button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-footer button[type="submit"] {
+  background-color: #28a745;
+  color: white;
+  border: none;
+}
+
+.modal-footer button[type="button"] {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+}
+
+.modal-footer button:hover {
+  opacity: 0.9;
+}
+
+.modal-footer .btn-success:hover {
+  background-color: #218838;
+}
+
+.modal-footer .btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+@media (max-width: 768px) {
+  .modal-dialog {
+    width: 90%;
+    margin-top: 20px;
+  }
+
+  .modal-content {
+    padding: 15px;
+  }
+
+  .modal-footer button {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
