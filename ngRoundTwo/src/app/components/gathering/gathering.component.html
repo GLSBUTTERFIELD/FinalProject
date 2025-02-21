@@ -24,50 +24,76 @@
 
 
 <div *ngIf="selected && !showNewEventForm && !editGathering">
-  <div class="row">
-    <h1 id="separatingGatheringName">{{selected.name}}</h1>
-    <div class="col col-auto"><button class="btn btn-info" (click)="selected = null">Back</button></div>
-    <div class="col col-auto"><button *ngIf="selected.host.id === currentUser?.id || currentUser?.role === 'chadmin'" class="btn btn-warning" (click)="setEditGathering()">Edit</button></div>
-    <div class="col col-auto"><button *ngIf="!checkAttendance()" class="btn btn-success" (click)="addGatheringParticipant(selected.id)">Join this Gathering</button></div>
-    <div class="col col-auto"><button *ngIf="checkAttendance()" class="btn btn-danger" (click)="removeGatheringParticipant(selected.id)">Leave this Gathering</button></div>
-    <br><br>
-    <hr>
+  <!-- Gathering Header -->
+  <div class="row align-items-center">
+    <h1 id="separatingGatheringName" class="col text-primary">{{selected.name}}</h1>
+    <div class="col-auto">
+      <button class="btn btn-info" (click)="selected = null">Back</button>
     </div>
+    <div class="col-auto">
+      <button *ngIf="selected.host.id === currentUser?.id || currentUser?.role === 'chadmin'"
+              class="btn btn-warning" (click)="setEditGathering()">Edit</button>
+    </div>
+    <div class="col-auto">
+      <button *ngIf="!checkAttendance()" class="btn btn-success"
+              (click)="addGatheringParticipant(selected.id)">Join</button>
+    </div>
+    <div class="col-auto">
+      <button *ngIf="checkAttendance()" class="btn btn-danger"
+              (click)="removeGatheringParticipant(selected.id)">Leave</button>
+    </div>
+  </div>
 
-      <div class="row info">
-        <div class="col">Hosted by <strong>{{selected.host.username}}</strong></div>
-        <div class="col"><strong>Date: </strong>{{selected.startDate}} <span *ngIf="selected.endDate"> - {{selected.endDate}}></span></div>
-        <div class="col"><strong>Time: </strong>{{selected.startTime}}<span *ngIf="selected.endTime"> - {{selected.endTime}}</span></div>
-        <div class="col">{{selected.minParticipants}}-{{selected.maxParticipants}} players</div>
+  <hr>
+
+  <!-- Gathering Info -->
+  <div class="row info">
+    <div class="col"><strong>Hosted by:</strong> {{selected.host.username}}</div>
+    <div class="col"><strong>Date:</strong> {{selected.startDate}} <span *ngIf="selected.endDate"> - {{selected.endDate}}</span></div>
+    <div class="col"><strong>Time:</strong> {{selected.startTime}}<span *ngIf="selected.endTime"> - {{selected.endTime}}</span></div>
+    <div class="col"><strong>Players:</strong> {{selected.minParticipants}}-{{selected.maxParticipants}}</div>
+  </div>
+
+  <p *ngIf="selected.fee > 0" class="text-danger"><strong>Registration Cost:</strong> ${{selected.fee}}</p>
+
+  <br>
+
+
+  <h3>Description</h3>
+  <p class="text-muted">{{selected.description}}</p>
+
+
+
+  <!-- Guest List & Image Section -->
+  <div class="post-div">
+    <!-- Left Section: Guest List & Location -->
+    <div class="left-div">
+      <h3>Guest List</h3>
+      <ul>
+        <li *ngFor="let name of generateGuestList()">{{name}}</li>
+      </ul>
+
+      <div class="mt-5">
+        <h3>Location</h3>
+        <p>
+          <strong>{{selected.address.name}}</strong><br>
+          {{selected.address.street}}<br>
+          {{selected.address.city}}, {{selected.address.stateAbbr}} {{selected.address.zip}}
+        </p>
       </div>
-      <p *ngIf="selected.fee > 0">Registration Cost: ${{selected.fee}}</p>
-      <br>
-
-    <h3>Description</h3>
-     <p>{{selected.description}}</p><br>
-
-
-<div class="post-div">
-  <div class="left-div">
-    <h3>Guest List</h3>
-    <ul>
-      <li *ngFor="let name of generateGuestList()">{{name}}</li>
-    </ul><br>
-    <div class="address">
-      <h3>Location</h3>
-      {{selected.address.name}}<br>
-      {{selected.address.street}}<br>
-      {{selected.address.city}}, {{selected.address.stateAbbr}} {{selected.address.zip}}<br>
     </div>
+
+    <div>
+      <img class="image img-fluid rounded shadow" *ngIf="selected.imageUrl" [src]="selected.imageUrl" alt="Gathering Image">
+    </div>
+
   </div>
-  <div class="col">
-    <img class="image" *ngIf="selected.imageUrl" [src]="selected.imageUrl">
-  </div>
+  <br><br><br><br><br>
+  <p id="lastUpdate" class="text-muted">Last Updated: {{selected.lastUpdate}}</p>
 </div>
 
-          <br>
-          <p id="lastUpdate">Last Updated {{selected.lastUpdate}}</p><br>
-        </div>
+
+
    <!-- need to add security to only allow whoever made the post to edit the post -->
 
 <div *ngIf="showNewEventForm">

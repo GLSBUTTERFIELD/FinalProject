@@ -124,7 +124,7 @@ export class UserProfileComponent implements OnInit{
         this.editProfile = null;
         this.selected = null;
         this.reload();
-
+        this.closeModal();
       },
       error: (error) => {
         console.log(error);
@@ -199,6 +199,7 @@ export class UserProfileComponent implements OnInit{
     this.viewInventoryItemEditForm = false;
     this.newInventoryItemInfo = new InventoryItem;
     this.viewNewInventoryItemForm = false;
+    this.editProfile = null;
   }
 
   updateItem(inventoryItemInfo: InventoryItem) {

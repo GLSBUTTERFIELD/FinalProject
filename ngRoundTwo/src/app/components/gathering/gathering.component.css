@@ -43,8 +43,9 @@ div .info{
 .post-div {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
+  gap: 20px
   width: 100%;
 }
 
@@ -57,7 +58,8 @@ div .info{
   flex-wrap: wrap;
   height: auto;
   padding-right: 100px;
-  /* padding: 50px; */
+  padding: 10px;
+  flex: 0.75;
 }
 
 h3{
