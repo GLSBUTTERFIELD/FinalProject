@@ -1,46 +1,47 @@
+<h1 id="header">Available Items to Trade</h1><br>
+
   @if (!selected) {
-    <div>
-    <h1>Available Items to Trade</h1>
-    <table class="table">
+    <table class="table table-hover">
       <thead>
-        <th>Name</th>
-        <th>Condition</th>
-        <th>Notes</th>
-        <th>Listed</th>
-        <th>Last Updated</th>
+        <th class="col col-auto">Name</th>
+        <th class="col col-auto">Condition</th>
+        <th class="col col-auto">Notes</th>
+        <th class="col col-auto">Listed By</th>
+        <!-- <th class="col col-auto">Last Updated</th> -->
       </thead>
       <tbody>
         <tr *ngFor="let item of availableItems" (click)="showItem(item.id)">
           <td>{{item.name}}</td>
           <td>{{item.condition.name}}</td>
           <td>{{item.notes}}</td>
-          <td>{{item.createDate}}</td>
-          <td>{{item.lastUpdate}}</td>
+          <td>{{item.user.username}}</td>
+          <!-- <td>{{item.lastUpdate}}</td> -->
         </tr>
       </tbody>
     </table>
-  </div>
+
 }
 
 <div *ngIf="selected">
-  <div id="seperatingInventoryItemName">
-    <h1>{{selected.name}}</h1>
-  </div>
-  <strong>Condition: </strong>{{selected.condition.name}}<br>
-  <strong>Notes: </strong>{{selected.notes}}<br>
-  <strong>Description: </strong>{{selected.condition.description}}<br>
-   Listed by {{selected.user.username}} on {{selected.createDate}}<br>
-   Last Update {{selected.lastUpdate}}<br>
+  <h1 id="separatingInventoryItemName">{{selected.name}}</h1>
+  <button class="btn btn-info" (click)="selected = null">Back</button><hr>
+  <div class="row">
+    <div class="col info"><strong>Listed by {{selected.user.username}}</strong> <span *ngIf="selected.createDate"> on {{selected.createDate}}></span></div>
+    <div class="col info"><strong>Condition: </strong>{{selected.condition.name}}</div>
+      <div class="col info" *ngIf="selected.lastUpdate">Last Updated {{selected.lastUpdate}}</div>
+    </div>
+    <br>
+  <p><strong>Description: </strong>{{selected.condition.description}}</p>
+  <p><strong>Notes: </strong>{{selected.notes}}</p>
    <img *ngIf="selected.imageUrl" [src]="selected.imageUrl"><br>
 <hr>
-<p *ngFor="let comment of selected.comments">
-  "{{comment.comment}}" -{{comment.user?.username}}
-</p>
-
-<!-- <div *ngIf="isLoggedIn"> -->
-<button class="btn btn-success" (click)="toggleNewCommentForm()">Add a Comment</button>
-<!-- </div> -->
-   <button class="btn btn-info" (click)="selected = null">Back</button>
+<div *ngIf="selected.comments.length > 0">
+<h3>Comments</h3>
+  <p *ngFor="let comment of selected.comments">
+    "{{comment.comment}}" -{{comment.user?.username}}
+  </p>
+  </div>
+    <button class="btn btn-success" (click)="toggleNewCommentForm()">Add a Comment</button>
  <hr>
 </div>
 
