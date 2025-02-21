@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './about.component.css'
 })
 export class AboutComponent {
-
+  image ='images/prwlcw1g99511.jpg';
 }
