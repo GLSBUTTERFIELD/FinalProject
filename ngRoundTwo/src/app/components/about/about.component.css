@@ -3,6 +3,16 @@ div{
   font-size:larger;
   padding: 2%;
 }
+
+.about-page{
+  background-image: "public/images/prwlcw1g99511.jpg";
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: rgba(0,0,0,0.5);
+}
+
 .btn-info {
   background-color: #39B54A;
   border-color: #39B54A;

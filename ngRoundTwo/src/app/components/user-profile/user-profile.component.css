@@ -2,6 +2,25 @@ div{
   font-family: 'Parkinsans';
 }
 
+p{
+  font-family: 'Parkinsans';
+  font-size: large;
+}
+
+th{
+  font-size: large;
+}
+
+td{
+  font-size: large;
+}
+
+.welcome{
+  font-family: 'Parkinsans';
+  font-size: 45px;
+  text-align: center;
+}
+
 .btn-info {
   background-color: #39B54A;
   border-color: #39B54A;

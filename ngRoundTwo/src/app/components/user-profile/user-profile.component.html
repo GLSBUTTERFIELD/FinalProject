@@ -1,6 +1,15 @@
-<div *ngIf="userToDisplay && !editProfile">
-  <h1>Hello, {{ userToDisplay.username }}</h1>
-  <img *ngIf="userToDisplay.imageUrl" [src]="userToDisplay.imageUrl" alt="User Image">
+<div class="container">
+<div *ngIf="userToDisplay">
+  <div class="row align-items-center">
+    <h1 class="col welcome">Hello, {{ userToDisplay.username }}</h1>
+      <div class="col-auto">
+        <button class="btn btn-warning" (click)="setEditProfile()">Edit Profile</button>
+      </div>
+  </div>
+  <div *ngIf="userToDisplay.imageUrl">
+    <br>
+    <img [src]="userToDisplay.imageUrl" alt="User Image">
+  </div>
 
   <p><strong>First Name:</strong> {{ userToDisplay.firstName }}</p>
   <p><strong>Last Name:</strong> {{ userToDisplay.lastName }}</p>
@@ -8,13 +17,17 @@
   <p><strong>Role:</strong> {{ userToDisplay.role }}</p>
   <p><strong>Biography:</strong> {{ userToDisplay.biography }}</p>
   <!-- Moved edit button here -->
-  <button class="btn btn-warning" (click)="setEditProfile()">Edit Profile</button>
 
   <hr>
-  <button class="btn btn-info" (click)="viewNewInventoryItemForm = true">Add Inventory Item</button>
 
-<div *ngIf="userToDisplay.inventoryItems">
-  <h2>Inventory Items</h2>
+  <div *ngIf="userToDisplay.inventoryItems">
+    <div class="row align-items-center">
+      <h2 class="col">Inventory Items</h2>
+      <div class="col-auto">
+        <button class="btn btn-info" (click)="viewNewInventoryItemForm = true">Add Inventory Item</button>
+      </div>
+    </div>
+    <br>
   <table class="table">
     <thead>
       <th>Game</th>
@@ -38,20 +51,20 @@
 </div>
 
 <div *ngIf="gatheringsAttending.length > 0">
-  <h2>Upcoming Gatherings</h2>
+  <h2>Upcoming Gatherings</h2><br>
   <table class="table">
     <thead>
       <th>Name</th>
       <th>Date & Time</th>
       <th>Location</th>
       <th>Host</th>
-      <th>Fee</th>
+      <th>Fee $</th>
     </thead>
     <tbody>
-      <tr *ngFor="let gathering of gatheringsAttending">
+      <tr *ngFor="let gathering of gatheringsAttending" (click)="viewGathering(gathering.id)">
         <!-- added click event -->
-        <td (click)="viewGathering(gathering.id)">{{gathering.name}}</td>
-        <td>{{gathering.startDate}} from {{gathering.startTime}} to {{gathering.endTime}} {{gathering.endDate}}</td>
+        <td>{{gathering.name}}></td>
+        <td>{{gathering.startTime}} {{gathering.startDate}}<span *ngIf="gathering.endTime"> to {{gathering.endTime}} {{gathering.endDate}}</span></td>
         <td>{{gathering.address.name}}</td>
         <td>{{gathering.host.username}}</td>
         <td>{{gathering.fee}}</td>
@@ -61,19 +74,19 @@
 </div>
 
 <div *ngIf="gatheringsAttended.length >0">
-  <h2 >Past Gatherings</h2>
+  <h2>Past Gatherings</h2><br>
   <table class="table">
     <thead>
       <th>Name</th>
       <th>Date & Time</th>
       <th>Location</th>
       <th>Host</th>
-      <th>Fee</th>
+      <th>Fee $</th>
     </thead>
     <tbody>
       <tr *ngFor="let gathering of gatheringsAttended">
         <td>{{gathering.name}}</td>
-        <td>{{gathering.startDate}} from {{gathering.startTime}} to {{gathering.endTime}} {{gathering.endDate}}</td>
+        <td>{{gathering.startTime}} {{gathering.startDate}}<span *ngIf="gathering.endTime"> to {{gathering.endTime}} {{gathering.endDate}}</span></td>
         <td>{{gathering.address.name}}</td>
         <td>{{gathering.host.username}}</td>
         <td>{{gathering.fee}}</td>
@@ -83,7 +96,7 @@
 </div>
 
 <div *ngIf="gatheringsHosted.length > 0">
-  <h2>Gatherings Hosted</h2>
+  <h2>Gatherings Hosted</h2><br>
   <table class="table">
     <thead>
       <th>Name</th>
@@ -94,10 +107,10 @@
       <th></th>
     </thead>
     <tbody>
-      <tr *ngFor="let gathering of gatheringsHosted">
+      <tr *ngFor="let gathering of gatheringsHosted" (click)="viewGathering(gathering.id)">
         <!-- added click event -->
-        <td (click)="viewGathering(gathering.id)">{{gathering.name}}</td>
-        <td>{{gathering.startDate}} from {{gathering.startTime}} to {{gathering.endTime}} {{gathering.endDate}}</td>
+        <td>{{gathering.name}}</td>
+        <td>{{gathering.startTime}} {{gathering.startDate}}<span *ngIf="gathering.endTime"> to {{gathering.endTime}} {{gathering.endDate}}</span></td>
         <td>{{gathering.address.name}}</td>
         <td>{{gathering.maxParticipants}}</td>
         <td>{{gathering.participants.length}}</td>
@@ -108,30 +121,39 @@
 <!-- edit profile button originally here -->
 </div>
 
-<div *ngIf="editProfile">
- <form>
-    <label for="imageUrl">Profile Picture</label>
-    <input type="text" name="imageUrl" [(ngModel)]="editProfile.imageUrl"><br>
 
-    <label for="biography">Biography</label>
-    <textarea name="biography" [(ngModel)]="editProfile.biography"></textarea><br>
+<div class="modal fade show d-block" role="dialog" *ngIf="editProfile">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit User Profile</h5>
+      </div>
+      <div class="modal-body">
+        <form>
+          <label for="imageUrl">Profile Picture</label>
+          <input type="text" name="imageUrl" [(ngModel)]="editProfile.imageUrl"><br>
 
-    <label for="email">Email</label>
-    <input type="text" name="email" [(ngModel)]="editProfile.email"><br>
+          <label for="biography">Biography</label>
+          <textarea name="biography" [(ngModel)]="editProfile.biography"></textarea><br>
 
-    <button class="btn btn-warning" (click)="updateProfile(editProfile)">Save</button>
-
-    <button class="btn btn-danger" (click)="deleteUser(editProfile.id)">Delete</button>
-    <button class="btn btn-success" (click)="closeModal()">Back</button>
- </form>
+          <label for="email">Email</label>
+          <input type="text" name="email" [(ngModel)]="editProfile.email"><br>
+          <div class="modal-footer">
+            <button class="btn btn-warning" (click)="updateProfile(editProfile)">Save</button>
+            <button type="button" class="btn btn-danger" (click)="closeModal()">Close</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
+
 
 <div class="modal fade show d-block" role="dialog" *ngIf="viewInventoryItemEditForm">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Edit Inventory Item</h5>
-        <button type="button" class="close" (click)="closeModal()">&times;</button>
       </div>
       <div class="modal-body">
         <form>
@@ -200,4 +222,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>
